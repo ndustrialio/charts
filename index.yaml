@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  node-api:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-06T13:22:36.453952204Z"
+    description: A Helm chart for Kubernetes
+    digest: 7aaf6fcc9779e27f6db833d06cf60012b381ff65fbf32463c6c8351b8cb335e6
+    name: node-api
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/node-api-0.1.0/node-api-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-11-06T13:22:36.32572661Z"
