@@ -1,0 +1,46 @@
+kind: CronJob
+apiVersion: batch/v1beta1
+metadata:
+  name: {{ include "ndustrial-cronjob.fullname" . }}
+  labels:
+    {{- include "ndustrial-cronjob.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: 1
+  startingDeadlineSeconds: 600
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 7200
+      template:
+        spec:
+          shareProcessNamespace: true
+          restartPolicy: Never
+          {{- with .Values.image.pullSecret }}
+          imagePullSecrets:
+            - name: {{ . }}
+          {{- end }}
+          containers:
+            - name: {{ .Chart.Name }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              args:
+                {{- range .Values.args }}
+                - {{ . }}
+                {{- end }}
+              env:
+                - name: CLIENT_ID
+                  value: {{ .Values.clientId }}
+                - name: CLIENT_SECRET
+                  value: {{ .Values.clientSecret }}
+                - name: SFTP_URL
+                  value: sftp://SustainableIndustrial@sftp3.urjanet.com:22
+              {{- with .Values.extraEnv }}
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+              envFrom:
+                - secretRef:
+                    name: ndustrial-cronjob
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
