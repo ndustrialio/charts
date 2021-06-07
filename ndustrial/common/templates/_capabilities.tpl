@@ -93,3 +93,14 @@ This check is introduced as a regexMatch instead of {{ if .Capabilities.HelmVers
   {{- true -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Return the appropriate apiVersion for cronjob APIs.
+*/}}
+{{- define "common.capabilities.cronjob.apiVersion" -}}
+{{- if semverCompare "< 1.8-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- print "batch/v2alpha1" }}
+{{- else if semverCompare ">=1.8-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- print "batch/v1beta1" }}
+{{- end -}}
+{{- end -}}

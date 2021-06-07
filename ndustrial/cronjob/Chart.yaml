@@ -1,6 +1,13 @@
 apiVersion: v2
-name: ndustrial-cronjob
-description: A Helm chart for Kubernetes
+name: cronjob
+description: A Helm chart for deploying k8s crons
 type: application
 version: 0.1.0
 appVersion: "0.1.0"
+dependencies:
+  - name: common
+    repository: https://charts.ndustrial.io/ndustrial
+    tags:
+      - ndustrial-common
+sources:
+  - https://github.com/ndustrialio/charts/tree/main/ndustrial/cronjob

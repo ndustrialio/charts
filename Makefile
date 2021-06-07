@@ -14,3 +14,8 @@ install: ## Install required tools
 .PHONY: lint
 lint: ct ## Lint charts
 	ct lint
+
+
+gen:
+	cd ./ndustrial/cronjob && readme-generator -r ./README.md -v values.yaml
+.PHONY: gen

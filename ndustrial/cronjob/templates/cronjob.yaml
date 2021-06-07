@@ -1,46 +1,146 @@
+apiVersion: {{ template "common.capabilities.cronjob.apiVersion" . }}
 kind: CronJob
-apiVersion: batch/v1beta1
 metadata:
-  name: {{ include "ndustrial-cronjob.fullname" . }}
-  labels:
-    {{- include "ndustrial-cronjob.labels" . | nindent 4 }}
+  name: {{ include "cronjob.fullname" . }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    ndustrial.io/component: cronjob
+    {{- if .Values.labels }}
+    {{- include "common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.annotations }}
+  annotations: {{- toYaml .Values.annotations | nindent 4 }}
+  {{- end }}
 spec:
   schedule: {{ .Values.schedule | quote }}
-  concurrencyPolicy: "Forbid"
-  successfulJobsHistoryLimit: 1
-  startingDeadlineSeconds: 600
+  {{- with .Values.concurrencyPolicy }}
+  concurrencyPolicy: {{ . }}
+  {{- end }}
+  {{- with .Values.failedJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ . }}
+  {{- end }}
+  {{- with .Values.successfulJobsHistoryLimit }}
+  successfulJobsHistoryLimit: {{ . }}
+  {{- end }}
+  {{- with .Values.startingDeadlineSeconds }}
+  startingDeadlineSeconds: {{ . }}
+  {{- end }}
   jobTemplate:
+    metadata:
+      labels: {{- include "common.labels.standard" . | nindent 8 }}
+        ndustrial.io/component: cronjob
+        {{- if .Values.labels }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 8 }}
+        {{- end }}
+      {{- if .Values.annotations }}
+      annotations: {{- toYaml .Values.annotations | nindent 8 }}
+      {{- end }}
     spec:
-      backoffLimit: 2
-      ttlSecondsAfterFinished: 7200
+      {{- with .Values.activeDeadlineSeconds }}
+      activeDeadlineSeconds: {{ . }}
+      {{- end }}
+      {{- with .Values.backoffLimit }}
+      backoffLimit: {{ . }}
+      {{- end }}
+      {{- with .Values.completions }}
+      completions: {{ . }}
+      {{- end }}
+      {{- with .Values.parallelism }}
+      parallelism: {{ . }}
+      {{- end }}
+      {{- with .Values.ttlSecondsAfterFinished }}
+      ttlSecondsAfterFinished: {{ . }}
+      {{- end }}
+
       template:
-        spec:
-          shareProcessNamespace: true
-          restartPolicy: Never
-          {{- with .Values.image.pullSecret }}
-          imagePullSecrets:
-            - name: {{ . }}
+        metadata:
+          labels:
+            ndustrial.io/component: cronjob
+            {{- include "common.labels.standard" . | nindent 12 }}
+            {{- if .Values.labels }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 12 }}
+            {{- end }}
+            {{- if .Values.podLabels }}
+            {{- toYaml .Values.podLabels | nindent 12 }}
+            {{- end }}
+          {{- if .Values.podAnnotations }}
+          annotations: {{- toYaml .Values.podAnnotations | nindent 12 }}
           {{- end }}
+        spec:
+          restartPolicy: Never
+          shareProcessNamespace: {{ .Values.pod.shareProcessNamespace }}
+          {{- include "cronjob.imagePullSecrets" . | nindent 10 }}
+          {{- if .Values.job.podSecurityContext.enabled }}
+          securityContext: {{- omit .Values.job.podSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- end }}
+          {{- if .Values.job.priorityClassName }}
+          priorityClassName: {{ .Values.job.priorityClassName | quote }}
+          {{- end }}
+          {{- if .Values.job.affinity }}
+          affinity: {{- include "common.tplvalues.render" (dict "value" .Values.job.affinity "context" $) | nindent 12 }}
+          {{- else }}
+          affinity:
+            podAffinity: {{- include "common.affinities.pods" (dict "type" .Values.job.podAffinityPreset "context" $) | nindent 14 }}
+            podAntiAffinity: {{- include "common.affinities.pods" (dict "type" .Values.job.podAntiAffinityPreset "context" $) | nindent 14 }}
+            nodeAffinity: {{- include "common.affinities.nodes" (dict "type" .Values.job.nodeAffinityPreset.type "key" .Values.job.nodeAffinityPreset.key "values" .Values.job.nodeAffinityPreset.values) | nindent 14 }}
+          {{- end }}
+          {{- if .Values.job.nodeSelector }}
+          nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.job.nodeSelector "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.job.tolerations }}
+          tolerations: {{- include "common.tplvalues.render" (dict "value" .Values.job.tolerations "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.job.hostAliases }}
+          hostAliases: {{- include "common.tplvalues.render" (dict "value" .Values.job.hostAliases "context" $) | nindent 12 }}
+          {{- end }}
+          initContainers:
+            {{- if .Values.job.initContainers }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.job.initContainers "context" $) | nindent 12 }}
+            {{- end }}
+          serviceAccountName: {{ template "cronjob.serviceAccountName" . }}
           containers:
             - name: {{ .Chart.Name }}
-              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-              imagePullPolicy: {{ .Values.image.pullPolicy }}
-              args:
-                {{- range .Values.args }}
-                - {{ . }}
-                {{- end }}
-              env:
-                - name: CLIENT_ID
-                  value: {{ .Values.clientId }}
-                - name: CLIENT_SECRET
-                  value: {{ .Values.clientSecret }}
-                - name: SFTP_URL
-                  value: sftp://SustainableIndustrial@sftp3.urjanet.com:22
-              {{- with .Values.extraEnv }}
-                {{- toYaml . | nindent 16 }}
+              image: {{ template "cronjob.image" . }}
+              imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+              {{- if .Values.command }}
+              command: {{- include "common.tplvalues.render" (dict "value" .Values.command "context" $) | nindent 16 }}
               {{- end }}
+              {{- if .Values.args }}
+              args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 16 }}
+              {{- end }}
+              {{- if .Values.containerSecurityContext.enabled }}
+              securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 16 }}
+              {{- end }}
+              env:
+                {{- if .Values.extraEnvVars }}
+                {{- include "common.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 16 }}
+                {{- end }}
+                - name: POD_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
               envFrom:
+                {{- if .Values.extraEnvVarsCM }}
+                - configMapRef:
+                    name: {{ include "common.tplvalues.render" (dict "value" .Values.extraEnvVarsCM "context" $) }}
+                {{- end }}
+                {{- if .Values.extraEnvVarsSecret }}
                 - secretRef:
-                    name: ndustrial-cronjob
-              resources:
-                {{- toYaml .Values.resources | nindent 16 }}
+                    name: {{ include "common.tplvalues.render" (dict "value" .Values.extraEnvVarsSecret "context" $) }}
+                {{- end }}
+              {{- if .Values.lifecycleHooks }}
+              lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.lifecycleHooks "context" $) | nindent 16 }}
+              {{- end }}
+              {{- if .Values.resources }}
+              resources: {{- toYaml .Values.resources | nindent 16 }}
+              {{- end }}
+              volumeMounts:
+                {{- if .Values.extraVolumeMounts }}
+                {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 16 }}
+                {{- end }}
+            {{- if .Values.sidecars }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 12 }}
+            {{- end }}
+          volumes:
+            {{- if .Values.extraVolumes }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumes "context" $) | nindent 12 }}
+            {{- end }}
