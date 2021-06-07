@@ -17,5 +17,5 @@ lint: ct ## Lint charts
 
 
 gen:
-	cd ./ndustrial/cronjob && readme-generator -r ./README.md -v values.yaml
+	./scripts/gen.sh
 .PHONY: gen
