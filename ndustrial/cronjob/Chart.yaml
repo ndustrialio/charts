@@ -6,7 +6,7 @@ version: 0.1.0
 appVersion: "0.1.0"
 dependencies:
   - name: common
-    repository: https://charts.ndustrial.io/ndustrial
+    repository: https://ndustrialio.github.io/charts
     tags:
       - ndustrial-common
 sources:

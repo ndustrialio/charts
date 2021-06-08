@@ -10,7 +10,7 @@ The [Bitnami Common Chart](https://github.com/bitnami/charts/tree/master/bitnami
 dependencies:
   - name: common
     version: 0.x.x
-    repository: https://charts.ndustrial.io/ndustrial
+    repository: https://ndustrialio.github.io/charts
 ```
 
 ```bash
