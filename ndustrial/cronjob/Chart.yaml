@@ -7,7 +7,11 @@ appVersion: "0.1.0"
 dependencies:
   - name: common
     repository: https://ndustrialio.github.io/charts
+    version: 0.1.0
     tags:
       - ndustrial-common
 sources:
   - https://github.com/ndustrialio/charts/tree/main/ndustrial/cronjob
+maintainers:
+  - email: devops@ndustrial.io
+    name: DevOps

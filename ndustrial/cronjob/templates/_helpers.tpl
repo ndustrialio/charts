@@ -5,7 +5,7 @@
 Return the proper Docker Image Registry Secret Names
 */}}
 {{- define "cronjob.imagePullSecrets" -}}
-{{ include "common.images.pullSecrets" (dict "images" (list .Values.controller.image) "global" .Values.global) }}
+{{ include "common.images.pullSecrets" (dict "images" (list .Values.image) "global" .Values.global) }}
 {{- end -}}
 
 {{/*
@@ -29,5 +29,5 @@ is true or default otherwise.
 Return the proper cronjob.image name
 */}}
 {{- define "cronjob.image" -}}
-{{ include "common.images.image" (dict "imageRoot" .Values.controller.image "global" .Values.global) }}
+{{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
 {{- end -}}

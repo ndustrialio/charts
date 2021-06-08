@@ -1,4 +1,4 @@
-REQUIRES := ct helm
+REQUIRES := helm
 
 .PHONY: help
 help: ## Show this help
@@ -12,8 +12,8 @@ install: ## Install required tools
 	brew install helm chart-testing
 
 .PHONY: lint
-lint: ct ## Lint charts
-	ct lint
+lint: ## Lint charts
+	./scripts/lint.sh
 
 
 gen:

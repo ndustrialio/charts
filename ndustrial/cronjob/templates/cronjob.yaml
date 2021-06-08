@@ -1,7 +1,7 @@
 apiVersion: {{ template "common.capabilities.cronjob.apiVersion" . }}
 kind: CronJob
 metadata:
-  name: {{ include "cronjob.fullname" . }}
+  name: {{ include "common.names.fullname" . }}
   labels: {{- include "common.labels.standard" . | nindent 4 }}
     ndustrial.io/component: cronjob
     {{- if .Values.labels }}
@@ -67,34 +67,34 @@ spec:
           {{- end }}
         spec:
           restartPolicy: Never
-          shareProcessNamespace: {{ .Values.pod.shareProcessNamespace }}
+          shareProcessNamespace: {{ .Values.shareProcessNamespace }}
           {{- include "cronjob.imagePullSecrets" . | nindent 10 }}
-          {{- if .Values.job.podSecurityContext.enabled }}
-          securityContext: {{- omit .Values.job.podSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- if .Values.podSecurityContext.enabled }}
+          securityContext: {{- omit .Values.podSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
-          {{- if .Values.job.priorityClassName }}
-          priorityClassName: {{ .Values.job.priorityClassName | quote }}
+          {{- if .Values.priorityClassName }}
+          priorityClassName: {{ .Values.priorityClassName | quote }}
           {{- end }}
-          {{- if .Values.job.affinity }}
-          affinity: {{- include "common.tplvalues.render" (dict "value" .Values.job.affinity "context" $) | nindent 12 }}
+          {{- if .Values.affinity }}
+          affinity: {{- include "common.tplvalues.render" (dict "value" .Values.affinity "context" $) | nindent 12 }}
           {{- else }}
           affinity:
-            podAffinity: {{- include "common.affinities.pods" (dict "type" .Values.job.podAffinityPreset "context" $) | nindent 14 }}
-            podAntiAffinity: {{- include "common.affinities.pods" (dict "type" .Values.job.podAntiAffinityPreset "context" $) | nindent 14 }}
-            nodeAffinity: {{- include "common.affinities.nodes" (dict "type" .Values.job.nodeAffinityPreset.type "key" .Values.job.nodeAffinityPreset.key "values" .Values.job.nodeAffinityPreset.values) | nindent 14 }}
+            podAffinity: {{- include "common.affinities.pods" (dict "type" .Values.podAffinityPreset "context" $) | nindent 14 }}
+            podAntiAffinity: {{- include "common.affinities.pods" (dict "type" .Values.podAntiAffinityPreset "context" $) | nindent 14 }}
+            nodeAffinity: {{- include "common.affinities.nodes" (dict "type" .Values.nodeAffinityPreset.type "key" .Values.nodeAffinityPreset.key "values" .Values.nodeAffinityPreset.values) | nindent 14 }}
           {{- end }}
-          {{- if .Values.job.nodeSelector }}
-          nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.job.nodeSelector "context" $) | nindent 12 }}
+          {{- if .Values.nodeSelector }}
+          nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.nodeSelector "context" $) | nindent 12 }}
           {{- end }}
-          {{- if .Values.job.tolerations }}
-          tolerations: {{- include "common.tplvalues.render" (dict "value" .Values.job.tolerations "context" $) | nindent 12 }}
+          {{- if .Values.tolerations }}
+          tolerations: {{- include "common.tplvalues.render" (dict "value" .Values.tolerations "context" $) | nindent 12 }}
           {{- end }}
-          {{- if .Values.job.hostAliases }}
-          hostAliases: {{- include "common.tplvalues.render" (dict "value" .Values.job.hostAliases "context" $) | nindent 12 }}
+          {{- if .Values.hostAliases }}
+          hostAliases: {{- include "common.tplvalues.render" (dict "value" .Values.hostAliases "context" $) | nindent 12 }}
           {{- end }}
           initContainers:
-            {{- if .Values.job.initContainers }}
-            {{- include "common.tplvalues.render" (dict "value" .Values.job.initContainers "context" $) | nindent 12 }}
+            {{- if .Values.initContainers }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.initContainers "context" $) | nindent 12 }}
             {{- end }}
           serviceAccountName: {{ template "cronjob.serviceAccountName" . }}
           containers:
