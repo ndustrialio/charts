@@ -2,8 +2,6 @@ apiVersion: v2
 name: cronjob
 description: A Helm chart for deploying k8s cronjobs
 type: application
-version: 0.1.0
-appVersion: 0.1.0
 dependencies:
   - name: common
     repository: https://ndustrialio.github.io/charts
@@ -15,3 +13,6 @@ sources:
 maintainers:
   - email: devops@ndustrial.io
     name: DevOps
+# Please make sure that version and appVersion are always the same.
+version: 0.1.0
+appVersion: 0.1.0
