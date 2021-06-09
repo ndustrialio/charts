@@ -1,0 +1,15 @@
+apiVersion: v2
+name: statefulset
+description: A Helm chart for deploying sateful sets
+type: application
+version: 0.1.0
+appVersion: 0.1.0
+dependencies:
+  - name: common
+    repository: https://ndustrialio.github.io/charts
+    version: 0.1.0
+    tags:
+      - ndustrial-common
+maintainers:
+  - email: devops@ndustrial.io
+    name: DevOps
