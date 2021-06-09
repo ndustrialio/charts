@@ -1,62 +1,40 @@
-{{/*
-Expand the name of the chart.
-*/}}
-{{- define "ndustrial-deployment.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{/* vim: set filetype=mustache: */}}
 
 {{/*
-Create a default fully qualified app name.
-We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
+Return the proper Docker Image Registry Secret Names
 */}}
-{{- define "ndustrial-deployment.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- $name := default .Chart.Name .Values.nameOverride }}
-{{- if contains $name .Release.Name }}
-{{- .Release.Name | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{- define "deployment.imagePullSecrets" -}}
+{{ include "common.images.pullSecrets" (dict "images" (list .Values.image) "global" .Values.global) }}
+{{- end -}}
 
 {{/*
-Create chart name and version as used by the chart label.
+Returns the proper service account name depending if an explicit service account name is set
+in the values file. If the name is not set it will default to either common.names.fullname if serviceAccount.create
+is true or default otherwise.
 */}}
-{{- define "ndustrial-deployment.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{- define "deployment.serviceAccountName" -}}
+    {{- if .Values.serviceAccount.create -}}
+        {{- if (empty .Values.serviceAccount.name) -}}
+          {{- printf "%s-deployment" (include "common.names.fullname" .) | trunc 63 | trimSuffix "-" -}}
+        {{- else -}}
+          {{ default "default" .Values.serviceAccount.name }}
+        {{- end -}}
+    {{- else -}}
+        {{ default "default" .Values.serviceAccount.name }}
+    {{- end -}}
+{{- end -}}
 
 {{/*
-Common labels
+Return the proper cronjob.image name
 */}}
-{{- define "ndustrial-deployment.labels" -}}
-helm.sh/chart: {{ include "ndustrial-deployment.chart" . }}
-{{ include "ndustrial-deployment.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end }}
+{{- define "deployment.image" -}}
+{{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
+{{- end -}}
 
 {{/*
 Selector labels
 */}}
-{{- define "ndustrial-deployment.selectorLabels" -}}
+{{- define "deployment.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "ndustrial-deployment.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "ndustrial-deployment.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "ndustrial-deployment.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
 {{- end }}

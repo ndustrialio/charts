@@ -1,6 +1,6 @@
 apiVersion: v2
 name: cronjob
-description: A Helm chart for deploying k8s crons
+description: A Helm chart for deploying k8s cronjobs
 type: application
 version: 0.1.0
 appVersion: "0.1.0"

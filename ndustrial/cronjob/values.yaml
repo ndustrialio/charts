@@ -12,8 +12,6 @@ global:
   storageClass:
 
 ## @section Common parameters
-## @param schedule String to set cronjob's schedule 
-schedule: "0 0 * * *"
 
 ## @param nameOverride String to partially override common.names.fullname
 ##
@@ -32,7 +30,8 @@ labels: {}
 annotations: {}
 
 ## @section CronJob parameters
-
+## @param schedule String to set cronjob's schedule
+schedule: "0 0 * * *"
 ## @param concurrencyPolicy  Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
 concurrencyPolicy: Forbid
 ## @param failedJobsHistoryLimit  The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.

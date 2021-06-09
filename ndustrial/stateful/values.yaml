@@ -49,3 +49,5 @@ service:
 #    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
 
 imagePullSecret: quay-pull-secret
+ingress:
+  enabled: false
