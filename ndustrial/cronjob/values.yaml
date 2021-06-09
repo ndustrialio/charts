@@ -12,6 +12,8 @@ global:
   storageClass:
 
 ## @section Common parameters
+## @param schedule String to set cronjob's schedule 
+schedule: "0 0 * * *"
 
 ## @param nameOverride String to partially override common.names.fullname
 ##
@@ -55,10 +57,10 @@ ttlSecondsAfterFinished:
 image:
   ## @param image.registry CronJob image registry
   ##
-  registry: quay.io
+  registry: docker.io
   ## @param image.repository CronJob image repository
   ##
-  repository: ndustrialio/cronjobexample
+  repository: busybox
   ## @param image.tag CronJob image tag (immutabe tags are recommended)
   ##
   tag: latest
