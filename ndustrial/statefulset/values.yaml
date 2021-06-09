@@ -142,8 +142,7 @@ ingress:
   ## @param ingress.annotations Additional custom annotations for the ingress record
   ## NOTE: If `ingress.certManager=true`, annotation `kubernetes.io/tls-acme: "true"` will automatically be added
   ##
-  annotations:
-    kubernetes.io/ingress.class: nginx-global
+  annotations: {}
   ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
   ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
   ## You can:
@@ -207,6 +206,7 @@ ingress:
 ## @section Pod Image parameters
 
 image:
+  ## @skip image.debug
   debug: false
   ## @param image.registry StatefulSet image registry
   ##

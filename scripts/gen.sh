@@ -44,3 +44,5 @@ if [ -z ${README_GEN_BIN} ]; then
 fi
 
 gen_readme "cronjob"
+gen_readme "deployment"
+gen_readme "statefulset"
