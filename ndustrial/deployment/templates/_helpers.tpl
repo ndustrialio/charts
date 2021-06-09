@@ -30,11 +30,3 @@ Return the proper cronjob.image name
 {{- define "deployment.image" -}}
 {{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
 {{- end -}}
-
-{{/*
-Selector labels
-*/}}
-{{- define "deployment.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "ndustrial-deployment.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}

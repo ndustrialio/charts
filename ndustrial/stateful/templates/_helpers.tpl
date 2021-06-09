@@ -1,63 +1,32 @@
 {{/* vim: set filetype=mustache: */}}
+
 {{/*
-Expand the name of the chart.
+Return the proper Docker Image Registry Secret Names
 */}}
-{{- define "ndustrial-stateful.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- define "statefulset.imagePullSecrets" -}}
+{{ include "common.images.pullSecrets" (dict "images" (list .Values.image) "global" .Values.global) }}
 {{- end -}}
 
 {{/*
-Create a default fully qualified app name.
-We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
+Returns the proper service account name depending if an explicit service account name is set
+in the values file. If the name is not set it will default to either common.names.fullname if serviceAccount.create
+is true or default otherwise.
 */}}
-{{- define "ndustrial-stateful.fullname" -}}
-{{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
-{{- if contains $name .Release.Name -}}
-{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-{{- end -}}
+{{- define "statefulset.serviceAccountName" -}}
+    {{- if .Values.serviceAccount.create -}}
+        {{- if (empty .Values.serviceAccount.name) -}}
+          {{- printf "%s-statefulset" (include "common.names.fullname" .) | trunc 63 | trimSuffix "-" -}}
+        {{- else -}}
+          {{ default "default" .Values.serviceAccount.name }}
+        {{- end -}}
+    {{- else -}}
+        {{ default "default" .Values.serviceAccount.name }}
+    {{- end -}}
 {{- end -}}
 
 {{/*
-Create chart name and version as used by the chart label.
+Return the proper cronjob.image name
 */}}
-{{- define "ndustrial-stateful.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-
-{{/*
-Common labels
-*/}}
-{{- define "ndustrial-stateful.labels" -}}
-helm.sh/chart: {{ include "ndustrial-stateful.chart" . }}
-{{ include "ndustrial-stateful.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end -}}
-
-{{/*
-Selector labels
-*/}}
-{{- define "ndustrial-stateful.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "ndustrial-stateful.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end -}}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "ndustrial-stateful.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
-    {{ default (include "ndustrial-stateful.fullname" .) .Values.serviceAccount.name }}
-{{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
-{{- end -}}
+{{- define "statefulset.image" -}}
+{{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
 {{- end -}}
