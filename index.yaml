@@ -4,6 +4,33 @@ entries:
   - annotations:
       category: Infrastructure
     apiVersion: v2
+    appVersion: 0.1.2
+    created: "2021-06-10T16:46:34.23067241Z"
+    description: A Library Helm Chart for grouping common logic between ndustrial
+      charts. This chart is not deployable by itself.
+    digest: f8d94e7c71c4397f89e6aa35d12aa09125fc6079bf064ae7326d070be0a57751
+    home: https://github.com/ndustrialio/charts/tree/stateful/ndustrial/common
+    icon: https://bitnami.com/downloads/logos/bitnami-mark.png
+    keywords:
+    - common
+    - helper
+    - template
+    - function
+    - ndustrial
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: common
+    sources:
+    - https://github.com/ndustrialio/charts
+    - https://ndustrial.io/
+    type: library
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/common-0.1.2/common-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
     appVersion: 0.1.1
     created: "2021-06-10T14:30:46.882015063Z"
     description: A Library Helm Chart for grouping common logic between ndustrial
