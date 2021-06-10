@@ -33,7 +33,7 @@ We use GitHub Actions to test and release our charts. On a pull request, our [CI
 
 All charts depend on the ndustrial [`common` chart](ndustrial/common/README.md).
 
-### README documentation
+### README Generator
 
 Documentation is generated using [readme-generator-for-helm](https://github.com/bitnami-labs/readme-generator-for-helm) and can be ran via `make gen`.
 
