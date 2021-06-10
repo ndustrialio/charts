@@ -4,3 +4,5 @@ target-branch: main
 chart-dirs:
   - ndustrial
 helm-extra-args: --timeout 600s
+chart-repos:
+  - ndustrial=https://ndustrialio.github.io/charts
