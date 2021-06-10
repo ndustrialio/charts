@@ -93,7 +93,7 @@ updateStrategy:
 service:
   ## @param service.type StatefulSet service type
   ##
-  type: LoadBalancer
+  type: ClusterIP
   ## @param service.port StatefulSet service HTTP port
   ##
   port: 80

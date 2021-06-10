@@ -49,6 +49,23 @@ annotations: {}
 ## @param replicaCount Number of Controller replicas
 replicaCount: 1
 
+## @param startupProbe.enabled Enable startupProbe
+## @param startupProbe.path Path for startupProbe
+## @param startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
+## @param startupProbe.periodSeconds Period seconds for startupProbe
+## @param startupProbe.timeoutSeconds Timeout seconds for startupProbe
+## @param startupProbe.failureThreshold Failure threshold for startupProbe
+## @param startupProbe.successThreshold Success threshold for startupProbe
+##
+startupProbe:
+  enabled: false
+  path: /
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+
 ## @param livenessProbe.enabled Enable livenessProbe
 ## @param livenessProbe.path Path for livenessProbe
 ## @param livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
@@ -93,7 +110,7 @@ updateStrategy:
 service:
   ## @param service.type Deployment service type
   ##
-  type: LoadBalancer
+  type: ClusterIP
   ## @param service.port Deployment service HTTP port
   ##
   port: 80
