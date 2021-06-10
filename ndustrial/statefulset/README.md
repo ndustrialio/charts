@@ -50,25 +50,25 @@
 
 ### Service parameters
 
-| Name                               | Description                                       | Value          |
-| ---------------------------------- | ------------------------------------------------- | -------------- |
-| `service.type`                     | Jenkins service type                              | `LoadBalancer` |
-| `service.port`                     | Jenkins service HTTP port                         | `80`           |
-| `service.httpsPort`                | Jenkins service HTTPS port                        | `443`          |
-| `service.nodePorts.http`           | Node port for HTTP                                | `nil`          |
-| `service.nodePorts.https`          | Node port for HTTPS                               | `nil`          |
-| `service.clusterIP`                | Jenkins service Cluster IP                        | `nil`          |
-| `service.loadBalancerIP`           | Jenkins service Load Balancer IP                  | `nil`          |
-| `service.loadBalancerSourceRanges` | Jenkins service Load Balancer sources             | `[]`           |
-| `service.externalTrafficPolicy`    | Jenkins service external traffic policy           | `Cluster`      |
-| `service.annotations`              | Additional custom annotations for Jenkins service | `{}`           |
+| Name                               | Description                                           | Value          |
+| ---------------------------------- | ----------------------------------------------------- | -------------- |
+| `service.type`                     | StatefulSet service type                              | `LoadBalancer` |
+| `service.port`                     | StatefulSet service HTTP port                         | `80`           |
+| `service.httpsPort`                | StatefulSet service HTTPS port                        | `443`          |
+| `service.nodePorts.http`           | Node port for HTTP                                    | `nil`          |
+| `service.nodePorts.https`          | Node port for HTTPS                                   | `nil`          |
+| `service.clusterIP`                | StatefulSet service Cluster IP                        | `nil`          |
+| `service.loadBalancerIP`           | StatefulSet service Load Balancer IP                  | `nil`          |
+| `service.loadBalancerSourceRanges` | StatefulSet service Load Balancer sources             | `[]`           |
+| `service.externalTrafficPolicy`    | StatefulSet service external traffic policy           | `Cluster`      |
+| `service.annotations`              | Additional custom annotations for StatefulSet service | `{}`           |
 
 
 ### Ingress parameters
 
 | Name                  | Description                                                                                           | Value                    |
 | --------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------ |
-| `ingress.enabled`     | Enable ingress record generation for Jenkins                                                          | `false`                  |
+| `ingress.enabled`     | Enable ingress record generation for StatefulSet                                                      | `false`                  |
 | `ingress.pathType`    | Ingress path type                                                                                     | `ImplementationSpecific` |
 | `ingress.apiVersion`  | Force Ingress API version (automatically detected if not set)                                         | `nil`                    |
 | `ingress.hostname`    | Default host for the ingress record                                                                   | `chart-example.local`    |
@@ -143,7 +143,7 @@
 
 | Name                                      | Description                                                                                      | Value   |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------ | ------- |
-| `metrics.enabled`                         | Start a sidecar prometheus exporter to expose Jenkins metrics                                    | `false` |
+| `metrics.enabled`                         | Start a sidecar prometheus exporter to expose StatefulSet metrics                                | `false` |
 | `metrics.serviceMonitor.enabled`          | Create ServiceMonitor resource(s) for scraping metrics using PrometheusOperator                  | `false` |
 | `metrics.serviceMonitor.namespace`        | The namespace in which the ServiceMonitor will be created                                        | `nil`   |
 | `metrics.serviceMonitor.interval`         | The interval at which metrics should be scraped                                                  | `30s`   |

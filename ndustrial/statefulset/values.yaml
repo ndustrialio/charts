@@ -91,13 +91,13 @@ updateStrategy:
 ## @section Service parameters
 
 service:
-  ## @param service.type Jenkins service type
+  ## @param service.type StatefulSet service type
   ##
   type: LoadBalancer
-  ## @param service.port Jenkins service HTTP port
+  ## @param service.port StatefulSet service HTTP port
   ##
   port: 80
-  ## @param service.httpsPort Jenkins service HTTPS port
+  ## @param service.httpsPort StatefulSet service HTTPS port
   ##
   httpsPort: 443
   ## Node ports to expose
@@ -108,37 +108,37 @@ service:
   nodePorts:
     http:
     https:
-  ## @param service.clusterIP Jenkins service Cluster IP
+  ## @param service.clusterIP StatefulSet service Cluster IP
   ## e.g.:
   ## clusterIP: None
   ##
   clusterIP:
-  ## @param service.loadBalancerIP Jenkins service Load Balancer IP
+  ## @param service.loadBalancerIP StatefulSet service Load Balancer IP
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
   ##
   loadBalancerIP:
-  ## @param service.loadBalancerSourceRanges Jenkins service Load Balancer sources
+  ## @param service.loadBalancerSourceRanges StatefulSet service Load Balancer sources
   ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
   ## e.g:
   ## loadBalancerSourceRanges:
   ##   - 10.10.10.0/24
   ##
   loadBalancerSourceRanges: []
-  ## @param service.externalTrafficPolicy Jenkins service external traffic policy
+  ## @param service.externalTrafficPolicy StatefulSet service external traffic policy
   ## ref http://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
   ##
   externalTrafficPolicy: Cluster
-  ## @param service.annotations Additional custom annotations for Jenkins service
+  ## @param service.annotations Additional custom annotations for StatefulSet service
   ##
   annotations: {}
 
 ## @section Ingress parameters
 
-## Configure the ingress resource that allows you to access the Jenkins installation
+## Configure the ingress resource that allows you to access the StatefulSet installation
 ## ref: http://kubernetes.io/docs/user-guide/ingress/
 ##
 ingress:
-  ## @param ingress.enabled Enable ingress record generation for Jenkins
+  ## @param ingress.enabled Enable ingress record generation for StatefulSet
   ##
   enabled: false
   ## @param ingress.pathType Ingress path type
@@ -206,7 +206,7 @@ ingress:
   ## Please see README.md for more information
   ## e.g:
   ## secrets:
-  ##   - name: jenkins.local-tls
+  ##   - name: StatefulSet.local-tls
   ##     key: |-
   ##       -----BEGIN RSA PRIVATE KEY-----
   ##       ...
@@ -427,7 +427,7 @@ nodeSelector: {}
 ## @section Metrics paramaters
 
 metrics:
-  ## @param metrics.enabled Start a sidecar prometheus exporter to expose Jenkins metrics
+  ## @param metrics.enabled Start a sidecar prometheus exporter to expose StatefulSet metrics
   enabled: false
   ## Prometheus Service Monitor
   ## ref: https://github.com/coreos/prometheus-operator
