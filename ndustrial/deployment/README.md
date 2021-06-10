@@ -2,11 +2,17 @@
 
 ### Global parameters
 
-| Name                      | Description                                     | Value |
-| ------------------------- | ----------------------------------------------- | ----- |
-| `global.imageRegistry`    | Global Docker image registry                    | `nil` |
-| `global.imagePullSecrets` | Global Docker registry secret names as an array | `[]`  |
-| `global.storageClass`     | Global StorageClass for Persistent Volume(s)    | `nil` |
+| Name                      | Description                                                                                                   | Value |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------- | ----- |
+| `global.imageRegistry`    | Global Docker image registry                                                                                  | `nil` |
+| `global.imagePullSecrets` | Global Docker registry secret names as an array                                                               | `[]`  |
+| `global.storageClass`     | Global StorageClass for Persistent Volume(s)                                                                  | `nil` |
+| `ndustrial.name`          | The name of the application (Required)                                                                        | `nil` |
+| `ndustrial.organization`  | The slug of the Organization that owns the application (Required)                                             | `nil` |
+| `ndustrial.owner`         | The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required) | `nil` |
+| `contxt.stackId`          | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
+| `contxt.serviceId`        | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
+| `contxt.serviceType`      | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
 
 
 ### Common parameters

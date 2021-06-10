@@ -11,6 +11,21 @@ global:
   imagePullSecrets: []
   storageClass:
 
+ndustrial:
+  ## @param ndustrial.name The name of the application (Required)
+  name:
+  ## @param ndustrial.organization The slug of the Organization that owns the application (Required)
+  organization:
+  ## @param ndustrial.owner The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+  owner:
+contxt:
+  ## @param contxt.stackId The ID of the Contxt Stack that this object belongs to (if applicable)
+  stackId:
+  ## @param contxt.serviceId The ID of the Contxt Service that this object belongs to (if applicable)
+  serviceId:
+  ## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)
+  serviceType:
+
 ## @section Common parameters
 
 ## @param nameOverride String to partially override common.names.fullname
