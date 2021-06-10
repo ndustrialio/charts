@@ -19,5 +19,5 @@ sources:
   - https://ndustrial.io/
 type: library
 # Please make sure that version and appVersion are always the same.
-version: 0.1.1
-appVersion: 0.1.1
+version: 0.1.2
+appVersion: 0.1.2
