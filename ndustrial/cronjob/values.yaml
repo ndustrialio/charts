@@ -1,0 +1,279 @@
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry and imagePullSecrets
+## @section Global parameters
+## @param global.imageRegistry Global Docker image registry
+## @param global.imagePullSecrets Global Docker registry secret names as an array
+## @param global.storageClass Global StorageClass for Persistent Volume(s)
+##
+global:
+  imageRegistry:
+  imagePullSecrets: []
+  storageClass:
+
+ndustrial:
+  ## @param ndustrial.name The name of the application (Required)
+  name:
+  ## @param ndustrial.organization The slug of the Organization that owns the application (Required)
+  organization:
+  ## @param ndustrial.owner The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+  owner:
+contxt:
+  ## @param contxt.stackId The ID of the Contxt Stack that this object belongs to (if applicable)
+  stackId:
+  ## @param contxt.serviceId The ID of the Contxt Service that this object belongs to (if applicable)
+  serviceId:
+  ## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)
+  serviceType:
+
+## @section Common parameters
+
+## @param nameOverride String to partially override common.names.fullname
+##
+nameOverride:
+
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride:
+
+## @param labels  Labels to add to all deployed objects
+##
+labels: {}
+
+## @param annotations  Annotations to add to all deployed objects
+##
+annotations: {}
+
+## @section CronJob parameters
+## @param schedule String to set cronjob's schedule
+schedule: "0 0 * * *"
+## @param concurrencyPolicy  Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
+concurrencyPolicy: Forbid
+## @param failedJobsHistoryLimit  The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
+failedJobsHistoryLimit: 1
+## @param successfulJobsHistoryLimit  The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 3.
+successfulJobsHistoryLimit: 3
+## @param startingDeadlineSeconds  Optional deadline in seconds for starting the job if it misses scheduled time for any reason. Missed jobs executions will be counted as failed ones.
+startingDeadlineSeconds:
+
+## @param activeDeadlineSeconds Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer
+activeDeadlineSeconds:
+## @param backoffLimit Specifies the number of retries before marking this job failed. Defaults to 6
+backoffLimit: 6
+## @param completions Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the  More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+completions:
+## @param parallelism Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+parallelism:
+## @param ttlSecondsAfterFinished Limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. This field is alpha-level and is only honored by servers that enable the TTLAfterFinished feature.
+ttlSecondsAfterFinished:
+
+## @section Pod Image parameters
+image:
+  ## @param image.registry CronJob image registry
+  ##
+  registry: docker.io
+  ## @param image.repository CronJob image repository
+  ##
+  repository: busybox
+  ## @param image.tag CronJob image tag (immutabe tags are recommended)
+  ##
+  tag: latest
+  ## Specify a imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  ## @param image.pullPolicy CronJob image pull policy
+  ##
+  pullPolicy: IfNotPresent
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ## E.g:
+  ## pullSecrets:
+  ##  - myRegistryKeySecretName
+  ## @param image.pullSecrets CronJob image pull secrets
+  ##
+  pullSecrets: []
+
+## @section Pod parameters
+
+## @param command Override CronJob default command
+##
+command: []
+## @param args Override CronJob default args
+##
+args: []
+
+## @param priorityClassName CronJob pod priority class name
+##
+priorityClassName:
+
+## @param hostAliases Custom host aliases for CronJob pods
+## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+##
+hostAliases: []
+
+## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+## @param tolerations  Tolerations for pod assignment
+##
+tolerations: []
+
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+## @param podLabels  Extra labels for CronJob pods
+##
+podLabels: {}
+
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+## @param podAnnotations  Annotations for CronJob pods
+##
+podAnnotations: {}
+
+## @param lifecycleHooks Add lifecycle hooks to the CronJob deployment
+##
+lifecycleHooks: {}
+
+updateStrategy:
+  ## @param updateStrategy.type CronJob deployment update strategy
+  type: RollingUpdate
+  ## @param updateStrategy.rollingUpdate CronJob deployment rolling update configuration parameters
+  rollingUpdate: {}
+
+## @param shareProcessNamespace Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.
+shareProcessNamespace: false
+
+## @param extraEnvVars Add extra environment variables to the CronJob container
+## E.g:
+## extraEnvVars:
+##   - name: FOO
+##     value: "bar"
+##
+extraEnvVars: []
+
+## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
+##
+extraEnvVarsCM:
+
+## @param extraEnvVarsSecret Name of existing Secret containing extra env vars
+##
+extraEnvVarsSecret:
+
+## @param extraVolumes  Optionally specify extra list of additional volumes for CronJob pods
+##
+extraVolumes: []
+
+## @param extraVolumeMounts  Optionally specify extra list of additional volumeMounts for CronJob container(s)
+##
+extraVolumeMounts: []
+
+## @param initContainers  Add additional init containers to the CronJob pods
+## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+## E.g:
+## initContainers:
+##   - name: your-image-name
+##     image: your-image
+##     imagePullPolicy: Always
+##     ports:
+##       - name: portname
+##         containerPort: 1234
+##
+initContainers: {}
+
+## @param sidecars  Add additional sidecar containers to the CronJob pod
+## E.g:
+## sidecars:
+##   - name: your-image-name
+##     image: your-image
+##     imagePullPolicy: Always
+##     ports:
+##       - name: portname
+##         containerPort: 1234
+##
+sidecars: {}
+
+## ServiceAccount configuration
+##
+serviceAccount:
+  ## @param serviceAccount.create Specifies whether a ServiceAccount should be created
+  ##
+  create: true
+  ## @param serviceAccount.name The name of the ServiceAccount to use.
+  ## If not set and create is true, a name is generated using the common.names.fullname template
+  ##
+  name: ""
+  ## @param serviceAccount.annotations Additional custom annotations for the ServiceAccount
+  ##
+  annotations: {}
+
+## CronJob containers' resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+  ## @param resources.limits  The resources limits for the CronJob container
+  ##
+  limits: {}
+  ## @param resources.requests  The requested resources for the CronJob container
+  ##
+  requests: {}
+
+## @section Pod Security parameters
+
+## controller pods' Security Context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+## @param podSecurityContext.enabled Enabled CronJob pods' Security Context
+## @param podSecurityContext.fsGroup Set CronJob pod's Security Context fsGroup
+##
+podSecurityContext:
+  enabled: false
+  fsGroup: 1001
+
+## controller containers' Security Context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+## @param containerSecurityContext.enabled Enabled CronJob containers' Security Context
+## @param containerSecurityContext.runAsUser Set CronJob container's Security Context runAsUser
+## @param containerSecurityContext.runAsNonRoot Set CronJob container's Security Context runAsNonRoot
+##
+containerSecurityContext:
+  enabled: false
+  runAsUser: 1001
+  runAsNonRoot: true
+
+## @section Pod Affinity parameters
+
+## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+## @param podAffinityPreset Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+##
+podAffinityPreset: ""
+
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+## @param podAntiAffinityPreset Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+##
+podAntiAffinityPreset: soft
+
+## Node affinity preset
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+##
+nodeAffinityPreset:
+  ## @param nodeAffinityPreset.type Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+  ##
+  type: ""
+  ## @param nodeAffinityPreset.key Node label key to match. Ignored if `affinity` is set
+  ##
+  key: ""
+  ## @param nodeAffinityPreset.values Node label values to match. Ignored if `affinity` is set
+  ## E.g.
+  ## values:
+  ##   - e2e-az1
+  ##   - e2e-az2
+  ##
+  values: []
+
+## @param affinity Affinity for Cert Manager CronJob
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+## NOTE: `podAffinityPreset`, `podAntiAffinityPreset`, and `nodeAffinityPreset` will be ignored when it's set
+##
+affinity: {}
+
+## ref: https://kubernetes.io/docs/user-guide/node-selection/
+## @param nodeSelector  Node labels for pod assignment
+##
+nodeSelector: {}

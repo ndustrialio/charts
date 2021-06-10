@@ -1,0 +1,23 @@
+ndustrial:
+  owner: helm
+  name: cert-manager-example
+  organization: ndustrial
+contxt: {}
+ports:
+  - containerPort: 80
+    name: http
+service:
+  type: ClusterIP
+ingress:
+  enabled: true
+  certManager: true
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    kubernetes.io/ingress.class: nginx-global
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Robots-Tag: noindex";
+  tls: true
+  hostname: cert-manager-example.staging.pizzandustrial.com
+image:
+  registry: docker.ops.ndustrial.io
+  repository: library/nginx

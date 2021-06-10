@@ -1,0 +1,21 @@
+{{- if .Values.podDisruptionBudget.enabled }}
+kind: PodDisruptionBudget
+apiVersion: policy/v1beta1
+metadata:
+  name: {{ include "common.names.fullname" . }}-deployment
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    ndustrial.io/component: deployment
+    {{- if .Values.labels }}
+      {{- include "common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 4 }}
+    {{- end }}
+spec:
+  selector:
+    matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
+      ndustrial.io/component: deployment
+  {{- if .Values.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
+  {{- end }}
+  {{- if .Values.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
+  {{- end }}
+{{- end }}
