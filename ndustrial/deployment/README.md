@@ -30,6 +30,13 @@
 | Name                                 | Description                                                   | Value           |
 | ------------------------------------ | ------------------------------------------------------------- | --------------- |
 | `replicaCount`                       | Number of Controller replicas                                 | `1`             |
+| `startupProbe.enabled`               | Enable startupProbe                                           | `false`         |
+| `startupProbe.path`                  | Path for startupProbe                                         | `/`             |
+| `startupProbe.initialDelaySeconds`   | Initial delay seconds for startupProbe                        | `60`            |
+| `startupProbe.periodSeconds`         | Period seconds for startupProbe                               | `10`            |
+| `startupProbe.timeoutSeconds`        | Timeout seconds for startupProbe                              | `1`             |
+| `startupProbe.failureThreshold`      | Failure threshold for startupProbe                            | `3`             |
+| `startupProbe.successThreshold`      | Success threshold for startupProbe                            | `1`             |
 | `livenessProbe.enabled`              | Enable livenessProbe                                          | `true`          |
 | `livenessProbe.path`                 | Path for livenessProbe                                        | `/`             |
 | `livenessProbe.initialDelaySeconds`  | Initial delay seconds for livenessProbe                       | `60`            |
@@ -50,18 +57,18 @@
 
 ### Service parameters
 
-| Name                               | Description                                          | Value          |
-| ---------------------------------- | ---------------------------------------------------- | -------------- |
-| `service.type`                     | Deployment service type                              | `LoadBalancer` |
-| `service.port`                     | Deployment service HTTP port                         | `80`           |
-| `service.httpsPort`                | Deployment service HTTPS port                        | `443`          |
-| `service.nodePorts.http`           | Node port for HTTP                                   | `nil`          |
-| `service.nodePorts.https`          | Node port for HTTPS                                  | `nil`          |
-| `service.clusterIP`                | Deployment service Cluster IP                        | `nil`          |
-| `service.loadBalancerIP`           | Deployment service Load Balancer IP                  | `nil`          |
-| `service.loadBalancerSourceRanges` | Deployment service Load Balancer sources             | `[]`           |
-| `service.externalTrafficPolicy`    | Deployment service external traffic policy           | `Cluster`      |
-| `service.annotations`              | Additional custom annotations for Deployment service | `{}`           |
+| Name                               | Description                                          | Value       |
+| ---------------------------------- | ---------------------------------------------------- | ----------- |
+| `service.type`                     | Deployment service type                              | `ClusterIP` |
+| `service.port`                     | Deployment service HTTP port                         | `80`        |
+| `service.httpsPort`                | Deployment service HTTPS port                        | `443`       |
+| `service.nodePorts.http`           | Node port for HTTP                                   | `nil`       |
+| `service.nodePorts.https`          | Node port for HTTPS                                  | `nil`       |
+| `service.clusterIP`                | Deployment service Cluster IP                        | `nil`       |
+| `service.loadBalancerIP`           | Deployment service Load Balancer IP                  | `nil`       |
+| `service.loadBalancerSourceRanges` | Deployment service Load Balancer sources             | `[]`        |
+| `service.externalTrafficPolicy`    | Deployment service external traffic policy           | `Cluster`   |
+| `service.annotations`              | Additional custom annotations for Deployment service | `{}`        |
 
 
 ### Ingress parameters
@@ -109,6 +116,11 @@
 
 | Name                                    | Description                                                                                                                                                                                                                                                                                                                                 | Value   |
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `ports[0].containerPort`                | Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.                                                                                                                                                                                                                                          | `80`    |
+| `ports[0].name`                         | If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.                                                                                                                                                             | `http`  |
+| `ports[0].hostIp`                       | What host IP to bind the external port to.                                                                                                                                                                                                                                                                                                  | `nil`   |
+| `ports[0].hostPort`                     | Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.                                                                                                                                          | `nil`   |
+| `ports[0].protocol`                     | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".                                                                                                                                                                                                                                                                            | `TCP`   |
 | `command`                               | Override Deployment default command                                                                                                                                                                                                                                                                                                         | `[]`    |
 | `args`                                  | Override Deployment default args                                                                                                                                                                                                                                                                                                            | `[]`    |
 | `priorityClassName`                     | Deployment pod priority class name                                                                                                                                                                                                                                                                                                          | `nil`   |

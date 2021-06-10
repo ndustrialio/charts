@@ -50,18 +50,18 @@
 
 ### Service parameters
 
-| Name                               | Description                                           | Value          |
-| ---------------------------------- | ----------------------------------------------------- | -------------- |
-| `service.type`                     | StatefulSet service type                              | `LoadBalancer` |
-| `service.port`                     | StatefulSet service HTTP port                         | `80`           |
-| `service.httpsPort`                | StatefulSet service HTTPS port                        | `443`          |
-| `service.nodePorts.http`           | Node port for HTTP                                    | `nil`          |
-| `service.nodePorts.https`          | Node port for HTTPS                                   | `nil`          |
-| `service.clusterIP`                | StatefulSet service Cluster IP                        | `nil`          |
-| `service.loadBalancerIP`           | StatefulSet service Load Balancer IP                  | `nil`          |
-| `service.loadBalancerSourceRanges` | StatefulSet service Load Balancer sources             | `[]`           |
-| `service.externalTrafficPolicy`    | StatefulSet service external traffic policy           | `Cluster`      |
-| `service.annotations`              | Additional custom annotations for StatefulSet service | `{}`           |
+| Name                               | Description                                           | Value       |
+| ---------------------------------- | ----------------------------------------------------- | ----------- |
+| `service.type`                     | StatefulSet service type                              | `ClusterIP` |
+| `service.port`                     | StatefulSet service HTTP port                         | `80`        |
+| `service.httpsPort`                | StatefulSet service HTTPS port                        | `443`       |
+| `service.nodePorts.http`           | Node port for HTTP                                    | `nil`       |
+| `service.nodePorts.https`          | Node port for HTTPS                                   | `nil`       |
+| `service.clusterIP`                | StatefulSet service Cluster IP                        | `nil`       |
+| `service.loadBalancerIP`           | StatefulSet service Load Balancer IP                  | `nil`       |
+| `service.loadBalancerSourceRanges` | StatefulSet service Load Balancer sources             | `[]`        |
+| `service.externalTrafficPolicy`    | StatefulSet service external traffic policy           | `Cluster`   |
+| `service.annotations`              | Additional custom annotations for StatefulSet service | `{}`        |
 
 
 ### Ingress parameters
@@ -85,13 +85,18 @@
 
 ### Pod Image parameters
 
-| Name                | Description                                           | Value          |
-| ------------------- | ----------------------------------------------------- | -------------- |
-| `image.registry`    | StatefulSet image registry                            | `docker.io`    |
-| `image.repository`  | StatefulSet image repository                          | `busybox`      |
-| `image.tag`         | StatefulSet image tag (immutabe tags are recommended) | `latest`       |
-| `image.pullPolicy`  | StatefulSet image pull policy                         | `IfNotPresent` |
-| `image.pullSecrets` | StatefulSet image pull secrets                        | `[]`           |
+| Name                     | Description                                                                                                                                                                                        | Value          |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `ports[0].containerPort` | Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.                                                                                                 | `80`           |
+| `ports[0].name`          | If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.                    | `http`         |
+| `ports[0].hostIp`        | What host IP to bind the external port to.                                                                                                                                                         | `nil`          |
+| `ports[0].hostPort`      | Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. | `nil`          |
+| `ports[0].protocol`      | Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".                                                                                                                                   | `TCP`          |
+| `image.registry`         | StatefulSet image registry                                                                                                                                                                         | `docker.io`    |
+| `image.repository`       | StatefulSet image repository                                                                                                                                                                       | `busybox`      |
+| `image.tag`              | StatefulSet image tag (immutabe tags are recommended)                                                                                                                                              | `latest`       |
+| `image.pullPolicy`       | StatefulSet image pull policy                                                                                                                                                                      | `IfNotPresent` |
+| `image.pullSecrets`      | StatefulSet image pull secrets                                                                                                                                                                     | `[]`           |
 
 
 ### Pod parameters

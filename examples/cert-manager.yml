@@ -3,10 +3,11 @@ ndustrial:
   name: cert-manager-example
   organization: ndustrial
 contxt: {}
-
+ports:
+  - containerPort: 80
+    name: http
 service:
   type: ClusterIP
-
 ingress:
   enabled: true
   certManager: true
@@ -17,7 +18,6 @@ ingress:
       more_set_headers "X-Robots-Tag: noindex";
   tls: true
   hostname: cert-manager-example.staging.pizzandustrial.com
-
 image:
   registry: docker.ops.ndustrial.io
-  repository: nginx
+  repository: library/nginx

@@ -282,6 +282,19 @@ image:
 
 ## @section Pod parameters
 
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#containerport-v1-core
+## @param ports[0].containerPort Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.
+## @param ports[0].name If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.
+## @param ports[0].hostIp What host IP to bind the external port to.
+## @param ports[0].hostPort Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.
+## @param ports[0].protocol Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".
+ports:
+  - containerPort: 80
+    name: http
+    hostIp:
+    hostPort:
+    protocol: TCP
+
 ## @param command Override Deployment default command
 ##
 command: []
