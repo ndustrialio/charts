@@ -1,0 +1,253 @@
+---
+- variable: global.imageRegistry
+  group: Global
+  default: 
+  type: 
+- variable: global.imagePullSecrets
+  group: Global
+  default: []
+  type: 
+- variable: global.storageClass
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.name
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.organization
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.owner
+  group: Global
+  default: 
+  type: 
+- variable: contxt.stackId
+  group: Global
+  default: 
+  type: 
+- variable: contxt.serviceId
+  group: Global
+  default: 
+  type: 
+- variable: contxt.serviceType
+  group: Global
+  default: 
+  type: 
+- variable: nameOverride
+  group: Common
+  default: 
+  type: 
+- variable: fullnameOverride
+  group: Common
+  default: 
+  type: 
+- variable: labels
+  group: Common
+  default: {}
+  type: 
+- variable: annotations
+  group: Common
+  default: {}
+  type: 
+- variable: schedule
+  group: CronJob
+  default: 0 0 * * *
+  type: string
+- variable: concurrencyPolicy
+  group: CronJob
+  default: Forbid
+  type: string
+- variable: failedJobsHistoryLimit
+  group: CronJob
+  default: 1
+  type: number
+- variable: successfulJobsHistoryLimit
+  group: CronJob
+  default: 3
+  type: number
+- variable: startingDeadlineSeconds
+  group: CronJob
+  default: 
+  type: 
+- variable: activeDeadlineSeconds
+  group: CronJob
+  default: 
+  type: 
+- variable: backoffLimit
+  group: CronJob
+  default: 6
+  type: number
+- variable: completions
+  group: CronJob
+  default: 
+  type: 
+- variable: parallelism
+  group: CronJob
+  default: 
+  type: 
+- variable: ttlSecondsAfterFinished
+  group: CronJob
+  default: 
+  type: 
+- variable: image.registry
+  group: Pod Image
+  default: docker.io
+  type: string
+- variable: image.repository
+  group: Pod Image
+  default: busybox
+  type: string
+- variable: image.tag
+  group: Pod Image
+  default: latest
+  type: string
+- variable: image.pullPolicy
+  group: Pod Image
+  default: IfNotPresent
+  type: string
+- variable: image.pullSecrets
+  group: Pod Image
+  default: []
+  type: 
+- variable: command
+  group: Pod
+  default: []
+  type: 
+- variable: args
+  group: Pod
+  default: []
+  type: 
+- variable: priorityClassName
+  group: Pod
+  default: 
+  type: 
+- variable: hostAliases
+  group: Pod
+  default: []
+  type: 
+- variable: tolerations
+  group: Pod
+  default: []
+  type: 
+- variable: podLabels
+  group: Pod
+  default: {}
+  type: 
+- variable: podAnnotations
+  group: Pod
+  default: {}
+  type: 
+- variable: lifecycleHooks
+  group: Pod
+  default: {}
+  type: 
+- variable: updateStrategy.type
+  group: Pod
+  default: RollingUpdate
+  type: string
+- variable: updateStrategy.rollingUpdate
+  group: Pod
+  default: {}
+  type: 
+- variable: shareProcessNamespace
+  group: Pod
+  default: false
+  type: boolean
+- variable: extraEnvVars
+  group: Pod
+  default: []
+  type: 
+- variable: extraEnvVarsCM
+  group: Pod
+  default: 
+  type: 
+- variable: extraEnvVarsSecret
+  group: Pod
+  default: 
+  type: 
+- variable: extraVolumes
+  group: Pod
+  default: []
+  type: 
+- variable: extraVolumeMounts
+  group: Pod
+  default: []
+  type: 
+- variable: initContainers
+  group: Pod
+  default: {}
+  type: 
+- variable: sidecars
+  group: Pod
+  default: {}
+  type: 
+- variable: serviceAccount.create
+  group: Pod
+  default: true
+  type: boolean
+- variable: serviceAccount.name
+  group: Pod
+  default: ""
+  type: string
+- variable: serviceAccount.annotations
+  group: Pod
+  default: {}
+  type: 
+- variable: resources.limits
+  group: Pod
+  default: {}
+  type: 
+- variable: resources.requests
+  group: Pod
+  default: {}
+  type: 
+- variable: podSecurityContext.enabled
+  group: Pod Security
+  default: false
+  type: boolean
+- variable: podSecurityContext.fsGroup
+  group: Pod Security
+  default: 1001
+  type: number
+- variable: containerSecurityContext.enabled
+  group: Pod Security
+  default: false
+  type: boolean
+- variable: containerSecurityContext.runAsUser
+  group: Pod Security
+  default: 1001
+  type: number
+- variable: containerSecurityContext.runAsNonRoot
+  group: Pod Security
+  default: true
+  type: boolean
+- variable: podAffinityPreset
+  group: Pod Affinity
+  default: ""
+  type: string
+- variable: podAntiAffinityPreset
+  group: Pod Affinity
+  default: soft
+  type: string
+- variable: nodeAffinityPreset.type
+  group: Pod Affinity
+  default: ""
+  type: string
+- variable: nodeAffinityPreset.key
+  group: Pod Affinity
+  default: ""
+  type: string
+- variable: nodeAffinityPreset.values
+  group: Pod Affinity
+  default: []
+  type: 
+- variable: affinity
+  group: Pod Affinity
+  default: {}
+  type: 
+- variable: nodeSelector
+  group: Pod Affinity
+  default: {}
+  type: 

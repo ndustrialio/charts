@@ -1,0 +1,457 @@
+---
+- variable: global.imageRegistry
+  group: Global
+  default: 
+  type: 
+- variable: global.imagePullSecrets
+  group: Global
+  default: []
+  type: 
+- variable: global.storageClass
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.name
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.organization
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.owner
+  group: Global
+  default: 
+  type: 
+- variable: contxt.stackId
+  group: Global
+  default: 
+  type: 
+- variable: contxt.serviceId
+  group: Global
+  default: 
+  type: 
+- variable: contxt.serviceType
+  group: Global
+  default: 
+  type: 
+- variable: nameOverride
+  group: Common
+  default: 
+  type: 
+- variable: fullnameOverride
+  group: Common
+  default: 
+  type: 
+- variable: labels
+  group: Common
+  default: {}
+  type: 
+- variable: annotations
+  group: Common
+  default: {}
+  type: 
+- variable: replicaCount
+  group: Deployment
+  default: 1
+  type: number
+- variable: startupProbe.enabled
+  group: Deployment
+  default: false
+  type: boolean
+- variable: startupProbe.path
+  group: Deployment
+  default: /
+  type: string
+- variable: startupProbe.initialDelaySeconds
+  group: Deployment
+  default: 60
+  type: number
+- variable: startupProbe.periodSeconds
+  group: Deployment
+  default: 10
+  type: number
+- variable: startupProbe.timeoutSeconds
+  group: Deployment
+  default: 1
+  type: number
+- variable: startupProbe.failureThreshold
+  group: Deployment
+  default: 3
+  type: number
+- variable: startupProbe.successThreshold
+  group: Deployment
+  default: 1
+  type: number
+- variable: livenessProbe.enabled
+  group: Deployment
+  default: true
+  type: boolean
+- variable: livenessProbe.path
+  group: Deployment
+  default: /
+  type: string
+- variable: livenessProbe.initialDelaySeconds
+  group: Deployment
+  default: 60
+  type: number
+- variable: livenessProbe.periodSeconds
+  group: Deployment
+  default: 10
+  type: number
+- variable: livenessProbe.timeoutSeconds
+  group: Deployment
+  default: 1
+  type: number
+- variable: livenessProbe.failureThreshold
+  group: Deployment
+  default: 3
+  type: number
+- variable: livenessProbe.successThreshold
+  group: Deployment
+  default: 1
+  type: number
+- variable: readinessProbe.enabled
+  group: Deployment
+  default: true
+  type: boolean
+- variable: readinessProbe.path
+  group: Deployment
+  default: /
+  type: string
+- variable: readinessProbe.initialDelaySeconds
+  group: Deployment
+  default: 5
+  type: number
+- variable: readinessProbe.periodSeconds
+  group: Deployment
+  default: 5
+  type: number
+- variable: readinessProbe.timeoutSeconds
+  group: Deployment
+  default: 1
+  type: number
+- variable: readinessProbe.failureThreshold
+  group: Deployment
+  default: 3
+  type: number
+- variable: readinessProbe.successThreshold
+  group: Deployment
+  default: 1
+  type: number
+- variable: updateStrategy.type
+  group: Deployment
+  default: RollingUpdate
+  type: string
+- variable: updateStrategy.rollingUpdate
+  group: Deployment
+  default: {}
+  type: 
+- variable: service.type
+  group: Service
+  default: ClusterIP
+  type: string
+- variable: service.port
+  group: Service
+  default: 80
+  type: number
+- variable: service.httpsPort
+  group: Service
+  default: 443
+  type: number
+- variable: service.nodePorts.http
+  group: Service
+  default: 
+  type: 
+- variable: service.nodePorts.https
+  group: Service
+  default: 
+  type: 
+- variable: service.clusterIP
+  group: Service
+  default: 
+  type: 
+- variable: service.loadBalancerIP
+  group: Service
+  default: 
+  type: 
+- variable: service.loadBalancerSourceRanges
+  group: Service
+  default: []
+  type: 
+- variable: service.externalTrafficPolicy
+  group: Service
+  default: Cluster
+  type: string
+- variable: service.annotations
+  group: Service
+  default: {}
+  type: 
+- variable: ingress.enabled
+  group: Ingress
+  default: false
+  type: boolean
+- variable: ingress.pathType
+  group: Ingress
+  default: ImplementationSpecific
+  type: string
+- variable: ingress.apiVersion
+  group: Ingress
+  default: 
+  type: 
+- variable: ingress.hostname
+  group: Ingress
+  default: chart-example.local
+  type: string
+- variable: ingress.path
+  group: Ingress
+  default: /
+  type: string
+- variable: ingress.annotations
+  group: Ingress
+  default: {}
+  type: 
+- variable: ingress.tls
+  group: Ingress
+  default: false
+  type: boolean
+- variable: ingress.certManager
+  group: Ingress
+  default: false
+  type: boolean
+- variable: ingress.selfSigned
+  group: Ingress
+  default: false
+  type: boolean
+- variable: ingress.extraHosts
+  group: Ingress
+  default: []
+  type: 
+- variable: ingress.extraPaths
+  group: Ingress
+  default: []
+  type: 
+- variable: ingress.extraTls
+  group: Ingress
+  default: []
+  type: 
+- variable: ingress.secrets
+  group: Ingress
+  default: []
+  type: 
+- variable: image.registry
+  group: Pod Image
+  default: docker.io
+  type: string
+- variable: image.repository
+  group: Pod Image
+  default: busybox
+  type: string
+- variable: image.tag
+  group: Pod Image
+  default: latest
+  type: string
+- variable: image.pullPolicy
+  group: Pod Image
+  default: IfNotPresent
+  type: string
+- variable: image.pullSecrets
+  group: Pod Image
+  default: []
+  type: 
+- variable: ports[0].containerPort
+  group: Pod
+  default: 
+  type: 
+- variable: ports[0].name
+  group: Pod
+  default: 
+  type: 
+- variable: ports[0].hostIp
+  group: Pod
+  default: 
+  type: 
+- variable: ports[0].hostPort
+  group: Pod
+  default: 
+  type: 
+- variable: ports[0].protocol
+  group: Pod
+  default: 
+  type: 
+- variable: command
+  group: Pod
+  default: []
+  type: 
+- variable: args
+  group: Pod
+  default: []
+  type: 
+- variable: priorityClassName
+  group: Pod
+  default: 
+  type: 
+- variable: hostAliases
+  group: Pod
+  default: []
+  type: 
+- variable: tolerations
+  group: Pod
+  default: []
+  type: 
+- variable: podLabels
+  group: Pod
+  default: {}
+  type: 
+- variable: podAnnotations
+  group: Pod
+  default: {}
+  type: 
+- variable: lifecycleHooks
+  group: Pod
+  default: {}
+  type: 
+- variable: shareProcessNamespace
+  group: Pod
+  default: false
+  type: boolean
+- variable: extraEnvVars
+  group: Pod
+  default: []
+  type: 
+- variable: extraEnvVarsCM
+  group: Pod
+  default: 
+  type: 
+- variable: extraEnvVarsSecret
+  group: Pod
+  default: 
+  type: 
+- variable: extraVolumes
+  group: Pod
+  default: []
+  type: 
+- variable: extraVolumeMounts
+  group: Pod
+  default: []
+  type: 
+- variable: initContainers
+  group: Pod
+  default: {}
+  type: 
+- variable: sidecars
+  group: Pod
+  default: {}
+  type: 
+- variable: serviceAccount.create
+  group: Pod
+  default: true
+  type: boolean
+- variable: serviceAccount.name
+  group: Pod
+  default: ""
+  type: string
+- variable: serviceAccount.annotations
+  group: Pod
+  default: {}
+  type: 
+- variable: resources.limits
+  group: Pod
+  default: {}
+  type: 
+- variable: resources.requests
+  group: Pod
+  default: {}
+  type: 
+- variable: podSecurityContext.enabled
+  group: Pod
+  default: false
+  type: boolean
+- variable: podSecurityContext.fsGroup
+  group: Pod
+  default: 1000
+  type: number
+- variable: containerSecurityContext.enabled
+  group: Pod
+  default: false
+  type: boolean
+- variable: containerSecurityContext.runAsUser
+  group: Pod
+  default: 1001
+  type: number
+- variable: containerSecurityContext.runAsNonRoot
+  group: Pod
+  default: true
+  type: boolean
+- variable: podAffinityPreset
+  group: Pod Affinity
+  default: ""
+  type: string
+- variable: podAntiAffinityPreset
+  group: Pod Affinity
+  default: soft
+  type: string
+- variable: nodeAffinityPreset.type
+  group: Pod Affinity
+  default: ""
+  type: string
+- variable: nodeAffinityPreset.key
+  group: Pod Affinity
+  default: ""
+  type: string
+- variable: nodeAffinityPreset.values
+  group: Pod Affinity
+  default: []
+  type: 
+- variable: affinity
+  group: Pod Affinity
+  default: {}
+  type: 
+- variable: nodeSelector
+  group: Pod Affinity
+  default: {}
+  type: 
+- variable: podDisruptionBudget.enabled
+  group: Pod Affinity
+  default: false
+  type: boolean
+- variable: podDisruptionBudget.minAvailable
+  group: Pod Affinity
+  default: 
+  type: 
+- variable: podDisruptionBudget.maxUnavailable
+  group: Pod Affinity
+  default: 
+  type: 
+- variable: metrics.enabled
+  group: Metrics paramaters
+  default: false
+  type: boolean
+- variable: metrics.serviceMonitor.enabled
+  group: Metrics paramaters
+  default: false
+  type: boolean
+- variable: metrics.serviceMonitor.namespace
+  group: Metrics paramaters
+  default: 
+  type: 
+- variable: metrics.serviceMonitor.interval
+  group: Metrics paramaters
+  default: 30s
+  type: string
+- variable: metrics.serviceMonitor.scrapeTimeout
+  group: Metrics paramaters
+  default: 
+  type: 
+- variable: metrics.serviceMonitor.relabellings
+  group: Metrics paramaters
+  default: []
+  type: 
+- variable: metrics.serviceMonitor.honorLabels
+  group: Metrics paramaters
+  default: false
+  type: boolean
+- variable: metrics.serviceMonitor.additionalLabels
+  group: Metrics paramaters
+  default: {}
+  type: 

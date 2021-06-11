@@ -47,13 +47,44 @@ def generate(file)
   q_vars = vars.transform_values do |val|
     val.select(&.[0].==("question")).map(&.[1]).uniq!
   end
+  dir = File.dirname(file)
+
+  write_question_file(dir, data, vars, q_vars)
+  write_val_file(dir, data, vars)
+end
+
+def write_question_file(dir, data, vars, q_vars)
+  questions = gen_questions(data, vars, q_vars)
+  if File.exists?(File.join(dir, "_questions.yml"))
+    x = YAML.parse(File.read(File.join(dir, "_questions.yml")))["questions"]?
+    questions = x.as_a + questions unless x.nil?
+  end
 
   qs = {
-    questions: gen_questions(data, vars, q_vars),
+    questions: questions,
   }
-
-  q_file = File.join(File.dirname(file), "questions.yml")
+  q_file = File.join(dir, "questions.yml")
   File.write(q_file, qs.to_yaml)
+end
+
+def write_val_file(dir, data, vars)
+  vrs = vars.transform_values do |val|
+    val.map(&.[1]).uniq!
+  end.flat_map do |k, v|
+    v.map do |i|
+      parts = i.split(/[\.\[\]]/)
+      parts = [i] if parts.empty?
+      default = get_var(data, parts)
+      {
+        variable: i,
+        group:    k.gsub(" parameters", ""),
+        default:  default,
+        type:     get_type(default),
+      }
+    end
+  end
+  v_file = File.join(dir, "_var_list.yml")
+  File.write(v_file, vrs.to_yaml)
 end
 
 def gen_questions(data, vars, q_vars)
@@ -76,6 +107,21 @@ def gen_question(data, group, val_path, vars)
     label:    get_var_label(vars),
     options:  get_var_options(vars),
   }
+end
+
+def get_type(val)
+  case val
+  when String
+    "string"
+  when Array, Hash
+    nil
+  when Number
+    "number"
+  when Bool
+    "boolean"
+  else
+    nil
+  end
 end
 
 def get_var_type(vars)
@@ -114,7 +160,11 @@ def get_var(data, parts)
   n = parts.shift
   if data[n]?
     case data[n]
-    when .as_h?, .as_a?
+    when .as_a?
+      return data[n].raw if data[n].as_a.empty?
+      get_var(data[n], parts)
+    when .as_h?
+      return data[n].raw if data[n].as_h.empty?
       get_var(data[n], parts)
     else
       data[n].raw
