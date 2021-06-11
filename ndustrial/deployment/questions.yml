@@ -1,27 +1,33 @@
+---
 questions:
-  # Container Images
-  - variable: image.registry
-    group: "Container Images"
-    default: docker.io
-    type: string
-    label: Image Registry
-  - variable: image.repository
-    group: "Container Images"
-    default: busybox
-    type: string
-    label: Image Repository
-  - variable: image.tag
-    group: "Container Images"
-    default: latest
-    type: string
-    label: Image Tag
-  - variable: image.pullPolicy
-    group: "Container Images"
-    default: IfNotPresent
-    type: enum
-    required: true
-    label: Image Pull Policy
-    options:
-      - Always
-      - IfNotPresent
-      - Never
+- group: Pod Image
+  variable: image.registry
+  default: docker.io
+  type: string
+  required: true
+  label: Deployment image registry
+  options: []
+- group: Pod Image
+  variable: image.repository
+  default: busybox
+  type: string
+  required: true
+  label: Deployment image repository
+  options: []
+- group: Pod Image
+  variable: image.tag
+  default: latest
+  type: string
+  required: true
+  label: Deployment image tag (immutabe tags are recommended)
+  options: []
+- group: Pod Image
+  variable: image.pullPolicy
+  default: IfNotPresent
+  type: enum
+  required: true
+  label: Deployment image pull policy
+  options:
+  - Always
+  - IfNotPresent
+  - Never

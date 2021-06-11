@@ -69,21 +69,26 @@ ttlSecondsAfterFinished:
 
 ## @section Pod Image parameters
 image:
-  ## @param image.registry CronJob image registry
-  ##
+  ## @param image.registry Deployment image registry
+  ## @question image.registry string
+  ## @required image.registry true
   registry: docker.io
-  ## @param image.repository CronJob image repository
-  ##
+  ## @param image.repository Deployment image repository
+  ## @question image.repository string
+  ## @required image.repository true
   repository: busybox
-  ## @param image.tag CronJob image tag (immutabe tags are recommended)
-  ##
+  ## @param image.tag Deployment image tag (immutabe tags are recommended)
+  ## @question image.tag string
+  ## @required image.tag true
   tag: latest
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
-  ## @param image.pullPolicy CronJob image pull policy
-  ##
+  ## @param image.pullPolicy Deployment image pull policy
+  ## @question image.pullPolicy enum
+  ## @options image.pullPolicy Always, IfNotPresent, Never
+  ## @required image.pullPolicy true
   pullPolicy: IfNotPresent
   ## Optionally specify an array of imagePullSecrets.
   ## Secrets must be manually created in the namespace.
@@ -91,7 +96,7 @@ image:
   ## E.g:
   ## pullSecrets:
   ##  - myRegistryKeySecretName
-  ## @param image.pullSecrets CronJob image pull secrets
+  ## @param image.pullSecrets Deployment image pull secrets
   ##
   pullSecrets: []
 
