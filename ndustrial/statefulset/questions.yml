@@ -1,0 +1,27 @@
+questions:
+  # Container Images
+  - variable: image.registry
+    group: "Container Images"
+    default: docker.io
+    type: string
+    label: Image Registry
+  - variable: image.repository
+    group: "Container Images"
+    default: busybox
+    type: string
+    label: Image Repository
+  - variable: image.tag
+    group: "Container Images"
+    default: latest
+    type: string
+    label: Image Tag
+  - variable: image.pullPolicy
+    group: "Container Images"
+    default: IfNotPresent
+    type: enum
+    required: true
+    label: Image Pull Policy
+    options:
+      - Always
+      - IfNotPresent
+      - Never

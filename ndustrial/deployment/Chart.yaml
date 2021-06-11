@@ -12,5 +12,5 @@ maintainers:
   - email: devops@ndustrial.io
     name: DevOps
 # Please make sure that version and appVersion are always the same.
-version: 0.1.0
-appVersion: 0.1.0
+version: 0.1.1
+appVersion: 0.1.1
