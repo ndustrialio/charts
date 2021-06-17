@@ -10,6 +10,11 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 ndustrial.io/app: {{ .Values.ndustrial.name }}
 ndustrial.io/organization.slug: {{ .Values.ndustrial.organization }}
 ndustrial.io/owner: {{ .Values.ndustrial.owner }}
+ndustrial.io/env: {{ .Values.ndustrial.env }}
+ndustrial.io/version: {{ .Values.ndustrial.version }}
+tags.datadoghq.com/env: {{ .Values.ndustrial.env }}
+tags.datadoghq.com/version: {{ .Values.ndustrial.version }}
+tags.datadoghq.com/service: {{ .Values.ndustrial.name }}
 {{- if .Values.contxt.stackId -}}
 contxt/stack.id: {{ .Values.contxt.stackId }}
 contxt/service.id: {{ .Values.contxt.serviceId }}

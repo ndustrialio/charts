@@ -30,6 +30,10 @@ ndustrial:
   organization:
   ## @param ndustrial.owner The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
   owner:
+  ## @param ndustrial.env The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)
+  env:
+  ## @param ndustrial.version The app version being deployed
+  version:
 ```
 
 If it is a `contxt` deployed chart the following values need to be defined:
