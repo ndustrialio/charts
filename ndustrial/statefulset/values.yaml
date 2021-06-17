@@ -116,7 +116,7 @@ service:
   port: 80
   ## @param service.httpsPort StatefulSet service HTTPS port
   ##
-  httpsPort: 443
+  httpsPort:
   ## Node ports to expose
   ## @param service.nodePorts.http Node port for HTTP
   ## @param service.nodePorts.https Node port for HTTPS
