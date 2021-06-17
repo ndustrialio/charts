@@ -15,8 +15,9 @@ spec:
     matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
       ndustrial.io/component: statefulset
   {{- if .Values.updateStrategy }}
-  strategy: {{- toYaml .Values.updateStrategy | nindent 4 }}
+  updateStrategy: {{- toYaml .Values.updateStrategy | nindent 4 }}
   {{- end }}
+  serviceName: {{ template "common.names.fullname" . }}
   replicas: {{ .Values.replicaCount | default 1 }}
   selector:
     matchLabels:
@@ -112,17 +113,26 @@ spec:
           ports:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- if .Values.startupProbe }}
+          {{- if .Values.startupProbe.enabled }}
           startupProbe:
-            {{- toYaml .Values.startupProbe | nindent 12 }}
+            httpGet:
+              path: {{ .Values.startupProbe.path }}
+              port: http
+            {{ omit .Values.startupProbe "enabled" "path" | toYaml | nindent 12 }}
           {{- end }}
-          {{- if .Values.livenessProbe }}
+          {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
+            httpGet:
+              path: {{ .Values.livenessProbe.path }}
+              port: http
+            {{ omit .Values.livenessProbe "enabled" "path" | toYaml | nindent 12 }}
           {{- end }}
-          {{- if .Values.readinessProbe }}
+          {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
+            httpGet:
+              path: {{ .Values.readinessProbe.path }}
+              port: http
+            {{ omit .Values.readinessProbe "enabled" "path" | toYaml | nindent 12 }}
           {{- end }}
           {{- if .Values.resources }}
           resources: {{- toYaml .Values.resources | nindent 12 }}

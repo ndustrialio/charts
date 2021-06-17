@@ -117,7 +117,7 @@ spec:
           {{- if .Values.startupProbe.enabled }}
           startupProbe:
             httpGet:
-              path: {{ .Values.livenessProbe.path }}
+              path: {{ .Values.startupProbe.path }}
               port: http
             {{ omit .Values.startupProbe "enabled" "path" | toYaml | nindent 12 }}
           {{- end }}
@@ -131,7 +131,7 @@ spec:
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.livenessProbe.path }}
+              path: {{ .Values.readinessProbe.path }}
               port: http
             {{ omit .Values.readinessProbe "enabled" "path" | toYaml | nindent 12 }}
           {{- end }}
