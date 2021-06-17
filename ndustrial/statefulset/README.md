@@ -10,6 +10,8 @@
 | `ndustrial.name`          | The name of the application (Required)                                                                        | `nil` |
 | `ndustrial.organization`  | The slug of the Organization that owns the application (Required)                                             | `nil` |
 | `ndustrial.owner`         | The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required) | `nil` |
+| `ndustrial.env`           | The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)       | `nil` |
+| `ndustrial.version`       | The app version being deployed                                                                                | `nil` |
 | `contxt.stackId`          | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
 | `contxt.serviceId`        | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
 | `contxt.serviceType`      | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
@@ -30,6 +32,13 @@
 | Name                                 | Description                                                    | Value           |
 | ------------------------------------ | -------------------------------------------------------------- | --------------- |
 | `replicaCount`                       | Number of Controller replicas                                  | `1`             |
+| `startupProbe.enabled`               | Enable startupProbe                                            | `false`         |
+| `startupProbe.path`                  | Path for startupProbe                                          | `/`             |
+| `startupProbe.initialDelaySeconds`   | Initial delay seconds for startupProbe                         | `60`            |
+| `startupProbe.periodSeconds`         | Period seconds for startupProbe                                | `10`            |
+| `startupProbe.timeoutSeconds`        | Timeout seconds for startupProbe                               | `1`             |
+| `startupProbe.failureThreshold`      | Failure threshold for startupProbe                             | `3`             |
+| `startupProbe.successThreshold`      | Success threshold for startupProbe                             | `1`             |
 | `livenessProbe.enabled`              | Enable livenessProbe                                           | `true`          |
 | `livenessProbe.path`                 | Path for livenessProbe                                         | `/`             |
 | `livenessProbe.initialDelaySeconds`  | Initial delay seconds for livenessProbe                        | `60`            |
@@ -54,7 +63,7 @@
 | ---------------------------------- | ----------------------------------------------------- | ----------- |
 | `service.type`                     | StatefulSet service type                              | `ClusterIP` |
 | `service.port`                     | StatefulSet service HTTP port                         | `80`        |
-| `service.httpsPort`                | StatefulSet service HTTPS port                        | `443`       |
+| `service.httpsPort`                | StatefulSet service HTTPS port                        | `nil`       |
 | `service.nodePorts.http`           | Node port for HTTP                                    | `nil`       |
 | `service.nodePorts.https`          | Node port for HTTPS                                   | `nil`       |
 | `service.clusterIP`                | StatefulSet service Cluster IP                        | `nil`       |

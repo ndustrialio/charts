@@ -10,6 +10,8 @@
 | `ndustrial.name`          | The name of the application (Required)                                                                        | `nil` |
 | `ndustrial.organization`  | The slug of the Organization that owns the application (Required)                                             | `nil` |
 | `ndustrial.owner`         | The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required) | `nil` |
+| `ndustrial.env`           | The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)       | `nil` |
+| `ndustrial.version`       | The app version being deployed                                                                                | `nil` |
 | `contxt.stackId`          | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
 | `contxt.serviceId`        | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
 | `contxt.serviceType`      | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
