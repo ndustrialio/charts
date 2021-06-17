@@ -35,6 +35,7 @@ spec:
       {{- else if eq .Values.service.type "ClusterIP" }}
       nodePort: null
       {{- end }}
+    {{- if .Values.service.httpsPort }}
     - name: https
       port: {{ .Values.service.httpsPort }}
       protocol: TCP
@@ -44,4 +45,5 @@ spec:
       {{- else if eq .Values.service.type "ClusterIP" }}
       nodePort: null
       {{- end }}
+    {{- end }}
   selector: {{- include "common.labels.matchLabels" . | nindent 4 }}

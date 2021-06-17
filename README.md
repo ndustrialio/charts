@@ -18,6 +18,32 @@ helm repo update
 
 You can then run `helm search repo ndustrial` to see the charts.
 
+### Required Values
+
+All charts need the folowing fields defined:
+
+```yaml
+ndustrial:
+  ## @param ndustrial.name The name of the application (Required)
+  name:
+  ## @param ndustrial.organization The slug of the Organization that owns the application (Required)
+  organization:
+  ## @param ndustrial.owner The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+  owner:
+```
+
+If it is a `contxt` deployed chart the following values need to be defined:
+
+```yaml
+contxt:
+  ## @param contxt.stackId The ID of the Contxt Stack that this object belongs to (if applicable)
+  stackId:
+  ## @param contxt.serviceId The ID of the Contxt Service that this object belongs to (if applicable)
+  serviceId:
+  ## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)
+  serviceType:
+```
+
 ## Charts
 
 - [`common`](ndustrial/common/README.md) - common chart which provides helper functions for all charts

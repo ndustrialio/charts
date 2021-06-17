@@ -47,9 +47,9 @@ def get_chart_type(file)
   when /cronjob/
     "cronjob"
   when /deployment/
-    "cronjob"
+    "deployment"
   when /statefulset/
-    "cronjob"
+    "statefulset"
   else
     raise "Unknown chart type"
   end

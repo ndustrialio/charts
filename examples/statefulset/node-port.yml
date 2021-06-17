@@ -1,0 +1,17 @@
+replicaCount: 3
+ndustrial:
+  owner: helm
+  name: statefulset-example
+  organization: ndustrial
+
+image:
+  registry: docker.ops.ndustrial.io
+  repository: library/nginx
+
+contxt: {}
+ports:
+  - containerPort: 80
+    name: http
+
+service:
+  type: NodePort
