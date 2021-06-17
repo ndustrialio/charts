@@ -23,6 +23,14 @@
   group: Global
   default: 
   type: 
+- variable: ndustrial.env
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.version
+  group: Global
+  default: 
+  type: 
 - variable: contxt.stackId
   group: Global
   default: 
@@ -52,6 +60,34 @@
   default: {}
   type: 
 - variable: replicaCount
+  group: StatefulSet
+  default: 1
+  type: number
+- variable: startupProbe.enabled
+  group: StatefulSet
+  default: false
+  type: boolean
+- variable: startupProbe.path
+  group: StatefulSet
+  default: /
+  type: string
+- variable: startupProbe.initialDelaySeconds
+  group: StatefulSet
+  default: 60
+  type: number
+- variable: startupProbe.periodSeconds
+  group: StatefulSet
+  default: 10
+  type: number
+- variable: startupProbe.timeoutSeconds
+  group: StatefulSet
+  default: 1
+  type: number
+- variable: startupProbe.failureThreshold
+  group: StatefulSet
+  default: 3
+  type: number
+- variable: startupProbe.successThreshold
   group: StatefulSet
   default: 1
   type: number
@@ -129,8 +165,8 @@
   type: number
 - variable: service.httpsPort
   group: Service
-  default: 443
-  type: number
+  default: 
+  type: 
 - variable: service.nodePorts.http
   group: Service
   default: 

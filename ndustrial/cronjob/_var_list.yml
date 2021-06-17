@@ -23,6 +23,14 @@
   group: Global
   default: 
   type: 
+- variable: ndustrial.env
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.version
+  group: Global
+  default: 
+  type: 
 - variable: contxt.stackId
   group: Global
   default: 
