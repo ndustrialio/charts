@@ -1,0 +1,30 @@
+---
+questions:
+  # Services and Load Balancing
+  - variable: ingress.enabled
+    label: Enable Ingress
+    description: "Expose app using Ingress (Layer 7 Load Balancer)"
+    default: true
+    type: boolean
+    show_subquestion_if: true
+    group: "Services and Load Balancing"
+    subquestions:
+      - variable: ingress.hosts
+        default: "xip.io"
+        description: "Hostname for installation"
+        type: hostname
+        required: true
+        label: Hostname
+      - variable: ingress.path
+        default: /
+        type: string
+        description: "Ingress path"
+      - variable: ingress.tls
+        default: false
+        type: boolean
+        description: Use TLS
+      - variable: ingress.certManager
+        default: false
+        type: boolean
+        description: Use cert-manager
+        show_if: "ingress.tls"

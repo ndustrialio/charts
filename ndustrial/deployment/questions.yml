@@ -1,27 +1,60 @@
+---
 questions:
-  # Container Images
-  - variable: image.registry
-    group: "Container Images"
-    default: docker.io
-    type: string
-    label: Image Registry
-  - variable: image.repository
-    group: "Container Images"
-    default: busybox
-    type: string
-    label: Image Repository
-  - variable: image.tag
-    group: "Container Images"
-    default: latest
-    type: string
-    label: Image Tag
-  - variable: image.pullPolicy
-    group: "Container Images"
-    default: IfNotPresent
-    type: enum
+- variable: ingress.enabled
+  label: Enable Ingress
+  description: Expose app using Ingress (Layer 7 Load Balancer)
+  default: true
+  type: boolean
+  show_subquestion_if: true
+  group: Services and Load Balancing
+  subquestions:
+  - variable: ingress.hosts
+    default: xip.io
+    description: Hostname for installation
+    type: hostname
     required: true
-    label: Image Pull Policy
-    options:
-      - Always
-      - IfNotPresent
-      - Never
+    label: Hostname
+  - variable: ingress.path
+    default: /
+    type: string
+    description: Ingress path
+  - variable: ingress.tls
+    default: false
+    type: boolean
+    description: Use TLS
+  - variable: ingress.certManager
+    default: false
+    type: boolean
+    description: Use cert-manager
+    show_if: ingress.tls
+- group: Pod Image
+  variable: image.registry
+  default: docker.io
+  type: string
+  required: true
+  label: Deployment image registry
+  options: []
+- group: Pod Image
+  variable: image.repository
+  default: busybox
+  type: string
+  required: true
+  label: Deployment image repository
+  options: []
+- group: Pod Image
+  variable: image.tag
+  default: latest
+  type: string
+  required: true
+  label: Deployment image tag (immutabe tags are recommended)
+  options: []
+- group: Pod Image
+  variable: image.pullPolicy
+  default: IfNotPresent
+  type: enum
+  required: true
+  label: Deployment image pull policy
+  options:
+  - Always
+  - IfNotPresent
+  - Never

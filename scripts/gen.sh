@@ -38,6 +38,14 @@ gen_readme() {
   to_workdir
 }
 
+gen_questions() {
+  local chart=$1
+
+  echo "Generating questions for ${chart}"
+  docker run --rm -v $(pwd):/app crystallang/crystal:1.0.0 \
+    crystal /app/scripts/question_gen.cr -f /app/ndustrial/${chart}/values.yaml
+}
+
 if [ -z ${README_GEN_BIN} ]; then
   echo "missing readme-generator"
   install_md_gen
@@ -46,3 +54,7 @@ fi
 gen_readme "cronjob"
 gen_readme "deployment"
 gen_readme "statefulset"
+
+gen_questions "cronjob"
+gen_questions "deployment"
+gen_questions "statefulset"

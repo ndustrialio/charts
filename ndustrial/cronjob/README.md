@@ -43,13 +43,13 @@
 
 ### Pod Image parameters
 
-| Name                | Description                                       | Value          |
-| ------------------- | ------------------------------------------------- | -------------- |
-| `image.registry`    | CronJob image registry                            | `docker.io`    |
-| `image.repository`  | CronJob image repository                          | `busybox`      |
-| `image.tag`         | CronJob image tag (immutabe tags are recommended) | `latest`       |
-| `image.pullPolicy`  | CronJob image pull policy                         | `IfNotPresent` |
-| `image.pullSecrets` | CronJob image pull secrets                        | `[]`           |
+| Name                | Description                                          | Value          |
+| ------------------- | ---------------------------------------------------- | -------------- |
+| `image.registry`    | Deployment image registry                            | `docker.io`    |
+| `image.repository`  | Deployment image repository                          | `busybox`      |
+| `image.tag`         | Deployment image tag (immutabe tags are recommended) | `latest`       |
+| `image.pullPolicy`  | Deployment image pull policy                         | `IfNotPresent` |
+| `image.pullSecrets` | Deployment image pull secrets                        | `[]`           |
 
 
 ### Pod parameters
