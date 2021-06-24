@@ -29,8 +29,10 @@ ndustrial:
   name:
   ## @param ndustrial.organization The slug of the Organization that owns the application (Required)
   organization:
-  ## @param ndustrial.owner The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+  ## @param ndustrial.owner The person/team that owns this service. (Required)
   owner:
+  ## @param ndustrial.managed_by The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+  managed_by:
   ## @param ndustrial.env The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)
   env:
   ## @param ndustrial.version The app version being deployed (Required)
