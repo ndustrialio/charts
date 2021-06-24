@@ -20,8 +20,8 @@ ndustrial.io/project.type: {{ .Values.ndustrial.project.type }}
 tags.datadoghq.com/env: {{ .Values.ndustrial.env }}
 tags.datadoghq.com/version: {{ .Values.ndustrial.version }}
 tags.datadoghq.com/service: {{ .Values.ndustrial.name }}
-{{- if .Values.contxt.stackId -}}
-contxt/project.id: {{ .Values.contxt.stackId }}
+{{- if .Values.contxt.projectId -}}
+contxt/project.id: {{ .Values.contxt.projectId }}
 contxt/service.id: {{ .Values.contxt.serviceId }}
 contxt/service.type: {{ .Values.contxt.serviceType }}
 {{- end -}}
