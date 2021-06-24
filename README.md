@@ -24,16 +24,35 @@ All charts need the folowing fields defined:
 
 ```yaml
 ndustrial:
-  ## @param ndustrial.name The name of the application (Required)
+  ## @param ndustrial.name The name of the application/service. (Required)
+  # Should match gitrepository name (if able)
   name:
   ## @param ndustrial.organization The slug of the Organization that owns the application (Required)
   organization:
-  ## @param ndustrial.owner The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+  ## @param ndustrial.owner The person/team that owns this service. (Required)
   owner:
+  ## @param ndustrial.managed_by The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+  managed_by:
   ## @param ndustrial.env The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)
   env:
-  ## @param ndustrial.version The app version being deployed
+  ## @param ndustrial.version The app version being deployed (Required)
   version:
+
+  ## @param ndustrial.repo The github repository where the code exists (populated by CI/CD)
+  repo:
+
+  ## @param ndustrial.project
+  project:
+    ## @param ndustrial.project.slug Unique project id that this repository belongs too (Required)
+    slug:
+    ## @param ndustrial.project.type The service type of this deployment (api, database, backend, frontend, etl, etc...) (Required)
+    type:
+
+  ## @param ndustrial.depends[0].project The name of the project that this service depends on
+  ## @param ndustrial.depends[0].name The name of the project service
+  depends:
+    - project:
+      name:
 ```
 
 If it is a `contxt` deployed chart the following values need to be defined:
