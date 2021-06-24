@@ -32,7 +32,7 @@ ndustrial:
 
 contxt:
   ## @param contxt.stackId The ID of the Contxt Stack that this object belongs to (if applicable)
-  stackId:
+  projectId:
   ## @param contxt.serviceId The ID of the Contxt Service that this object belongs to (if applicable)
   serviceId:
   ## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)
