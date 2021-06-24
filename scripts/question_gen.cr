@@ -29,7 +29,7 @@ def parse_vars(file)
   data = Hash(String, Array(Tuple(String, String, String))).new
   current_section = "default"
   File.each_line(file) do |line|
-    next unless line =~ /##\s+@(\w+)\s+([\w\.\[\]\d]+)\s+(.*)$/
+    next unless line =~ /##\s+@(\w+)\s+(?:\[\w+\])?([\w\.\[\]\d]+)\s+(.*)$/
     case $1
     when "section"
       current_section = $2 + " " + $3
@@ -172,4 +172,6 @@ def get_var(data, parts)
   else
     nil
   end
+rescue ex
+  nil
 end
