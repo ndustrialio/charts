@@ -2,19 +2,27 @@
 
 ### Global parameters
 
-| Name                      | Description                                                                                                   | Value |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------- | ----- |
-| `global.imageRegistry`    | Global Docker image registry                                                                                  | `nil` |
-| `global.imagePullSecrets` | Global Docker registry secret names as an array                                                               | `[]`  |
-| `global.storageClass`     | Global StorageClass for Persistent Volume(s)                                                                  | `nil` |
-| `ndustrial.name`          | The name of the application (Required)                                                                        | `nil` |
-| `ndustrial.organization`  | The slug of the Organization that owns the application (Required)                                             | `nil` |
-| `ndustrial.owner`         | The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required) | `nil` |
-| `ndustrial.env`           | The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)       | `nil` |
-| `ndustrial.version`       | The app version being deployed                                                                                | `nil` |
-| `contxt.stackId`          | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
-| `contxt.serviceId`        | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
-| `contxt.serviceType`      | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
+| Name                          | Description                                                                                                   | Value |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------- | ----- |
+| `global.imageRegistry`        | Global Docker image registry                                                                                  | `nil` |
+| `global.imagePullSecrets`     | Global Docker registry secret names as an array                                                               | `[]`  |
+| `global.storageClass`         | Global StorageClass for Persistent Volume(s)                                                                  | `nil` |
+| `ndustrial.name`              | The name of the application/service. (Required)                                                               | `""`  |
+| `ndustrial.organization`      | The slug of the Organization that owns the application (Required)                                             | `""`  |
+| `ndustrial.owner`             | The person/team that owns this service. (Required)                                                            | `nil` |
+| `ndustrial.managed_by`        | The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required) | `nil` |
+| `ndustrial.env`               | The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)       | `""`  |
+| `ndustrial.version`           | The app version being deployed (Required)                                                                     | `""`  |
+| `ndustrial.repo`              | The github repository where the code exists (populated by CI/CD)                                              | `""`  |
+| `ndustrial.project`           |                                                                                                               | `{}`  |
+| `ndustrial.project.slug`      | Unique project id that this repository belongs too (Required)                                                 | `""`  |
+| `ndustrial.project.type`      | The service type of this deployment (api, database, backend, frontend, etl, etc...) (Required)                | `""`  |
+| `ndustrial.depends`           | List of projects/services this serivce depends on                                                             | `[]`  |
+| `ndustrial.depends.0.project` | The name of the project that this service depends on                                                          | `""`  |
+| `ndustrial.depends.0.name`    | The name of the project service                                                                               | `""`  |
+| `contxt.stackId`              | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
+| `contxt.serviceId`            | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
+| `contxt.serviceType`          | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
 
 
 ### Common parameters
