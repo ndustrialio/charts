@@ -23,6 +23,10 @@
   group: Global
   default: 
   type: 
+- variable: ndustrial.managed_by
+  group: Global
+  default: 
+  type: 
 - variable: ndustrial.env
   group: Global
   default: 
@@ -30,6 +34,34 @@
 - variable: ndustrial.version
   group: Global
   default: 
+  type: 
+- variable: ndustrial.repo
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.project
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.project.slug
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.project.type
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.depends
+  group: Global
+  default: &1 []
+  type: 
+- variable: ndustrial.depends.0.project
+  group: Global
+  default: *1
+  type: 
+- variable: ndustrial.depends.0.name
+  group: Global
+  default: *1
   type: 
 - variable: contxt.stackId
   group: Global
