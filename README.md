@@ -59,8 +59,8 @@ If it is a `contxt` deployed chart the following values need to be defined:
 
 ```yaml
 contxt:
-  ## @param contxt.stackId The ID of the Contxt Stack that this object belongs to (if applicable)
-  stackId:
+  ## @param contxt.projectId The ID of the Contxt Stack that this object belongs to (if applicable)
+  projectId:
   ## @param contxt.serviceId The ID of the Contxt Service that this object belongs to (if applicable)
   serviceId:
   ## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)

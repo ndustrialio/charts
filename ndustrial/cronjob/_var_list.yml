@@ -1,96 +1,96 @@
 ---
 - variable: global.imageRegistry
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: global.imagePullSecrets
   group: Global
   default: []
-  type: 
+  type:
 - variable: global.storageClass
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.name
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.organization
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.owner
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.managed_by
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.env
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.version
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.repo
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.project
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.project.slug
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.project.type
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: ndustrial.depends
   group: Global
   default: &1 []
-  type: 
+  type:
 - variable: ndustrial.depends.0.project
   group: Global
   default: *1
-  type: 
+  type:
 - variable: ndustrial.depends.0.name
   group: Global
   default: *1
-  type: 
-- variable: contxt.stackId
+  type:
+- variable: contxt.projectId
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: contxt.serviceId
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: contxt.serviceType
   group: Global
-  default: 
-  type: 
+  default:
+  type:
 - variable: nameOverride
   group: Common
-  default: 
-  type: 
+  default:
+  type:
 - variable: fullnameOverride
   group: Common
-  default: 
-  type: 
+  default:
+  type:
 - variable: labels
   group: Common
   default: {}
-  type: 
+  type:
 - variable: annotations
   group: Common
   default: {}
-  type: 
+  type:
 - variable: schedule
   group: CronJob
   default: 0 0 * * *
@@ -109,28 +109,28 @@
   type: number
 - variable: startingDeadlineSeconds
   group: CronJob
-  default: 
-  type: 
+  default:
+  type:
 - variable: activeDeadlineSeconds
   group: CronJob
-  default: 
-  type: 
+  default:
+  type:
 - variable: backoffLimit
   group: CronJob
   default: 6
   type: number
 - variable: completions
   group: CronJob
-  default: 
-  type: 
+  default:
+  type:
 - variable: parallelism
   group: CronJob
-  default: 
-  type: 
+  default:
+  type:
 - variable: ttlSecondsAfterFinished
   group: CronJob
-  default: 
-  type: 
+  default:
+  type:
 - variable: image.registry
   group: Pod Image
   default: docker.io
@@ -150,39 +150,39 @@
 - variable: image.pullSecrets
   group: Pod Image
   default: []
-  type: 
+  type:
 - variable: command
   group: Pod
   default: []
-  type: 
+  type:
 - variable: args
   group: Pod
   default: []
-  type: 
+  type:
 - variable: priorityClassName
   group: Pod
-  default: 
-  type: 
+  default:
+  type:
 - variable: hostAliases
   group: Pod
   default: []
-  type: 
+  type:
 - variable: tolerations
   group: Pod
   default: []
-  type: 
+  type:
 - variable: podLabels
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: podAnnotations
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: lifecycleHooks
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: updateStrategy.type
   group: Pod
   default: RollingUpdate
@@ -190,7 +190,7 @@
 - variable: updateStrategy.rollingUpdate
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: shareProcessNamespace
   group: Pod
   default: false
@@ -198,31 +198,31 @@
 - variable: extraEnvVars
   group: Pod
   default: []
-  type: 
+  type:
 - variable: extraEnvVarsCM
   group: Pod
-  default: 
-  type: 
+  default:
+  type:
 - variable: extraEnvVarsSecret
   group: Pod
-  default: 
-  type: 
+  default:
+  type:
 - variable: extraVolumes
   group: Pod
   default: []
-  type: 
+  type:
 - variable: extraVolumeMounts
   group: Pod
   default: []
-  type: 
+  type:
 - variable: initContainers
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: sidecars
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: serviceAccount.create
   group: Pod
   default: true
@@ -234,15 +234,15 @@
 - variable: serviceAccount.annotations
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: resources.limits
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: resources.requests
   group: Pod
   default: {}
-  type: 
+  type:
 - variable: podSecurityContext.enabled
   group: Pod Security
   default: false
@@ -282,12 +282,12 @@
 - variable: nodeAffinityPreset.values
   group: Pod Affinity
   default: []
-  type: 
+  type:
 - variable: affinity
   group: Pod Affinity
   default: {}
-  type: 
+  type:
 - variable: nodeSelector
   group: Pod Affinity
   default: {}
-  type: 
+  type:
