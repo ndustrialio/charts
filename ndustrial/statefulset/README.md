@@ -24,6 +24,7 @@
 | `contxt.serviceId`            | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
 | `contxt.serviceType`          | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
 
+
 ### Common parameters
 
 | Name               | Description                                        | Value |
@@ -32,6 +33,7 @@
 | `fullnameOverride` | String to fully override common.names.fullname     | `nil` |
 | `labels`           | Labels to add to all deployed objects              | `{}`  |
 | `annotations`      | Annotations to add to all deployed objects         | `{}`  |
+
 
 ### StatefulSet parameters
 
@@ -62,6 +64,7 @@
 | `updateStrategy.type`                | StatefulSet deployment update strategy                         | `RollingUpdate` |
 | `updateStrategy.rollingUpdate`       | StatefulSet deployment rolling update configuration parameters | `{}`            |
 
+
 ### Service parameters
 
 | Name                               | Description                                           | Value       |
@@ -76,6 +79,7 @@
 | `service.loadBalancerSourceRanges` | StatefulSet service Load Balancer sources             | `[]`        |
 | `service.externalTrafficPolicy`    | StatefulSet service external traffic policy           | `Cluster`   |
 | `service.annotations`              | Additional custom annotations for StatefulSet service | `{}`        |
+
 
 ### Ingress parameters
 
@@ -95,6 +99,7 @@
 | `ingress.extraTls`    | TLS configuration for additional hostname(s) to be covered with this ingress record                   | `[]`                     |
 | `ingress.secrets`     | Custom TLS certificates as secrets                                                                    | `[]`                     |
 
+
 ### Pod Image parameters
 
 | Name                | Description                                          | Value          |
@@ -104,6 +109,7 @@
 | `image.tag`         | Deployment image tag (immutabe tags are recommended) | `latest`       |
 | `image.pullPolicy`  | Deployment image pull policy                         | `IfNotPresent` |
 | `image.pullSecrets` | Deployment image pull secrets                        | `[]`           |
+
 
 ### Pod parameters
 
@@ -141,6 +147,7 @@
 | `containerSecurityContext.runAsUser`    | Set StatefulSet container's Security Context runAsUser                                                                                                                                                                                                                                                                                      | `1001`  |
 | `containerSecurityContext.runAsNonRoot` | Set StatefulSet container's Security Context runAsNonRoot                                                                                                                                                                                                                                                                                   | `true`  |
 
+
 ### Pod Affinity parameters
 
 | Name                        | Description                                                                               | Value  |
@@ -152,6 +159,7 @@
 | `nodeAffinityPreset.values` | Node label values to match. Ignored if `affinity` is set                                  | `[]`   |
 | `affinity`                  | Affinity for Cert Manager StatefulSet                                                     | `{}`   |
 | `nodeSelector`              | Node labels for pod assignment                                                            | `{}`   |
+
 
 ### Metrics paramaters
 
@@ -165,3 +173,5 @@
 | `metrics.serviceMonitor.relabellings`     | Metrics relabellings to add to the scrape endpoint                                               | `[]`    |
 | `metrics.serviceMonitor.honorLabels`      | Specify honorLabels parameter to add the scrape endpoint                                         | `false` |
 | `metrics.serviceMonitor.additionalLabels` | Additional labels that can be used so ServiceMonitor resource(s) can be discovered by Prometheus | `{}`    |
+
+
