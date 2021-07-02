@@ -20,10 +20,9 @@
 | `ndustrial.depends`           | List of projects/services this serivce depends on                                                             | `[]`  |
 | `ndustrial.depends.0.project` | The name of the project that this service depends on                                                          | `""`  |
 | `ndustrial.depends.0.name`    | The name of the project service                                                                               | `""`  |
-| `contxt.stackId`              | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
+| `contxt.projectId`            | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
 | `contxt.serviceId`            | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
 | `contxt.serviceType`          | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
-
 
 ### Common parameters
 
@@ -33,7 +32,6 @@
 | `fullnameOverride` | String to fully override common.names.fullname     | `nil` |
 | `labels`           | Labels to add to all deployed objects              | `{}`  |
 | `annotations`      | Annotations to add to all deployed objects         | `{}`  |
-
 
 ### Deployment parameters
 
@@ -64,7 +62,6 @@
 | `updateStrategy.type`                | Deployment deployment update strategy                         | `RollingUpdate` |
 | `updateStrategy.rollingUpdate`       | Deployment deployment rolling update configuration parameters | `{}`            |
 
-
 ### Service parameters
 
 | Name                               | Description                                          | Value       |
@@ -79,7 +76,6 @@
 | `service.loadBalancerSourceRanges` | Deployment service Load Balancer sources             | `[]`        |
 | `service.externalTrafficPolicy`    | Deployment service external traffic policy           | `Cluster`   |
 | `service.annotations`              | Additional custom annotations for Deployment service | `{}`        |
-
 
 ### Ingress parameters
 
@@ -99,7 +95,6 @@
 | `ingress.extraTls`    | TLS configuration for additional hostname(s) to be covered with this ingress record                   | `[]`                     |
 | `ingress.secrets`     | Custom TLS certificates as secrets                                                                    | `[]`                     |
 
-
 ### Autoscaling parameters
 
 | Name                                            | Description | Value   |
@@ -110,7 +105,6 @@
 | `autoscaling.targetCPUUtilizationPercentage`    |             | `80`    |
 | `autoscaling.targetMemoryUtilizationPercentage` |             | `80`    |
 
-
 ### Pod Image parameters
 
 | Name                | Description                                          | Value          |
@@ -120,7 +114,6 @@
 | `image.tag`         | Deployment image tag (immutabe tags are recommended) | `latest`       |
 | `image.pullPolicy`  | Deployment image pull policy                         | `IfNotPresent` |
 | `image.pullSecrets` | Deployment image pull secrets                        | `[]`           |
-
 
 ### Pod parameters
 
@@ -158,7 +151,6 @@
 | `containerSecurityContext.runAsUser`    | Set Deployment container's Security Context runAsUser                                                                                                                                                                                                                                                                                       | `1001`  |
 | `containerSecurityContext.runAsNonRoot` | Set Deployment container's Security Context runAsNonRoot                                                                                                                                                                                                                                                                                    | `true`  |
 
-
 ### Pod Affinity parameters
 
 | Name                                 | Description                                                                                                                                                                                                                                                                                 | Value   |
@@ -174,7 +166,6 @@
 | `podDisruptionBudget.minAvailable`   | An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod. So for example you can prevent all voluntary evictions by specifying "100%".                                         | `nil`   |
 | `podDisruptionBudget.maxUnavailable` | An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable". | `nil`   |
 
-
 ### Metrics paramaters
 
 | Name                                      | Description                                                                                      | Value   |
@@ -187,5 +178,3 @@
 | `metrics.serviceMonitor.relabellings`     | Metrics relabellings to add to the scrape endpoint                                               | `[]`    |
 | `metrics.serviceMonitor.honorLabels`      | Specify honorLabels parameter to add the scrape endpoint                                         | `false` |
 | `metrics.serviceMonitor.additionalLabels` | Additional labels that can be used so ServiceMonitor resource(s) can be discovered by Prometheus | `{}`    |
-
-

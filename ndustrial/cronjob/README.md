@@ -20,10 +20,9 @@
 | `ndustrial.depends`           | List of projects/services this serivce depends on                                                             | `[]`  |
 | `ndustrial.depends.0.project` | The name of the project that this service depends on                                                          | `""`  |
 | `ndustrial.depends.0.name`    | The name of the project service                                                                               | `""`  |
-| `contxt.stackId`              | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
+| `contxt.projectId`            | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
 | `contxt.serviceId`            | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
 | `contxt.serviceType`          | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
-
 
 ### Common parameters
 
@@ -33,7 +32,6 @@
 | `fullnameOverride` | String to fully override common.names.fullname     | `nil` |
 | `labels`           | Labels to add to all deployed objects              | `{}`  |
 | `annotations`      | Annotations to add to all deployed objects         | `{}`  |
-
 
 ### CronJob parameters
 
@@ -46,10 +44,9 @@
 | `startingDeadlineSeconds`    | Optional deadline in seconds for starting the job if it misses scheduled time for any reason. Missed jobs executions will be counted as failed ones.                                                                                                                                                                                                                                                                                                                                                                                                                      | `nil`       |
 | `activeDeadlineSeconds`      | Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer                                                                                                                                                                                                                                                                                                                                                                                                            | `nil`       |
 | `backoffLimit`               | Specifies the number of retries before marking this job failed. Defaults to 6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `6`         |
-| `completions`                | Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the  More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/                                                                                                                                      | `nil`       |
+| `completions`                | Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/                                                                                                                                       | `nil`       |
 | `parallelism`                | Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/                                                                                                                                                                          | `nil`       |
 | `ttlSecondsAfterFinished`    | Limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. This field is alpha-level and is only honored by servers that enable the TTLAfterFinished feature. | `nil`       |
-
 
 ### Pod Image parameters
 
@@ -60,7 +57,6 @@
 | `image.tag`         | Deployment image tag (immutabe tags are recommended) | `latest`       |
 | `image.pullPolicy`  | Deployment image pull policy                         | `IfNotPresent` |
 | `image.pullSecrets` | Deployment image pull secrets                        | `[]`           |
-
 
 ### Pod parameters
 
@@ -90,7 +86,6 @@
 | `resources.limits`             | The resources limits for the CronJob container                                                                                                                                                                                                                                                                                              | `{}`            |
 | `resources.requests`           | The requested resources for the CronJob container                                                                                                                                                                                                                                                                                           | `{}`            |
 
-
 ### Pod Security parameters
 
 | Name                                    | Description                                           | Value   |
@@ -100,7 +95,6 @@
 | `containerSecurityContext.enabled`      | Enabled CronJob containers' Security Context          | `false` |
 | `containerSecurityContext.runAsUser`    | Set CronJob container's Security Context runAsUser    | `1001`  |
 | `containerSecurityContext.runAsNonRoot` | Set CronJob container's Security Context runAsNonRoot | `true`  |
-
 
 ### Pod Affinity parameters
 
@@ -113,5 +107,3 @@
 | `nodeAffinityPreset.values` | Node label values to match. Ignored if `affinity` is set                                  | `[]`   |
 | `affinity`                  | Affinity for Cert Manager CronJob                                                         | `{}`   |
 | `nodeSelector`              | Node labels for pod assignment                                                            | `{}`   |
-
-
