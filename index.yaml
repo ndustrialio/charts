@@ -246,6 +246,27 @@ entries:
     version: 0.1.0
   cronjob:
   - apiVersion: v2
+    appVersion: 0.1.7
+    created: "2021-07-26T15:03:27.62862301Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: 0.1.8
+    description: A Helm chart for deploying k8s cronjobs
+    digest: 476a8050adee1b1c6bb6456f19841da6537b318652598771da117d6e7786e9f6
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: cronjob
+    sources:
+    - https://github.com/ndustrialio/charts/tree/main/ndustrial/cronjob
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/cronjob-0.1.7/cronjob-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
     appVersion: 0.1.6
     created: "2021-07-02T19:22:29.949026861Z"
     dependencies:
@@ -393,6 +414,25 @@ entries:
     - https://github.com/ndustrialio/charts/releases/download/cronjob-0.1.0/cronjob-0.1.0.tgz
     version: 0.1.0
   deployment:
+  - apiVersion: v2
+    appVersion: 0.1.9
+    created: "2021-07-26T15:03:27.828168273Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: 0.1.8
+    description: A Helm chart for deploying k8s deployment
+    digest: 1eaa394cbdc1d6e12385ab768546073a72a828238d258174205249ea22183a79
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: deployment
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/deployment-0.1.9/deployment-0.1.9.tgz
+    version: 0.1.9
   - apiVersion: v2
     appVersion: 0.1.7
     created: "2021-07-02T19:22:30.154483003Z"
@@ -557,6 +597,25 @@ entries:
     - https://github.com/ndustrialio/charts/releases/download/node-api-0.1.0/node-api-0.1.0.tgz
     version: 0.1.0
   statefulset:
+  - apiVersion: v2
+    appVersion: 0.1.9
+    created: "2021-07-26T15:03:27.94518132Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: 0.1.8
+    description: A Helm chart for deploying sateful sets
+    digest: e3d15bae889e7004175f385ec5a86ad487abd1a8e2a2e698932f2a8b1bfa0c53
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: statefulset
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.9/statefulset-0.1.9.tgz
+    version: 0.1.9
   - apiVersion: v2
     appVersion: 0.1.7
     created: "2021-07-02T19:22:30.360998487Z"
