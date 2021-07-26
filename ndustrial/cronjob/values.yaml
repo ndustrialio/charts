@@ -12,29 +12,27 @@ global:
   storageClass:
 
 ndustrial:
-  ## @param ndustrial.name [string] The name of the application/service. (Required)
-  # Should match gitrepository name (if able)
+  ## @param ndustrial.project Unique project id that this repository belongs too (Required) aka. Project slug
+  project:
+  ## @param ndustrial.name The name of the application/service. (Required)
+  # Should match git repository name (if able)
   name:
-  ## @param ndustrial.organization [string] The slug of the Organization that owns the application (Required)
+  ## @param ndustrial.type The service type of this deployment (api, database, backend, frontend, etl, etc...) (Required)
+  type:
+
+  ## @param ndustrial.organization The slug of the Organization that owns the application (Required)
   organization:
   ## @param ndustrial.owner The person/team that owns this service. (Required)
   owner:
   ## @param ndustrial.managed_by The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
   managed_by:
-  ## @param ndustrial.env [string] The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)
+  ## @param ndustrial.env The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)
   env:
-  ## @param ndustrial.version [string] The app version being deployed (Required)
+  ## @param ndustrial.version The app version being deployed (Required)
   version:
 
-  ## @param ndustrial.repo [string] The github repository where the code exists (populated by CI/CD)
+  ## @param ndustrial.repo The github repository where the code exists (populated by CI/CD)
   repo:
-
-  ## @param ndustrial.project [object]
-  project:
-    ## @param ndustrial.project.slug [string] Unique project id that this repository belongs too (Required)
-    slug:
-    ## @param ndustrial.project.type [string] The service type of this deployment (api, database, backend, frontend, etl, etc...) (Required)
-    type:
 
   ## @param ndustrial.depends [array] List of projects/services this serivce depends on
   ## @param ndustrial.depends.0.project [string] The name of the project that this service depends on
