@@ -11,7 +11,15 @@
   group: Global
   default: 
   type: 
+- variable: ndustrial.project
+  group: Global
+  default: 
+  type: 
 - variable: ndustrial.name
+  group: Global
+  default: 
+  type: 
+- variable: ndustrial.type
   group: Global
   default: 
   type: 
@@ -36,18 +44,6 @@
   default: 
   type: 
 - variable: ndustrial.repo
-  group: Global
-  default: 
-  type: 
-- variable: ndustrial.project
-  group: Global
-  default: 
-  type: 
-- variable: ndustrial.project.slug
-  group: Global
-  default: 
-  type: 
-- variable: ndustrial.project.type
   group: Global
   default: 
   type: 
