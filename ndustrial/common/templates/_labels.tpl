@@ -15,8 +15,8 @@ ndustrial.io/managed-by: {{ .Values.ndustrial.managed_by }}
 ndustrial.io/env: {{ .Values.ndustrial.env }}
 ndustrial.io/version: {{ .Values.ndustrial.version }}
 ndustrial.io/repo: {{ .Values.ndustrial.repo }}
-ndustrial.io/project.slug: {{ .Values.ndustrial.project.slug }}
-ndustrial.io/project.type: {{ .Values.ndustrial.project.type }}
+ndustrial.io/project.slug: {{ .Values.ndustrial.project }}
+ndustrial.io/project.type: {{ .Values.ndustrial.type }}
 # Datadog labels
 tags.datadoghq.com/env: {{ .Values.ndustrial.env }}
 tags.datadoghq.com/version: {{ .Values.ndustrial.version }}
