@@ -98,6 +98,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            - name: DATADOG_TRACE_AGENT_HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
           envFrom:
             {{- if .Values.extraEnvVarsCM }}
             - configMapRef:
