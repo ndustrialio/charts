@@ -113,19 +113,19 @@ spec:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: NODE_ENV
-              value: {{ .Values.datadog.node_env }}
+              value: {{ .Values.datadog.apm.node_env }}
             - name: DD_AGENT_HOST
-              value: {{ .Values.datadog.agent_host }}
+              value: {{ .Values.datadog.apm.agent_host }}
             - name: DD_ENV
-              value: {{ .Values.datadog.env }}
+              value: {{ .Values.datadog.apm.env }}
             - name: DD_VERSION
-              value: {{ .Values.datadog.version }}
+              value: {{ .Values.datadog.apm.version }}
             - name: DD_PROFILING_ENABLED
-              value: {{ .Values.datadog.profiling_enabled }}
+              value: {{ .Values.datadog.apm.profiling_enabled }}
             - name: DD_LOGS_INJECTION
-              value: {{ .Values.datadog.logs_injection }}
+              value: {{ .Values.datadog.apm.logs_injection }}
             - name: DD_TRACE_SAMPLE_RATE
-              value: {{ .Values.datadog.trace_sample_rate }}
+              value: {{ .Values.datadog.apm.trace_sample_rate }}
             {{- end }}
           envFrom:
             {{- if .Values.extraEnvVarsCM }}
