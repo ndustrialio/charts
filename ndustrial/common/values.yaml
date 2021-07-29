@@ -41,3 +41,18 @@ contxt:
 datadog:
   apm:
     enabled: false
+  openmetrics:
+    ## @param datadog.openmetrics.enabled Enable OpenMetrics scraping
+    enabled: false
+    ## @param datadog.openmetrics.schema The schema to use for OpenMetrics. (Default: http)
+    schema: http
+    ## @param datadog.openmetrics.host The hostname or ip to scape metrics from. (Default: Pod ip)
+    host: "%%host%%"
+    ## @param datadog.openmetrics.port The port to scrap metrics from (Default: 8080)
+    port: 8080
+    ## @param datadog.openmetrics.endpoint The endpoint to scrape metrics from
+    endpoint: /metrics
+    ## @param datadog.openmetrics.metrics [array] List of metrics to collect
+    metrics: []
+    ## @param datadog.openmetrics.type_overrides [object] Override the collected metrics types
+    type_overrides: {}
