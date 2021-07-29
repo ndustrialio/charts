@@ -4,7 +4,33 @@ Datadog env variables
 */}}
 {{- define "common.datadog.envs" -}}
 {{- if .value.apm.enabled }}
-# Put pod envs here
+{{- if .Values.datadog.apm.trace_agent_hostname }}
+- name: DATADOG_TRACE_AGENT_HOSTNAME
+  value: {{ .Values.datadog.apm.trace_agent_hostname }}
+{{- else }}
+- name: DATADOG_TRACE_AGENT_HOSTNAME
+  valueFrom:
+    fieldRef:
+      fieldPath: status.hostIP
+{{- end }}
+- name: DATADOG_TRACE_AGENT_HOSTNAME
+  valueFrom:
+    fieldRef:
+      fieldPath: status.hostIP
+- name: NODE_ENV
+  value: {{ .Values.datadog.apm.node_env }}
+- name: DD_AGENT_HOST
+  value: {{ .Values.datadog.apm.agent_host }}
+- name: DD_ENV
+  value: {{ .Values.datadog.apm.env }}
+- name: DD_VERSION
+  value: {{ .Values.datadog.apm.version }}
+- name: DD_PROFILING_ENABLED
+  value: {{ .Values.datadog.apm.profiling_enabled }}
+- name: DD_LOGS_INJECTION
+  value: {{ .Values.datadog.apm.logs_injection }}
+- name: DD_TRACE_SAMPLE_RATE
+  value: {{ .Values.datadog.apm.trace_sample_rate }}
 {{- end }}
 {{- end -}}
 
