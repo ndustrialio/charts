@@ -174,3 +174,17 @@
 | `metrics.serviceMonitor.additionalLabels` | Additional labels that can be used so ServiceMonitor resource(s) can be discovered by Prometheus | `{}`    |
 
 
+### Datadog integration parameters
+
+| Name                                 | Description                                                 | Value      |
+| ------------------------------------ | ----------------------------------------------------------- | ---------- |
+| `datadog.apm.enabled`                | Enable Datadog APM                                          | `false`    |
+| `datadog.openmetrics.enabled`        | Enable OpenMetrics scraping                                 | `false`    |
+| `datadog.openmetrics.schema`         | The schema to use for OpenMetrics. (Default: http)          | `http`     |
+| `datadog.openmetrics.host`           | The hostname or ip to scape metrics from. (Default: Pod ip) | `%%host%%` |
+| `datadog.openmetrics.port`           | The port to scrap metrics from (Default: 8080)              | `8080`     |
+| `datadog.openmetrics.endpoint`       | The endpoint to scrape metrics from                         | `/metrics` |
+| `datadog.openmetrics.metrics`        | List of metrics to collect                                  | `[]`       |
+| `datadog.openmetrics.type_overrides` | Override the collected metrics types                        | `{}`       |
+
+

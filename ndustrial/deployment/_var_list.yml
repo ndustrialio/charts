@@ -491,3 +491,35 @@
   group: Metrics paramaters
   default: {}
   type: 
+- variable: datadog.apm.enabled
+  group: Datadog integration
+  default: false
+  type: boolean
+- variable: datadog.openmetrics.enabled
+  group: Datadog integration
+  default: false
+  type: boolean
+- variable: datadog.openmetrics.schema
+  group: Datadog integration
+  default: http
+  type: string
+- variable: datadog.openmetrics.host
+  group: Datadog integration
+  default: '%%host%%'
+  type: string
+- variable: datadog.openmetrics.port
+  group: Datadog integration
+  default: 8080
+  type: number
+- variable: datadog.openmetrics.endpoint
+  group: Datadog integration
+  default: /metrics
+  type: string
+- variable: datadog.openmetrics.metrics
+  group: Datadog integration
+  default: []
+  type: 
+- variable: datadog.openmetrics.type_overrides
+  group: Datadog integration
+  default: {}
+  type: 
