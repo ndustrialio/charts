@@ -4,9 +4,9 @@ Datadog env variables
 */}}
 {{- define "common.datadog.envs" -}}
 {{- if .value.apm.enabled }}
-{{- if .Values.datadog.apm.trace_agent_hostname }}
+{{- if .value.apm.trace_agent_hostname }}
 - name: DATADOG_TRACE_AGENT_HOSTNAME
-  value: {{ .Values.datadog.apm.trace_agent_hostname }}
+  value: {{ .value.apm.trace_agent_hostname }}
 {{- else }}
 - name: DATADOG_TRACE_AGENT_HOSTNAME
   valueFrom:
@@ -18,19 +18,19 @@ Datadog env variables
     fieldRef:
       fieldPath: status.hostIP
 - name: NODE_ENV
-  value: {{ .Values.datadog.apm.node_env }}
+  value: {{ .value.apm.node_env }}
 - name: DD_AGENT_HOST
-  value: {{ .Values.datadog.apm.agent_host }}
+  value: {{ .value.apm.agent_host }}
 - name: DD_ENV
-  value: {{ .Values.datadog.apm.env }}
+  value: {{ .value.apm.env }}
 - name: DD_VERSION
-  value: {{ .Values.datadog.apm.version }}
+  value: {{ .value.apm.version }}
 - name: DD_PROFILING_ENABLED
-  value: {{ .Values.datadog.apm.profiling_enabled }}
+  value: {{ .value.apm.profiling_enabled }}
 - name: DD_LOGS_INJECTION
-  value: {{ .Values.datadog.apm.logs_injection }}
+  value: {{ .value.apm.logs_injection }}
 - name: DD_TRACE_SAMPLE_RATE
-  value: {{ .Values.datadog.apm.trace_sample_rate }}
+  value: {{ .value.apm.trace_sample_rate }}
 {{- end }}
 {{- end -}}
 
