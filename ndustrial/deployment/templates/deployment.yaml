@@ -101,6 +101,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+          {{- if .Values.datadog.apm.enabled }}
+          {{- include "common.datadog.envs" (dict "value" .Values.datadog "context" $) | nindent 8 }}
           envFrom:
             {{- if .Values.extraEnvVarsCM }}
             - configMapRef:
