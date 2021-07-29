@@ -37,3 +37,7 @@ contxt:
   serviceId:
   ## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)
   serviceType:
+
+datadog:
+  apm:
+    enabled: false
