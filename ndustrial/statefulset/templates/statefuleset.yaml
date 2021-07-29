@@ -33,6 +33,9 @@ spec:
         {{- include "common.tplvalues.render" (dict "value" .Values.podLabels "context" $) | nindent 8 }}
         {{- end }}
       annotations:
+        {{- if .Values.datadog }}
+        {{- include "common.datadog.annotations" (dict "value" .Values.datadog "context" $) | nindent 8 }}
+        {{- end }}
         {{- if .Values.podAnnotations }}
         {{- include "common.tplvalues.render" (dict "value" .Values.podAnnotations "context" $) | nindent 8 }}
         {{- end }}
