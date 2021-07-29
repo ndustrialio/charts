@@ -38,8 +38,11 @@ contxt:
   ## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)
   serviceType:
 
+## @section Datadog integration parameters
+
 datadog:
   apm:
+    ## @param datadog.apm.enabled Enable Datadog APM
     enabled: false
   openmetrics:
     ## @param datadog.openmetrics.enabled Enable OpenMetrics scraping
