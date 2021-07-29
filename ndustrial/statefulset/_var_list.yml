@@ -359,9 +359,17 @@
   group: Pod
   default: 
   type: 
+- variable: extraEnvVarsCMs
+  group: Pod
+  default: []
+  type: 
 - variable: extraEnvVarsSecret
   group: Pod
   default: 
+  type: 
+- variable: extraEnvVarsSecrets
+  group: Pod
+  default: []
   type: 
 - variable: extraVolumes
   group: Pod

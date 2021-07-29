@@ -179,9 +179,15 @@ extraEnvVars: []
 ##
 extraEnvVarsCM:
 
+## @param extraEnvVarsCMs Optionally specify extra list of additional existing ConfigMaps containing extra env vars
+extraEnvVarsCMs: []
+
 ## @param extraEnvVarsSecret Name of existing Secret containing extra env vars
 ##
 extraEnvVarsSecret:
+
+## @param extraEnvVarsSecrets Optionally specify extra list of additional existing Secrets containing extra env vars
+extraEnvVarsSecrets: []
 
 ## @param extraVolumes  Optionally specify extra list of additional volumes for CronJob pods
 ##
