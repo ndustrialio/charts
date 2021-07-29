@@ -533,3 +533,20 @@ metrics:
     ## @param metrics.serviceMonitor.additionalLabels Additional labels that can be used so ServiceMonitor resource(s) can be discovered by Prometheus
     ##
     additionalLabels: {}
+
+## @section Datadog
+
+datadog:
+## APM Configurations
+## ref: https://www.datadoghq.com/blog/monitoring-kubernetes-with-datadog/
+##      https://docs.datadoghq.com/tracing/setup_overview/setup/python?tab=containers
+  apm:
+    enabled: false
+    node_env: null
+    agent_host: null
+    env: null
+    version: null
+    profiling_enabled: false
+    logs_injection: null
+    trace_sample_rate:
+    trace_agent_host: null
