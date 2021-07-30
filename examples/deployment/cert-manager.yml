@@ -2,7 +2,15 @@ ndustrial:
   owner: helm
   name: cert-manager-example
   organization: ndustrial
+  project: example
+  type: example
+  env: staging
+  version: 0.0.1
+  repo: ndustrial-charts
+  managed_by: helm
+
 contxt: {}
+
 ports:
   - containerPort: 80
     name: http
