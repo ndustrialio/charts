@@ -44,6 +44,14 @@ datadog:
   apm:
     ## @param datadog.apm.enabled Enable Datadog APM
     enabled: false
+    node_env: null
+    agent_host: null
+    env: null
+    version: null
+    profiling_enabled: false
+    logs_injection: null
+    trace_sample_rate:
+    trace_agent_host: null
   openmetrics:
     ## @param datadog.openmetrics.enabled Enable OpenMetrics scraping
     enabled: false
