@@ -13,14 +13,17 @@ Datadog env variables
     fieldRef:
       fieldPath: status.hostIP
 {{- end }}
-- name: DATADOG_TRACE_AGENT_HOSTNAME
+- name: NODE_ENV
+  value: {{ .value.apm.node_env }}
+{{- if .value.apm.agent_host }}
+- name: DD_AGENT_HOST
+  value: {{ .value.apm.agent_host }}
+{{- else }}
+- name: DD_AGENT_HOST
   valueFrom:
     fieldRef:
       fieldPath: status.hostIP
-- name: NODE_ENV
-  value: {{ .value.apm.node_env }}
-- name: DD_AGENT_HOST
-  value: {{ .value.apm.agent_host }}
+{{- end }}
 - name: DD_ENV
   value: {{ .value.apm.env }}
 - name: DD_VERSION
@@ -47,3 +50,4 @@ ad.datadoghq.com/{{ include "common.names.fullname" .context }}.init_configs: "[
 ad.datadoghq.com/{{ include "common.names.fullname" .context }}.instances: {{ list $instance | toJson | quote}}
 {{- end }}
 {{- end -}}
+
