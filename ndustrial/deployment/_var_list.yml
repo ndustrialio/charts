@@ -495,6 +495,34 @@
   group: Datadog integration
   default: false
   type: boolean
+- variable: datadog.apm.agent_host
+  group: Datadog integration
+  default: 
+  type: 
+- variable: datadog.apm.env
+  group: Datadog integration
+  default: 
+  type: 
+- variable: datadog.apm.version
+  group: Datadog integration
+  default: 
+  type: 
+- variable: datadog.apm.profiling_enabled
+  group: Datadog integration
+  default: false
+  type: boolean
+- variable: datadog.apm.logs_injection
+  group: Datadog integration
+  default: 
+  type: 
+- variable: datadog.apm.trace_sample_rate
+  group: Datadog integration
+  default: 
+  type: 
+- variable: datadog.apm.trace_agent_host
+  group: Datadog integration
+  default: 
+  type: 
 - variable: datadog.openmetrics.enabled
   group: Datadog integration
   default: false

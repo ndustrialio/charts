@@ -73,4 +73,3 @@ datadog:
     metrics: []
     ## @param datadog.openmetrics.type_overrides [object] Override the collected metrics types
     type_overrides: {}
-
