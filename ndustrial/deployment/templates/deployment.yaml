@@ -106,9 +106,21 @@ spec:
             - configMapRef:
                 name: {{ include "common.tplvalues.render" (dict "value" .Values.extraEnvVarsCM "context" $) }}
             {{- end }}
+            {{- if .Values.extraEnvVarsCMs }}
+            {{- range $cm := .Values.extraEnvVarsCMs }}
+            - configMapRef:
+                name: {{ include "common.tplvalues.render" (dict "value" $cm "context" $) }}
+            {{- end }}
+            {{- end }}
             {{- if .Values.extraEnvVarsSecret }}
             - secretRef:
                 name: {{ include "common.tplvalues.render" (dict "value" .Values.extraEnvVarsSecret "context" $) }}
+            {{- end }}
+            {{- if .Values.extraEnvVarsSecrets }}
+            {{- range $secret := .Values.extraEnvVarsSecrets }}
+            - secretRef:
+                name: {{ include "common.tplvalues.render" (dict "value" $secret "context" $) }}
+            {{- end }}
             {{- end }}
           {{- if .Values.lifecycleHooks }}
           lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.lifecycleHooks "context" $) | nindent 12 }}
