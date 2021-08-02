@@ -2,6 +2,12 @@ ndustrial:
   owner: helm
   name: cron-example
   organization: ndustrial
+  project: example
+  type: example
+  env: staging
+  version: 0.0.1
+  repo: ndustrial-charts
+  managed_by: helm
 
 schedule: "0 0 * * *"
 image:

@@ -29,3 +29,7 @@ ingress:
 image:
   registry: docker.ops.ndustrial.io
   repository: library/nginx
+
+datadog:
+  openmetrics:
+    enabled: false
