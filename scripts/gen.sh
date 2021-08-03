@@ -51,6 +51,7 @@ if [ -z ${README_GEN_BIN} ]; then
   install_md_gen
 fi
 
+gen_readme "common"
 gen_readme "cronjob"
 gen_readme "deployment"
 gen_readme "statefulset"
