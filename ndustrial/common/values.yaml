@@ -44,20 +44,20 @@ datadog:
   apm:
     ## @param datadog.apm.enabled Enable Datadog APM
     enabled: false
-    ## @param datadog.apm.agent_host The Datadog Agent hostname for sending traces -- has the same functionality as the below trace_agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)
-    agent_host: null
-    ## @param datadog.apm.env Set an application’s environment e.g. prod, pre-prod, staging.
-    env: null
-    ## @param datadog.apm.version Set an application’s version in traces and logs e.g. 1.2.3, 6c44da20, 2020.02.13. Generally set along with DD_SERVICE.
-    version: null
+    ## @param datadog.apm.agent_host [string] The Datadog Agent hostname for sending traces -- has the same functionality as the below trace_agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)
+    agent_host:
+    ## @param datadog.apm.env [string] Set an application’s environment e.g. prod, pre-prod, staging.
+    env:
+    ## @param datadog.apm.version [string] Set an application’s version in traces and logs e.g. 1.2.3, 6c44da20, 2020.02.13. Generally set along with DD_SERVICE.
+    version:
     ## @param datadog.apm.profiling_enabled Enable Datadog profiling when using ddtrace-run. (Default: false)
     profiling_enabled: false
     ## @param datadog.apm.logs_injection Enables Logs Injection https://ddtrace.readthedocs.io/en/stable/advanced_usage.html#logs-injection (Default: true)
-    logs_injection: null
+    logs_injection: true
     ## @param datadog.apm.trace_sample_rate A float, f, 0.0 <= f <= 1.0. f*100% of traces will be sampled. (Default: 1.0)
-    trace_sample_rate:
-    ## @param datadog.apm.trace_agent_host The Datadog Agent hostname for sending traces -- has the same functionality as the above agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)
-    trace_agent_host: null
+    trace_sample_rate: 1.0
+    ## @param datadog.apm.trace_agent_host [string] The Datadog Agent hostname for sending traces -- has the same functionality as the above agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)
+    trace_agent_host:
   openmetrics:
     ## @param datadog.openmetrics.enabled Enable OpenMetrics scraping
     enabled: false
