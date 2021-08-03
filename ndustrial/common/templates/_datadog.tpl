@@ -4,9 +4,9 @@ Datadog env variables
 */}}
 {{- define "common.datadog.envs" -}}
 {{- if .value.apm.enabled }}
-{{- if .value.apm.trace_agent_hostname }}
+{{- if .value.apm.trace_agent_host }}
 - name: DATADOG_TRACE_AGENT_HOSTNAME
-  value: {{ .value.apm.trace_agent_hostname }}
+  value: {{ .value.apm.trace_agent_host }}
 {{- else }}
 - name: DATADOG_TRACE_AGENT_HOSTNAME
   valueFrom:
@@ -29,11 +29,11 @@ Datadog env variables
 - name: DD_VERSION
   value: {{ .value.apm.version }}
 - name: DD_PROFILING_ENABLED
-  value: {{ .value.apm.profiling_enabled }}
+  value: {{ .value.apm.profiling_enabled | toString | quote }}
 - name: DD_LOGS_INJECTION
-  value: {{ .value.apm.logs_injection }}
+  value: {{ .value.apm.logs_injection | toString | quote }}
 - name: DD_TRACE_SAMPLE_RATE
-  value: {{ .value.apm.trace_sample_rate }}
+  value: {{ .value.apm.trace_sample_rate | toString | quote }}
 {{- end }}
 {{- end -}}
 
