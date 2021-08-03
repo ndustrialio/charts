@@ -24,10 +24,20 @@ Datadog env variables
     fieldRef:
       fieldPath: status.hostIP
 {{- end }}
+{{- if .value.apm.env }}
 - name: DD_ENV
   value: {{ .value.apm.env }}
+{{- else }}
+- name: DD_ENV
+  value: {{ .value.ndustrial.env | toString | quote }}
+{{- end }}
+{{- if .value.apm.version }}
 - name: DD_VERSION
   value: {{ .value.apm.version }}
+{{- else }}
+- name: DD_VERSION
+  value: {{ .value.ndustrial.version | toString | quote }}
+{{- end }}
 - name: DD_PROFILING_ENABLED
   value: {{ .value.apm.profiling_enabled | toString | quote }}
 - name: DD_LOGS_INJECTION
