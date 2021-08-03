@@ -5,7 +5,7 @@ type: application
 dependencies:
   - name: common
     repository: https://ndustrialio.github.io/charts
-    version: 0.1.8
+    version: 0.1.10
     tags:
       - ndustrial-common
 sources:
@@ -14,5 +14,5 @@ maintainers:
   - email: devops@ndustrial.io
     name: DevOps
 # Please make sure that version and appVersion are always the same.
-version: 0.1.8
-appVersion: 0.1.8
+version: 0.1.9
+appVersion: 0.1.9

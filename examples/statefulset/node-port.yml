@@ -3,6 +3,12 @@ ndustrial:
   owner: helm
   name: statefulset-example
   organization: ndustrial
+  project: example
+  type: example
+  env: staging
+  version: 0.0.1
+  repo: ndustrial-charts
+  managed_by: helm
 
 image:
   registry: docker.ops.ndustrial.io

@@ -190,3 +190,24 @@
 | `metrics.serviceMonitor.additionalLabels` | Additional labels that can be used so ServiceMonitor resource(s) can be discovered by Prometheus | `{}`    |
 
 
+### Datadog integration parameters
+
+| Name                                 | Description                                                                                                                                                                                                         | Value      |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `datadog.apm.enabled`                | Enable Datadog APM                                                                                                                                                                                                  | `false`    |
+| `datadog.apm.agent_host`             | The Datadog Agent hostname for sending traces -- has the same functionality as the below trace_agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP) | `nil`      |
+| `datadog.apm.env`                    | Set an application’s environment e.g. prod, pre-prod, staging.                                                                                                                                                      | `nil`      |
+| `datadog.apm.version`                | Set an application’s version in traces and logs e.g. 1.2.3, 6c44da20, 2020.02.13. Generally set along with DD_SERVICE.                                                                                              | `nil`      |
+| `datadog.apm.profiling_enabled`      | Enable Datadog profiling when using ddtrace-run. (Default: false)                                                                                                                                                   | `false`    |
+| `datadog.apm.logs_injection`         | Enables Logs Injection https://ddtrace.readthedocs.io/en/stable/advanced_usage.html#logs-injection (Default: true)                                                                                                  | `nil`      |
+| `datadog.apm.trace_sample_rate`      | A float, f, 0.0 <= f <= 1.0. f*100% of traces will be sampled. (Default: 1.0)                                                                                                                                       | `nil`      |
+| `datadog.apm.trace_agent_host`       | The Datadog Agent hostname for sending traces -- has the same functionality as the above agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)       | `nil`      |
+| `datadog.openmetrics.enabled`        | Enable OpenMetrics scraping                                                                                                                                                                                         | `false`    |
+| `datadog.openmetrics.schema`         | The schema to use for OpenMetrics. (Default: http)                                                                                                                                                                  | `http`     |
+| `datadog.openmetrics.host`           | The hostname or ip to scape metrics from. (Default: Pod ip)                                                                                                                                                         | `%%host%%` |
+| `datadog.openmetrics.port`           | The port to scrap metrics from (Default: 8080)                                                                                                                                                                      | `8080`     |
+| `datadog.openmetrics.endpoint`       | The endpoint to scrape metrics from                                                                                                                                                                                 | `/metrics` |
+| `datadog.openmetrics.metrics`        | List of metrics to collect                                                                                                                                                                                          | `[]`       |
+| `datadog.openmetrics.type_overrides` | Override the collected metrics types                                                                                                                                                                                | `{}`       |
+
+

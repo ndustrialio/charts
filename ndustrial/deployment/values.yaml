@@ -539,3 +539,39 @@ metrics:
     ## @param metrics.serviceMonitor.additionalLabels Additional labels that can be used so ServiceMonitor resource(s) can be discovered by Prometheus
     ##
     additionalLabels: {}
+
+## @section Datadog integration parameters
+
+datadog:
+  apm:
+    ## @param datadog.apm.enabled Enable Datadog APM
+    enabled: false
+    ## @param datadog.apm.agent_host The Datadog Agent hostname for sending traces -- has the same functionality as the below trace_agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)
+    agent_host: null
+    ## @param datadog.apm.env Set an application’s environment e.g. prod, pre-prod, staging.
+    env: null
+    ## @param datadog.apm.version Set an application’s version in traces and logs e.g. 1.2.3, 6c44da20, 2020.02.13. Generally set along with DD_SERVICE.
+    version: null
+    ## @param datadog.apm.profiling_enabled Enable Datadog profiling when using ddtrace-run. (Default: false)
+    profiling_enabled: false
+    ## @param datadog.apm.logs_injection Enables Logs Injection https://ddtrace.readthedocs.io/en/stable/advanced_usage.html#logs-injection (Default: true)
+    logs_injection: null
+    ## @param datadog.apm.trace_sample_rate A float, f, 0.0 <= f <= 1.0. f*100% of traces will be sampled. (Default: 1.0)
+    trace_sample_rate:
+    ## @param datadog.apm.trace_agent_host The Datadog Agent hostname for sending traces -- has the same functionality as the above agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)
+    trace_agent_host: null
+  openmetrics:
+    ## @param datadog.openmetrics.enabled Enable OpenMetrics scraping
+    enabled: false
+    ## @param datadog.openmetrics.schema The schema to use for OpenMetrics. (Default: http)
+    schema: http
+    ## @param datadog.openmetrics.host The hostname or ip to scape metrics from. (Default: Pod ip)
+    host: "%%host%%"
+    ## @param datadog.openmetrics.port The port to scrap metrics from (Default: 8080)
+    port: 8080
+    ## @param datadog.openmetrics.endpoint The endpoint to scrape metrics from
+    endpoint: /metrics
+    ## @param datadog.openmetrics.metrics [array] List of metrics to collect
+    metrics: []
+    ## @param datadog.openmetrics.type_overrides [object] Override the collected metrics types
+    type_overrides: {}
