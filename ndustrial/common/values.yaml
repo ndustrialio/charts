@@ -1,6 +1,9 @@
 ## ndustrial/common
 ## It is required by CI/CD tools and processes.
+## @skip exampleValue
 exampleValue: common-chart
+
+## @section Ndustrial metadata fields
 
 ndustrial:
   ## @param ndustrial.project Unique project id that this repository belongs too (Required) aka. Project slug
