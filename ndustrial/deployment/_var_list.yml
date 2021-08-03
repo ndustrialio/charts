@@ -521,12 +521,12 @@
   type: boolean
 - variable: datadog.apm.logs_injection
   group: Datadog integration
-  default: 
-  type: 
+  default: true
+  type: boolean
 - variable: datadog.apm.trace_sample_rate
   group: Datadog integration
-  default: 
-  type: 
+  default: 1.0
+  type: number
 - variable: datadog.apm.trace_agent_host
   group: Datadog integration
   default: 
