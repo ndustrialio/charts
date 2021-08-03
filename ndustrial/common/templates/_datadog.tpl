@@ -29,14 +29,14 @@ Datadog env variables
   value: {{ .value.apm.env }}
 {{- else }}
 - name: DD_ENV
-  value: {{ .value.ndustrial.env | toString | quote }}
+  value: {{ .context.Values.ndustrial.env | toString | quote }}
 {{- end }}
 {{- if .value.apm.version }}
 - name: DD_VERSION
   value: {{ .value.apm.version }}
 {{- else }}
 - name: DD_VERSION
-  value: {{ .value.ndustrial.version | toString | quote }}
+  value: {{ .context.Values.ndustrial.version | toString | quote }}
 {{- end }}
 - name: DD_PROFILING_ENABLED
   value: {{ .value.apm.profiling_enabled | toString | quote }}
