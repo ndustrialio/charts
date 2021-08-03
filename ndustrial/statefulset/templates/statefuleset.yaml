@@ -96,6 +96,9 @@ spec:
             {{- if .Values.extraEnvVars }}
             {{- include "common.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 12 }}
             {{- end }}
+            {{- if .Values.datadog }}
+            {{- include "common.datadog.envs" (dict "value" .Values.datadog "context" $) | nindent 12 }}
+            {{- end }}
             - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
