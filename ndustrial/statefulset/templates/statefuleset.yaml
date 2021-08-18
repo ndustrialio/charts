@@ -22,6 +22,14 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "common.names.fullname" . }}-storage
+      spec:
+        accessModes: {{ .Values.storage.accessModes }}
+        resources:
+          requests:
+            storage: {{ .Values.storage.size }}
   template:
     metadata:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
@@ -155,14 +163,17 @@ spec:
           {{- if .Values.resources }}
           resources: {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
-          volumeMounts:
-            {{- if .Values.extraVolumeMounts }}
-            {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
-            {{- end }}
         {{- if .Values.sidecars }}
         {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
+          volumeMounts:
+            - mountPath: {{ .Values.storage.mount }}
+              name: {{ include "common.names.fullname" . }}-storage
+            {{- if .Values.extraVolumeMounts }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
+            {{- end }}
+      {{- if .Values.extraVolumes }}
       volumes:
-        {{- if .Values.extraVolumes }}
+       
         {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumes "context" $) | nindent 8 }}
         {{- end }}
