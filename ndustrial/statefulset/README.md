@@ -39,6 +39,9 @@
 | Name                                 | Description                                                    | Value           |
 | ------------------------------------ | -------------------------------------------------------------- | --------------- |
 | `replicaCount`                       | Number of Controller replicas                                  | `1`             |
+| `storage.accessModes`                | ReadWriteOnce, ReadOnlyMany, ReadWriteMany, ReadWriteOncePod   | `ReadWriteOnce` |
+| `storage.size`                       | Size of the Volume                                             | `400M`          |
+| `storage.mount`                      | Where the Volume is mounted                                    | `/tmp/volume`   |
 | `startupProbe.enabled`               | Enable startupProbe                                            | `false`         |
 | `startupProbe.path`                  | Path for startupProbe                                          | `/`             |
 | `startupProbe.initialDelaySeconds`   | Initial delay seconds for startupProbe                         | `60`            |
@@ -62,7 +65,6 @@
 | `readinessProbe.successThreshold`    | Success threshold for readinessProbe                           | `1`             |
 | `updateStrategy.type`                | StatefulSet deployment update strategy                         | `RollingUpdate` |
 | `updateStrategy.rollingUpdate`       | StatefulSet deployment rolling update configuration parameters | `{}`            |
-
 
 ### Service parameters
 

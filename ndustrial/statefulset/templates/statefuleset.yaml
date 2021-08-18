@@ -24,7 +24,7 @@ spec:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
   volumeClaimTemplates:
     - metadata:
-        name: {{ include "common.names.fullname" . }}-storage
+        name: {{ include "common.names.fullname" . }}
       spec:
         accessModes: {{ .Values.storage.accessModes }}
         resources:
@@ -168,7 +168,7 @@ spec:
         {{- end }}
           volumeMounts:
             - mountPath: {{ .Values.storage.mount }}
-              name: {{ include "common.names.fullname" . }}-storage
+              name: {{ include "common.names.fullname" . }}
             {{- if .Values.extraVolumeMounts }}
             {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
             {{- end }}
