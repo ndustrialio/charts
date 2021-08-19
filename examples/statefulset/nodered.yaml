@@ -6,7 +6,6 @@ replicaCount: 1
 service:
   enabled: false
 persistentVolume:
-  enabled: false
   size: 1G
   mountPath: /data
 
