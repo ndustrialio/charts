@@ -39,9 +39,10 @@
 | Name                                 | Description                                                    | Value           |
 | ------------------------------------ | -------------------------------------------------------------- | --------------- |
 | `replicaCount`                       | Number of Controller replicas                                  | `1`             |
-| `storage.accessModes`                | ReadWriteOnce, ReadOnlyMany, ReadWriteMany, ReadWriteOncePod   | `ReadWriteOnce` |
-| `storage.size`                       | Size of the Volume                                             | `400M`          |
-| `storage.mount`                      | Where the Volume is mounted                                    | `/tmp/volume`   |
+| `persistentVolume.enabled`                      | Use Persistent Volume                                    | `true`   |
+| `persistentVolume.accessModes`                | ReadWriteOnce, ReadOnlyMany, ReadWriteMany, ReadWriteOncePod   | `ReadWriteOnce` |
+| `persistentVolume.size`                       | Size of the Volume                                             | `400M`          |
+| `persistentVolume.mount`                      | Where the Volume is mounted                                    | `/tmp/volume`   |
 | `startupProbe.enabled`               | Enable startupProbe                                            | `false`         |
 | `startupProbe.path`                  | Path for startupProbe                                          | `/`             |
 | `startupProbe.initialDelaySeconds`   | Initial delay seconds for startupProbe                         | `60`            |

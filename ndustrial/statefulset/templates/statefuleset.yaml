@@ -22,14 +22,16 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  {{- if .Values.persistentVolume.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: {{ include "common.names.fullname" . }}
       spec:
-        accessModes: {{ .Values.storage.accessModes }}
+        accessModes: {{ .Values.persistentVolume.accessModes }}
         resources:
           requests:
-            storage: {{ .Values.storage.size }}
+            storage: {{ .Values.persistentVolume.size }}
+  {{- end }}
   template:
     metadata:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
@@ -167,13 +169,14 @@ spec:
         {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
           volumeMounts:
-            - mountPath: {{ .Values.storage.mount }}
+          {{- if .Values.persistentVolume.enabled }}
+            - mountPath: {{ .Values.persistentVolume.mountPath }}
               name: {{ include "common.names.fullname" . }}
-            {{- if .Values.extraVolumeMounts }}
+          {{- end }}
+          {{- if .Values.extraVolumeMounts }}
             {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
-            {{- end }}
+          {{- end }}
       {{- if .Values.extraVolumes }}
       volumes:
-       
         {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumes "context" $) | nindent 8 }}
         {{- end }}

@@ -126,12 +126,14 @@ updateStrategy:
   ## @param updateStrategy.rollingUpdate StatefulSet deployment rolling update configuration parameters
   rollingUpdate: {}
 
-## @section Storage parameters
-storage:
+## @section persistentVolume parameters
+persistentVolume:
+  enabled: true
   accessModes:
     - ReadWriteOnce
   size: 400M
-  mount: /tmp/volume
+  mountPath: /tmp/volume
+
 ## @section Service parameters
 
 service:
