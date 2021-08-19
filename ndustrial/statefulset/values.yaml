@@ -126,17 +126,16 @@ updateStrategy:
   ## @param updateStrategy.rollingUpdate StatefulSet deployment rolling update configuration parameters
   rollingUpdate: {}
 
-
 ## @section Storage parameters
 storage:
-  accessModes: 
+  accessModes:
     - ReadWriteOnce
   size: 400M
   mount: /tmp/volume
 ## @section Service parameters
 
 service:
-  ## @param service.enabled StatefulSet service 
+  ## @param service.enabled StatefulSet service
   ##
   enabled: true
   ## @param service.type StatefulSet service type
