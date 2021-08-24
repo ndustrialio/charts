@@ -126,9 +126,20 @@ updateStrategy:
   ## @param updateStrategy.rollingUpdate StatefulSet deployment rolling update configuration parameters
   rollingUpdate: {}
 
+## @section persistentVolume parameters
+persistentVolume:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 400M
+  mountPath: /tmp/volume
+
 ## @section Service parameters
 
 service:
+  ## @param service.enabled StatefulSet service
+  ##
+  enabled: true
   ## @param service.type StatefulSet service type
   ##
   type: ClusterIP

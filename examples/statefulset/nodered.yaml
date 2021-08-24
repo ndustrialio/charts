@@ -1,0 +1,56 @@
+global:
+
+serviceAccount:
+  create: false
+replicaCount: 1
+service:
+  enabled: false
+persistentVolume:
+  size: 1G
+  mountPath: /data
+
+podSecurityContext:
+  enabled: true
+  fsGroup: 1000
+
+resources:
+  ## @param resources.limits  The resources limits for the StatefulSet container
+  ##
+  limits:
+    cpu: 1
+    memory: 500Mi
+  ## @param resources.requests  The requested resources for the StatefulSet container
+  ##
+  requests:
+    cpu: 1
+    memory: 500Mi
+ndustrial:
+  ## @param ndustrial.name The name of the application/service. (Required)
+  # Should match gitrepository name (if able)
+  name: nodered
+  ## @param ndustrial.organization The slug of the Organization that owns the application (Required)
+  organization: ndustrial
+  ## @param ndustrial.owner The person/team that owns this service. (Required)
+  owner: helm
+  ## @param ndustrial.managed_by The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+  managed_by: helm
+  ## @param ndustrial.env The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)
+  env: stage
+  ## @param ndustrial.version The app version being deployed (Required)
+  version: 0.0.1
+
+  type: application
+  ## @param ndustrial.repo The github repository where the code exists (populated by CI/CD)
+  repo: ndustrial-integrations
+
+  ## @param ndustrial.project
+  project: some-contxt-project
+
+image:
+  repository: nodered/node-red
+  tag: latest-10
+ports:
+  - name: http
+    containerPort: 1880
+
+contxt: {}
