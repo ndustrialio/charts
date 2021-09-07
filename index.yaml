@@ -586,6 +586,25 @@ entries:
     version: 0.1.0
   deployment:
   - apiVersion: v2
+    appVersion: 0.1.14
+    created: "2021-09-07T15:07:00.845900556Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: 0.1.12
+    description: A Helm chart for deploying k8s deployment
+    digest: 89dfb48e82903134c88e6f7238af0fa94c0d428c20207eb016b47f13d681a2bf
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: deployment
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/deployment-0.1.14/deployment-0.1.14.tgz
+    version: 0.1.14
+  - apiVersion: v2
     appVersion: 0.1.13
     created: "2021-08-30T15:05:00.026693356Z"
     dependencies:
@@ -844,6 +863,25 @@ entries:
     - https://github.com/ndustrialio/charts/releases/download/node-api-0.1.0/node-api-0.1.0.tgz
     version: 0.1.0
   statefulset:
+  - apiVersion: v2
+    appVersion: 0.1.15
+    created: "2021-09-07T15:07:01.018027454Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: 0.1.12
+    description: A Helm chart for deploying sateful sets
+    digest: 474156ed9cbac0cbda254b96c30ce6830cb400968234162ae22754ca5d8a0946
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: statefulset
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.15/statefulset-0.1.15.tgz
+    version: 0.1.15
   - apiVersion: v2
     appVersion: 0.1.14
     created: "2021-08-30T15:05:00.145468567Z"
