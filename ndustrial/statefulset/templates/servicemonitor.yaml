@@ -2,26 +2,26 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "common.names.fullname" . }}
+  name: {{ include "nio-common.names.fullname" . }}
   {{- if .Values.metrics.serviceMonitor.namespace }}
   namespace: {{ .Values.metrics.serviceMonitor.namespace | quote }}
   {{- else }}
   namespace: {{ .Release.Namespace | quote }}
   {{- end }}
-  labels: {{- include "common.labels.standard" . | nindent 4 }}
+  labels: {{- include "nio-common.labels.standard" . | nindent 4 }}
     {{- if .Values.metrics.serviceMonitor.additionalLabels }}
-    {{- include "common.tplvalues.render" (dict "value" .Values.metrics.serviceMonitor.additionalLabels "context" $) | nindent 4 }}
+    {{- include "nio-common.tplvalues.render" (dict "value" .Values.metrics.serviceMonitor.additionalLabels "context" $) | nindent 4 }}
     {{- end }}
     {{- if .Values.labels }}
-    {{- include "common.tplvalues.render" ( dict "value" .Values.labels "context" $ ) | nindent 4 }}
+    {{- include "nio-common.tplvalues.render" ( dict "value" .Values.labels "context" $ ) | nindent 4 }}
     {{- end }}
   {{- if .Values.annotations }}
-  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.annotations "context" $ ) | nindent 4 }}
+  annotations: {{- include "nio-common.tplvalues.render" ( dict "value" .Values.annotations "context" $ ) | nindent 4 }}
   {{- end }}
 spec:
-  jobLabel: {{ include "common.names.fullname" . }}
+  jobLabel: {{ include "nio-common.names.fullname" . }}
   selector:
-    matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
+    matchLabels: {{- include "nio-common.labels.matchLabels" . | nindent 6 }}
       ndustrial.io/component: statefulset
   namespaceSelector:
     matchNames:

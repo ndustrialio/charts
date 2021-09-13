@@ -4,7 +4,7 @@
 Return the proper Docker Image Registry Secret Names
 */}}
 {{- define "deployment.imagePullSecrets" -}}
-{{ include "common.images.pullSecrets" (dict "images" (list .Values.image) "global" .Values.global) }}
+{{ include "nio-common.images.pullSecrets" (dict "images" (list .Values.image) "global" .Values.global) }}
 {{- end -}}
 
 {{/*
@@ -15,7 +15,7 @@ is true or default otherwise.
 {{- define "deployment.serviceAccountName" -}}
     {{- if .Values.serviceAccount.create -}}
         {{- if (empty .Values.serviceAccount.name) -}}
-          {{- printf "%s-deployment" (include "common.names.fullname" .) | trunc 63 | trimSuffix "-" -}}
+          {{- printf "%s-deployment" (include "nio-common.names.fullname" .) | trunc 63 | trimSuffix "-" -}}
         {{- else -}}
           {{ default "default" .Values.serviceAccount.name }}
         {{- end -}}
@@ -28,5 +28,5 @@ is true or default otherwise.
 Return the proper cronjob.image name
 */}}
 {{- define "deployment.image" -}}
-{{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
+{{ include "nio-common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}
 {{- end -}}
