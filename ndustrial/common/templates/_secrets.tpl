@@ -12,7 +12,7 @@ Params:
   - defaultNameSuffix - String - Optional. It is used only if we have several secrets in the same deployment.
   - context - Dict - Required. The context for the template evaluation.
 */}}
-{{- define "common.secrets.name" -}}
+{{- define "nio-common.secrets.name" -}}
 {{- $name := (include "common.names.fullname" .context) -}}
 
 {{- if .defaultNameSuffix -}}
@@ -44,7 +44,7 @@ Params:
     +info: https://github.com/bitnami/charts/tree/master/bitnami/common#existingsecret
   - key - String - Required. Name of the key in the secret.
 */}}
-{{- define "common.secrets.key" -}}
+{{- define "nio-common.secrets.key" -}}
 {{- $key := .key -}}
 
 {{- if .existingSecret -}}
@@ -73,7 +73,7 @@ Params:
   - chartName - String - Optional - Name of the chart used when said chart is deployed as a subchart.
   - context - Context - Required - Parent context.
 */}}
-{{- define "common.secrets.passwords.manage" -}}
+{{- define "nio-common.secrets.passwords.manage" -}}
 
 {{- $password := "" }}
 {{- $subchart := "" }}
@@ -98,7 +98,7 @@ Params:
   {{- $requiredPasswordError := include "common.validations.values.single.empty" $requiredPassword -}}
   {{- $passwordValidationErrors := list $requiredPasswordError -}}
   {{- include "common.errors.upgrade.passwords.empty" (dict "validationErrors" $passwordValidationErrors "context" $.context) -}}
-  
+
   {{- if .strong }}
     {{- $subStr := list (lower (randAlpha 1)) (randNumeric 1) (upper (randAlpha 1)) | join "_" }}
     {{- $password = randAscii $passwordLength }}
@@ -121,7 +121,7 @@ Params:
   - secret - String - Required - Name of the 'Secret' resource where the password is stored.
   - context - Context - Required - Parent context.
 */}}
-{{- define "common.secrets.exists" -}}
+{{- define "nio-common.secrets.exists" -}}
 {{- $secret := (lookup "v1" "Secret" $.context.Release.Namespace .secret) }}
 {{- if $secret }}
   {{- true -}}

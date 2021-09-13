@@ -8,7 +8,7 @@ Params:
   - secret - String - Required. Name of the secret where MongoDB(R) values are stored, e.g: "mongodb-passwords-secret"
   - subchart - Boolean - Optional. Whether MongoDB(R) is used as subchart or not. Default: false
 */}}
-{{- define "common.validations.values.mongodb.passwords" -}}
+{{- define "nio-common.validations.values.mongodb.passwords" -}}
   {{- $existingSecret := include "common.mongodb.values.auth.existingSecret" . -}}
   {{- $enabled := include "common.mongodb.values.enabled" . -}}
   {{- $authPrefix := include "common.mongodb.values.key.auth" . -}}
@@ -53,7 +53,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether MongoDb is used as subchart or not. Default: false
 */}}
-{{- define "common.mongodb.values.auth.existingSecret" -}}
+{{- define "nio-common.mongodb.values.auth.existingSecret" -}}
   {{- if .subchart -}}
     {{- .context.Values.mongodb.auth.existingSecret | quote -}}
   {{- else -}}
@@ -67,7 +67,7 @@ Auxiliary function to get the right value for enabled mongodb.
 Usage:
 {{ include "common.mongodb.values.enabled" (dict "context" $) }}
 */}}
-{{- define "common.mongodb.values.enabled" -}}
+{{- define "nio-common.mongodb.values.enabled" -}}
   {{- if .subchart -}}
     {{- printf "%v" .context.Values.mongodb.enabled -}}
   {{- else -}}
@@ -83,7 +83,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether MongoDB(R) is used as subchart or not. Default: false
 */}}
-{{- define "common.mongodb.values.key.auth" -}}
+{{- define "nio-common.mongodb.values.key.auth" -}}
   {{- if .subchart -}}
     mongodb.auth
   {{- else -}}
@@ -99,7 +99,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
-{{- define "common.mongodb.values.architecture" -}}
+{{- define "nio-common.mongodb.values.architecture" -}}
   {{- if .subchart -}}
     {{- .context.Values.mongodb.architecture -}}
   {{- else -}}

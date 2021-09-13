@@ -1,10 +1,10 @@
 {{/* vim: set filetype=mustache: */}}
 
 {{/*
-Return a soft nodeAffinity definition 
+Return a soft nodeAffinity definition
 {{ include "common.affinities.nodes.soft" (dict "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
-{{- define "common.affinities.nodes.soft" -}}
+{{- define "nio-common.affinities.nodes.soft" -}}
 preferredDuringSchedulingIgnoredDuringExecution:
   - preference:
       matchExpressions:
@@ -21,7 +21,7 @@ preferredDuringSchedulingIgnoredDuringExecution:
 Return a hard nodeAffinity definition
 {{ include "common.affinities.nodes.hard" (dict "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
-{{- define "common.affinities.nodes.hard" -}}
+{{- define "nio-common.affinities.nodes.hard" -}}
 requiredDuringSchedulingIgnoredDuringExecution:
   nodeSelectorTerms:
     - matchExpressions:
@@ -37,7 +37,7 @@ requiredDuringSchedulingIgnoredDuringExecution:
 Return a nodeAffinity definition
 {{ include "common.affinities.nodes" (dict "type" "soft" "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
-{{- define "common.affinities.nodes" -}}
+{{- define "nio-common.affinities.nodes" -}}
   {{- if eq .type "soft" }}
     {{- include "common.affinities.nodes.soft" . -}}
   {{- else if eq .type "hard" }}
@@ -49,7 +49,7 @@ Return a nodeAffinity definition
 Return a soft podAffinity/podAntiAffinity definition
 {{ include "common.affinities.pods.soft" (dict "component" "FOO" "context" $) -}}
 */}}
-{{- define "common.affinities.pods.soft" -}}
+{{- define "nio-common.affinities.pods.soft" -}}
 {{- $component := default "" .component -}}
 preferredDuringSchedulingIgnoredDuringExecution:
   - podAffinityTerm:
@@ -68,7 +68,7 @@ preferredDuringSchedulingIgnoredDuringExecution:
 Return a hard podAffinity/podAntiAffinity definition
 {{ include "common.affinities.pods.hard" (dict "component" "FOO" "context" $) -}}
 */}}
-{{- define "common.affinities.pods.hard" -}}
+{{- define "nio-common.affinities.pods.hard" -}}
 {{- $component := default "" .component -}}
 requiredDuringSchedulingIgnoredDuringExecution:
   - labelSelector:
@@ -85,7 +85,7 @@ requiredDuringSchedulingIgnoredDuringExecution:
 Return a podAffinity/podAntiAffinity definition
 {{ include "common.affinities.pods" (dict "type" "soft" "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
-{{- define "common.affinities.pods" -}}
+{{- define "nio-common.affinities.pods" -}}
   {{- if eq .type "soft" }}
     {{- include "common.affinities.pods.soft" . -}}
   {{- else if eq .type "hard" }}

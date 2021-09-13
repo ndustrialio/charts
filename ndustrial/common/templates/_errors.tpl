@@ -11,7 +11,7 @@ Required password params:
   - validationErrors - String - Required. List of validation strings to be return, if it is empty it won't throw error.
   - context - Context - Required. Parent context.
 */}}
-{{- define "common.errors.upgrade.passwords.empty" -}}
+{{- define "nio-common.errors.upgrade.passwords.empty" -}}
   {{- $validationErrors := join "" .validationErrors -}}
   {{- if and $validationErrors .context.Release.IsUpgrade -}}
     {{- $errorString := "\nPASSWORDS ERROR: You must provide your current passwords when upgrading the release." -}}

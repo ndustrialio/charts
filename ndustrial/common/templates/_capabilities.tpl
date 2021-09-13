@@ -3,7 +3,7 @@
 {{/*
 Return the target Kubernetes version
 */}}
-{{- define "common.capabilities.kubeVersion" -}}
+{{- define "nio-common.capabilities.kubeVersion" -}}
 {{- if .Values.global }}
     {{- if .Values.global.kubeVersion }}
     {{- .Values.global.kubeVersion -}}
@@ -18,7 +18,7 @@ Return the target Kubernetes version
 {{/*
 Return the appropriate apiVersion for deployment.
 */}}
-{{- define "common.capabilities.deployment.apiVersion" -}}
+{{- define "nio-common.capabilities.deployment.apiVersion" -}}
 {{- if semverCompare "<1.14-0" (include "common.capabilities.kubeVersion" .) -}}
 {{- print "extensions/v1beta1" -}}
 {{- else -}}
@@ -29,7 +29,7 @@ Return the appropriate apiVersion for deployment.
 {{/*
 Return the appropriate apiVersion for statefulset.
 */}}
-{{- define "common.capabilities.statefulset.apiVersion" -}}
+{{- define "nio-common.capabilities.statefulset.apiVersion" -}}
 {{- if semverCompare "<1.14-0" (include "common.capabilities.kubeVersion" .) -}}
 {{- print "apps/v1beta1" -}}
 {{- else -}}
@@ -40,7 +40,7 @@ Return the appropriate apiVersion for statefulset.
 {{/*
 Return the appropriate apiVersion for ingress.
 */}}
-{{- define "common.capabilities.ingress.apiVersion" -}}
+{{- define "nio-common.capabilities.ingress.apiVersion" -}}
 {{- if .Values.ingress -}}
 {{- if .Values.ingress.apiVersion -}}
 {{- .Values.ingress.apiVersion -}}
@@ -63,7 +63,7 @@ Return the appropriate apiVersion for ingress.
 {{/*
 Return the appropriate apiVersion for RBAC resources.
 */}}
-{{- define "common.capabilities.rbac.apiVersion" -}}
+{{- define "nio-common.capabilities.rbac.apiVersion" -}}
 {{- if semverCompare "<1.17-0" (include "common.capabilities.kubeVersion" .) -}}
 {{- print "rbac.authorization.k8s.io/v1beta1" -}}
 {{- else -}}
@@ -74,7 +74,7 @@ Return the appropriate apiVersion for RBAC resources.
 {{/*
 Return the appropriate apiVersion for CRDs.
 */}}
-{{- define "common.capabilities.crd.apiVersion" -}}
+{{- define "nio-common.capabilities.crd.apiVersion" -}}
 {{- if semverCompare "<1.19-0" (include "common.capabilities.kubeVersion" .) -}}
 {{- print "apiextensions.k8s.io/v1beta1" -}}
 {{- else -}}
@@ -88,7 +88,7 @@ A way to check the used Helm version was not introduced until version 3.3.0 with
 This check is introduced as a regexMatch instead of {{ if .Capabilities.HelmVersion }} because checking for the key HelmVersion in <3.3 results in a "interface not found" error.
 **To be removed when the catalog's minimun Helm version is 3.3**
 */}}
-{{- define "common.capabilities.supportsHelmVersion" -}}
+{{- define "nio-common.capabilities.supportsHelmVersion" -}}
 {{- if regexMatch "{(v[0-9])*[^}]*}}$" (.Capabilities | toString ) }}
   {{- true -}}
 {{- end -}}
@@ -97,7 +97,7 @@ This check is introduced as a regexMatch instead of {{ if .Capabilities.HelmVers
 {{/*
 Return the appropriate apiVersion for cronjob APIs.
 */}}
-{{- define "common.capabilities.cronjob.apiVersion" -}}
+{{- define "nio-common.capabilities.cronjob.apiVersion" -}}
 {{- if semverCompare "< 1.8-0" .Capabilities.KubeVersion.GitVersion -}}
 {{- print "batch/v2alpha1" }}
 {{- else if semverCompare ">=1.8-0" .Capabilities.KubeVersion.GitVersion -}}

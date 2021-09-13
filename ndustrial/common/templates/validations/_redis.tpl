@@ -9,7 +9,7 @@ Params:
   - secret - String - Required. Name of the secret where redis values are stored, e.g: "redis-passwords-secret"
   - subchart - Boolean - Optional. Whether redis is used as subchart or not. Default: false
 */}}
-{{- define "common.validations.values.redis.passwords" -}}
+{{- define "nio-common.validations.values.redis.passwords" -}}
   {{- $enabled := include "common.redis.values.enabled" . -}}
   {{- $valueKeyPrefix := include "common.redis.values.keys.prefix" . -}}
   {{- $standarizedVersion := include "common.redis.values.standarized.version" . }}
@@ -39,7 +39,7 @@ Auxiliary function to get the right value for enabled redis.
 Usage:
 {{ include "common.redis.values.enabled" (dict "context" $) }}
 */}}
-{{- define "common.redis.values.enabled" -}}
+{{- define "nio-common.redis.values.enabled" -}}
   {{- if .subchart -}}
     {{- printf "%v" .context.Values.redis.enabled -}}
   {{- else -}}
@@ -55,7 +55,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether redis is used as subchart or not. Default: false
 */}}
-{{- define "common.redis.values.keys.prefix" -}}
+{{- define "nio-common.redis.values.keys.prefix" -}}
   {{- if .subchart -}}redis.{{- else -}}{{- end -}}
 {{- end -}}
 
@@ -65,7 +65,7 @@ Checks whether the redis chart's includes the standarizations (version >= 14)
 Usage:
 {{ include "common.redis.values.standarized.version" (dict "context" $) }}
 */}}
-{{- define "common.redis.values.standarized.version" -}}
+{{- define "nio-common.redis.values.standarized.version" -}}
 
   {{- $standarizedAuth := printf "%s%s" (include "common.redis.values.keys.prefix" .) "auth" -}}
   {{- $standarizedAuthValues := include "common.utils.getValueFromKey" (dict "key" $standarizedAuth "context" .context) }}

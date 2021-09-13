@@ -2,7 +2,7 @@
 {{/*
 Datadog env variables
 */}}
-{{- define "common.datadog.envs" -}}
+{{- define "nio-common.datadog.envs" -}}
 {{- if .value.apm.enabled }}
 {{- if .value.apm.trace_agent_host }}
 - name: DATADOG_TRACE_AGENT_HOSTNAME
@@ -51,7 +51,7 @@ Datadog env variables
 {{/*
 Datadog annotations
 */}}
-{{- define "common.datadog.annotations" -}}
+{{- define "nio-common.datadog.annotations" -}}
 {{- if .value.openmetrics.enabled }}
 {{- $prometheus_url := printf "%s://%s:%d%s" .value.openmetrics.schema .value.openmetrics.host (.value.openmetrics.port | int) .value.openmetrics.endpoint -}}
 {{- $instance := dict "prometheus_url" $prometheus_url "namespace" .context.Release.Namespace "metrics" .value.openmetrics.metrics "type_overrides" .value.openmetrics.type_overrides -}}

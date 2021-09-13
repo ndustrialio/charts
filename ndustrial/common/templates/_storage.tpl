@@ -3,7 +3,7 @@
 Return  the proper Storage Class
 {{ include "common.storage.class" ( dict "persistence" .Values.path.to.the.persistence "global" $) }}
 */}}
-{{- define "common.storage.class" -}}
+{{- define "nio-common.storage.class" -}}
 
 {{- $storageClass := .persistence.storageClass -}}
 {{- if .global -}}

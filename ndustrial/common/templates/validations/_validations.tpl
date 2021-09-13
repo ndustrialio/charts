@@ -12,7 +12,7 @@ Validate value params:
   - secret - String - Optional. Name of the secret where the validating value is generated/stored, e.g: "mysql-passwords-secret"
   - field - String - Optional. Name of the field in the secret data, e.g: "mysql-password"
 */}}
-{{- define "common.validations.values.multiple.empty" -}}
+{{- define "nio-common.validations.values.multiple.empty" -}}
   {{- range .required -}}
     {{- include "common.validations.values.single.empty" (dict "valueKey" .valueKey "secret" .secret "field" .field "context" $.context) -}}
   {{- end -}}
@@ -30,7 +30,7 @@ Validate value params:
   - field - String - Optional. Name of the field in the secret data, e.g: "mysql-password"
   - subchart - String - Optional - Name of the subchart that the validated password is part of.
 */}}
-{{- define "common.validations.values.single.empty" -}}
+{{- define "nio-common.validations.values.single.empty" -}}
   {{- $value := include "common.utils.getValueFromKey" (dict "key" .valueKey "context" .context) }}
   {{- $subchart := ternary "" (printf "%s." .subchart) (empty .subchart) }}
 

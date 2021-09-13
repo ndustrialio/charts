@@ -8,7 +8,7 @@ Params:
   - secret - String - Required. Name of the secret where postgresql values are stored, e.g: "postgresql-passwords-secret"
   - subchart - Boolean - Optional. Whether postgresql is used as subchart or not. Default: false
 */}}
-{{- define "common.validations.values.postgresql.passwords" -}}
+{{- define "nio-common.validations.values.postgresql.passwords" -}}
   {{- $existingSecret := include "common.postgresql.values.existingSecret" . -}}
   {{- $enabled := include "common.postgresql.values.enabled" . -}}
   {{- $valueKeyPostgresqlPassword := include "common.postgresql.values.key.postgressPassword" . -}}
@@ -38,7 +38,7 @@ Usage:
 Params:
   - key - String - Required. Field to be evaluated within global, e.g: "existingSecret"
 */}}
-{{- define "common.postgresql.values.use.global" -}}
+{{- define "nio-common.postgresql.values.use.global" -}}
   {{- if .context.Values.global -}}
     {{- if .context.Values.global.postgresql -}}
       {{- index .context.Values.global.postgresql .key | quote -}}
@@ -52,7 +52,7 @@ Auxiliary function to get the right value for existingSecret.
 Usage:
 {{ include "common.postgresql.values.existingSecret" (dict "context" $) }}
 */}}
-{{- define "common.postgresql.values.existingSecret" -}}
+{{- define "nio-common.postgresql.values.existingSecret" -}}
   {{- $globalValue := include "common.postgresql.values.use.global" (dict "key" "existingSecret" "context" .context) -}}
 
   {{- if .subchart -}}
@@ -68,7 +68,7 @@ Auxiliary function to get the right value for enabled postgresql.
 Usage:
 {{ include "common.postgresql.values.enabled" (dict "context" $) }}
 */}}
-{{- define "common.postgresql.values.enabled" -}}
+{{- define "nio-common.postgresql.values.enabled" -}}
   {{- if .subchart -}}
     {{- printf "%v" .context.Values.postgresql.enabled -}}
   {{- else -}}
@@ -84,7 +84,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether postgresql is used as subchart or not. Default: false
 */}}
-{{- define "common.postgresql.values.key.postgressPassword" -}}
+{{- define "nio-common.postgresql.values.key.postgressPassword" -}}
   {{- $globalValue := include "common.postgresql.values.use.global" (dict "key" "postgresqlUsername" "context" .context) -}}
 
   {{- if not $globalValue -}}
@@ -106,7 +106,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether postgresql is used as subchart or not. Default: false
 */}}
-{{- define "common.postgresql.values.enabled.replication" -}}
+{{- define "nio-common.postgresql.values.enabled.replication" -}}
   {{- if .subchart -}}
     {{- printf "%v" .context.Values.postgresql.replication.enabled -}}
   {{- else -}}
@@ -122,7 +122,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether postgresql is used as subchart or not. Default: false
 */}}
-{{- define "common.postgresql.values.key.replicationPassword" -}}
+{{- define "nio-common.postgresql.values.key.replicationPassword" -}}
   {{- if .subchart -}}
     postgresql.replication.password
   {{- else -}}

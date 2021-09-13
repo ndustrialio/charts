@@ -11,7 +11,7 @@ Params:
   - servicePort - String/Int. Port name (or number) of the service. It will be translated to different yaml depending if it is a string or an integer.
   - context - Dict - Required. The context for the template evaluation.
 */}}
-{{- define "common.ingress.backend" -}}
+{{- define "nio-common.ingress.backend" -}}
 {{- $apiVersion := (include "common.capabilities.ingress.apiVersion" .context) -}}
 {{- if or (eq $apiVersion "extensions/v1beta1") (eq $apiVersion "networking.k8s.io/v1beta1") -}}
 serviceName: {{ .serviceName }}
@@ -33,7 +33,7 @@ Print "true" if the API pathType field is supported
 Usage:
 {{ include "common.ingress.supportsPathType" . }}
 */}}
-{{- define "common.ingress.supportsPathType" -}}
+{{- define "nio-common.ingress.supportsPathType" -}}
 {{- if (semverCompare "<1.18-0" (include "common.capabilities.kubeVersion" .)) -}}
 {{- print "false" -}}
 {{- else -}}

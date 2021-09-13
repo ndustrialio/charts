@@ -8,7 +8,7 @@ Params:
   - secret - String - Required. Name of the secret where Cassandra values are stored, e.g: "cassandra-passwords-secret"
   - subchart - Boolean - Optional. Whether Cassandra is used as subchart or not. Default: false
 */}}
-{{- define "common.validations.values.cassandra.passwords" -}}
+{{- define "nio-common.validations.values.cassandra.passwords" -}}
   {{- $existingSecret := include "common.cassandra.values.existingSecret" . -}}
   {{- $enabled := include "common.cassandra.values.enabled" . -}}
   {{- $dbUserPrefix := include "common.cassandra.values.key.dbUser" . -}}
@@ -33,7 +33,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether Cassandra is used as subchart or not. Default: false
 */}}
-{{- define "common.cassandra.values.existingSecret" -}}
+{{- define "nio-common.cassandra.values.existingSecret" -}}
   {{- if .subchart -}}
     {{- .context.Values.cassandra.dbUser.existingSecret | quote -}}
   {{- else -}}
@@ -47,7 +47,7 @@ Auxiliary function to get the right value for enabled cassandra.
 Usage:
 {{ include "common.cassandra.values.enabled" (dict "context" $) }}
 */}}
-{{- define "common.cassandra.values.enabled" -}}
+{{- define "nio-common.cassandra.values.enabled" -}}
   {{- if .subchart -}}
     {{- printf "%v" .context.Values.cassandra.enabled -}}
   {{- else -}}
@@ -63,7 +63,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether Cassandra is used as subchart or not. Default: false
 */}}
-{{- define "common.cassandra.values.key.dbUser" -}}
+{{- define "nio-common.cassandra.values.key.dbUser" -}}
   {{- if .subchart -}}
     cassandra.dbUser
   {{- else -}}

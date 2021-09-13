@@ -8,7 +8,7 @@ Params:
   - secret - String - Required. Name of the secret where MariaDB values are stored, e.g: "mysql-passwords-secret"
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
-{{- define "common.validations.values.mariadb.passwords" -}}
+{{- define "nio-common.validations.values.mariadb.passwords" -}}
   {{- $existingSecret := include "common.mariadb.values.auth.existingSecret" . -}}
   {{- $enabled := include "common.mariadb.values.enabled" . -}}
   {{- $architecture := include "common.mariadb.values.architecture" . -}}
@@ -48,7 +48,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
-{{- define "common.mariadb.values.auth.existingSecret" -}}
+{{- define "nio-common.mariadb.values.auth.existingSecret" -}}
   {{- if .subchart -}}
     {{- .context.Values.mariadb.auth.existingSecret | quote -}}
   {{- else -}}
@@ -62,7 +62,7 @@ Auxiliary function to get the right value for enabled mariadb.
 Usage:
 {{ include "common.mariadb.values.enabled" (dict "context" $) }}
 */}}
-{{- define "common.mariadb.values.enabled" -}}
+{{- define "nio-common.mariadb.values.enabled" -}}
   {{- if .subchart -}}
     {{- printf "%v" .context.Values.mariadb.enabled -}}
   {{- else -}}
@@ -78,7 +78,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
-{{- define "common.mariadb.values.architecture" -}}
+{{- define "nio-common.mariadb.values.architecture" -}}
   {{- if .subchart -}}
     {{- .context.Values.mariadb.architecture -}}
   {{- else -}}
@@ -94,7 +94,7 @@ Usage:
 Params:
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
-{{- define "common.mariadb.values.key.auth" -}}
+{{- define "nio-common.mariadb.values.key.auth" -}}
   {{- if .subchart -}}
     mariadb.auth
   {{- else -}}
