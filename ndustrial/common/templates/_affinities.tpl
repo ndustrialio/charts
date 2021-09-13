@@ -2,7 +2,7 @@
 
 {{/*
 Return a soft nodeAffinity definition
-{{ include "common.affinities.nodes.soft" (dict "key" "FOO" "values" (list "BAR" "BAZ")) -}}
+{{ include "nio-common.affinities.nodes.soft" (dict "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
 {{- define "nio-common.affinities.nodes.soft" -}}
 preferredDuringSchedulingIgnoredDuringExecution:
@@ -19,7 +19,7 @@ preferredDuringSchedulingIgnoredDuringExecution:
 
 {{/*
 Return a hard nodeAffinity definition
-{{ include "common.affinities.nodes.hard" (dict "key" "FOO" "values" (list "BAR" "BAZ")) -}}
+{{ include "nio-common.affinities.nodes.hard" (dict "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
 {{- define "nio-common.affinities.nodes.hard" -}}
 requiredDuringSchedulingIgnoredDuringExecution:
@@ -35,26 +35,26 @@ requiredDuringSchedulingIgnoredDuringExecution:
 
 {{/*
 Return a nodeAffinity definition
-{{ include "common.affinities.nodes" (dict "type" "soft" "key" "FOO" "values" (list "BAR" "BAZ")) -}}
+{{ include "nio-common.affinities.nodes" (dict "type" "soft" "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
 {{- define "nio-common.affinities.nodes" -}}
   {{- if eq .type "soft" }}
-    {{- include "common.affinities.nodes.soft" . -}}
+    {{- include "nio-common.affinities.nodes.soft" . -}}
   {{- else if eq .type "hard" }}
-    {{- include "common.affinities.nodes.hard" . -}}
+    {{- include "nio-common.affinities.nodes.hard" . -}}
   {{- end -}}
 {{- end -}}
 
 {{/*
 Return a soft podAffinity/podAntiAffinity definition
-{{ include "common.affinities.pods.soft" (dict "component" "FOO" "context" $) -}}
+{{ include "nio-common.affinities.pods.soft" (dict "component" "FOO" "context" $) -}}
 */}}
 {{- define "nio-common.affinities.pods.soft" -}}
 {{- $component := default "" .component -}}
 preferredDuringSchedulingIgnoredDuringExecution:
   - podAffinityTerm:
       labelSelector:
-        matchLabels: {{- (include "common.labels.matchLabels" .context) | nindent 10 }}
+        matchLabels: {{- (include "nio-common.labels.matchLabels" .context) | nindent 10 }}
           {{- if not (empty $component) }}
           {{ printf "app.kubernetes.io/component: %s" $component }}
           {{- end }}
@@ -66,13 +66,13 @@ preferredDuringSchedulingIgnoredDuringExecution:
 
 {{/*
 Return a hard podAffinity/podAntiAffinity definition
-{{ include "common.affinities.pods.hard" (dict "component" "FOO" "context" $) -}}
+{{ include "nio-common.affinities.pods.hard" (dict "component" "FOO" "context" $) -}}
 */}}
 {{- define "nio-common.affinities.pods.hard" -}}
 {{- $component := default "" .component -}}
 requiredDuringSchedulingIgnoredDuringExecution:
   - labelSelector:
-      matchLabels: {{- (include "common.labels.matchLabels" .context) | nindent 8 }}
+      matchLabels: {{- (include "nio-common.labels.matchLabels" .context) | nindent 8 }}
         {{- if not (empty $component) }}
         {{ printf "app.kubernetes.io/component: %s" $component }}
         {{- end }}
@@ -83,12 +83,12 @@ requiredDuringSchedulingIgnoredDuringExecution:
 
 {{/*
 Return a podAffinity/podAntiAffinity definition
-{{ include "common.affinities.pods" (dict "type" "soft" "key" "FOO" "values" (list "BAR" "BAZ")) -}}
+{{ include "nio-common.affinities.pods" (dict "type" "soft" "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
 {{- define "nio-common.affinities.pods" -}}
   {{- if eq .type "soft" }}
-    {{- include "common.affinities.pods.soft" . -}}
+    {{- include "nio-common.affinities.pods.soft" . -}}
   {{- else if eq .type "hard" }}
-    {{- include "common.affinities.pods.hard" . -}}
+    {{- include "nio-common.affinities.pods.hard" . -}}
   {{- end -}}
 {{- end -}}

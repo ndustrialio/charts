@@ -3,7 +3,7 @@
 Generate secret name.
 
 Usage:
-{{ include "common.secrets.name" (dict "existingSecret" .Values.path.to.the.existingSecret "defaultNameSuffix" "mySuffix" "context" $) }}
+{{ include "nio-common.secrets.name" (dict "existingSecret" .Values.path.to.the.existingSecret "defaultNameSuffix" "mySuffix" "context" $) }}
 
 Params:
   - existingSecret - ExistingSecret/String - Optional. The path to the existing secrets in the values.yaml given by the user
@@ -13,7 +13,7 @@ Params:
   - context - Dict - Required. The context for the template evaluation.
 */}}
 {{- define "nio-common.secrets.name" -}}
-{{- $name := (include "common.names.fullname" .context) -}}
+{{- $name := (include "nio-common.names.fullname" .context) -}}
 
 {{- if .defaultNameSuffix -}}
 {{- $name = printf "%s-%s" $name .defaultNameSuffix | trunc 63 | trimSuffix "-" -}}
@@ -36,7 +36,7 @@ Params:
 Generate secret key.
 
 Usage:
-{{ include "common.secrets.key" (dict "existingSecret" .Values.path.to.the.existingSecret "key" "keyName") }}
+{{ include "nio-common.secrets.key" (dict "existingSecret" .Values.path.to.the.existingSecret "key" "keyName") }}
 
 Params:
   - existingSecret - ExistingSecret/String - Optional. The path to the existing secrets in the values.yaml given by the user
@@ -62,7 +62,7 @@ Params:
 Generate secret password or retrieve one if already created.
 
 Usage:
-{{ include "common.secrets.passwords.manage" (dict "secret" "secret-name" "key" "keyName" "providedValues" (list "path.to.password1" "path.to.password2") "length" 10 "strong" false "chartName" "chartName" "context" $) }}
+{{ include "nio-common.secrets.passwords.manage" (dict "secret" "secret-name" "key" "keyName" "providedValues" (list "path.to.password1" "path.to.password2") "length" 10 "strong" false "chartName" "chartName" "context" $) }}
 
 Params:
   - secret - String - Required - Name of the 'Secret' resource where the password is stored.
@@ -79,8 +79,8 @@ Params:
 {{- $subchart := "" }}
 {{- $chartName := default "" .chartName }}
 {{- $passwordLength := default 10 .length }}
-{{- $providedPasswordKey := include "common.utils.getKeyFromList" (dict "keys" .providedValues "context" $.context) }}
-{{- $providedPasswordValue := include "common.utils.getValueFromKey" (dict "key" $providedPasswordKey "context" $.context) }}
+{{- $providedPasswordKey := include "nio-common.utils.getKeyFromList" (dict "keys" .providedValues "context" $.context) }}
+{{- $providedPasswordValue := include "nio-common.utils.getValueFromKey" (dict "key" $providedPasswordKey "context" $.context) }}
 {{- $secret := (lookup "v1" "Secret" $.context.Release.Namespace .secret) }}
 {{- if $secret }}
   {{- if index $secret.data .key }}
@@ -95,9 +95,9 @@ Params:
   {{- end -}}
 
   {{- $requiredPassword := dict "valueKey" $providedPasswordKey "secret" .secret "field" .key "subchart" $subchart "context" $.context -}}
-  {{- $requiredPasswordError := include "common.validations.values.single.empty" $requiredPassword -}}
+  {{- $requiredPasswordError := include "nio-common.validations.values.single.empty" $requiredPassword -}}
   {{- $passwordValidationErrors := list $requiredPasswordError -}}
-  {{- include "common.errors.upgrade.passwords.empty" (dict "validationErrors" $passwordValidationErrors "context" $.context) -}}
+  {{- include "nio-common.errors.upgrade.passwords.empty" (dict "validationErrors" $passwordValidationErrors "context" $.context) -}}
 
   {{- if .strong }}
     {{- $subStr := list (lower (randAlpha 1)) (randNumeric 1) (upper (randAlpha 1)) | join "_" }}
@@ -115,7 +115,7 @@ Params:
 Returns whether a previous generated secret already exists
 
 Usage:
-{{ include "common.secrets.exists" (dict "secret" "secret-name" "context" $) }}
+{{ include "nio-common.secrets.exists" (dict "secret" "secret-name" "context" $) }}
 
 Params:
   - secret - String - Required - Name of the 'Secret' resource where the password is stored.

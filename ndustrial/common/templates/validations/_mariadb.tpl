@@ -3,16 +3,16 @@
 Validate MariaDB required passwords are not empty.
 
 Usage:
-{{ include "common.validations.values.mariadb.passwords" (dict "secret" "secretName" "subchart" false "context" $) }}
+{{ include "nio-common.validations.values.mariadb.passwords" (dict "secret" "secretName" "subchart" false "context" $) }}
 Params:
   - secret - String - Required. Name of the secret where MariaDB values are stored, e.g: "mysql-passwords-secret"
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
 {{- define "nio-common.validations.values.mariadb.passwords" -}}
-  {{- $existingSecret := include "common.mariadb.values.auth.existingSecret" . -}}
-  {{- $enabled := include "common.mariadb.values.enabled" . -}}
-  {{- $architecture := include "common.mariadb.values.architecture" . -}}
-  {{- $authPrefix := include "common.mariadb.values.key.auth" . -}}
+  {{- $existingSecret := include "nio-common.mariadb.values.auth.existingSecret" . -}}
+  {{- $enabled := include "nio-common.mariadb.values.enabled" . -}}
+  {{- $architecture := include "nio-common.mariadb.values.architecture" . -}}
+  {{- $authPrefix := include "nio-common.mariadb.values.key.auth" . -}}
   {{- $valueKeyRootPassword := printf "%s.rootPassword" $authPrefix -}}
   {{- $valueKeyUsername := printf "%s.username" $authPrefix -}}
   {{- $valueKeyPassword := printf "%s.password" $authPrefix -}}
@@ -24,7 +24,7 @@ Params:
     {{- $requiredRootPassword := dict "valueKey" $valueKeyRootPassword "secret" .secret "field" "mariadb-root-password" -}}
     {{- $requiredPasswords = append $requiredPasswords $requiredRootPassword -}}
 
-    {{- $valueUsername := include "common.utils.getValueFromKey" (dict "key" $valueKeyUsername "context" .context) }}
+    {{- $valueUsername := include "nio-common.utils.getValueFromKey" (dict "key" $valueKeyUsername "context" .context) }}
     {{- if not (empty $valueUsername) -}}
         {{- $requiredPassword := dict "valueKey" $valueKeyPassword "secret" .secret "field" "mariadb-password" -}}
         {{- $requiredPasswords = append $requiredPasswords $requiredPassword -}}
@@ -35,7 +35,7 @@ Params:
         {{- $requiredPasswords = append $requiredPasswords $requiredReplicationPassword -}}
     {{- end -}}
 
-    {{- include "common.validations.values.multiple.empty" (dict "required" $requiredPasswords "context" .context) -}}
+    {{- include "nio-common.validations.values.multiple.empty" (dict "required" $requiredPasswords "context" .context) -}}
 
   {{- end -}}
 {{- end -}}
@@ -44,7 +44,7 @@ Params:
 Auxiliary function to get the right value for existingSecret.
 
 Usage:
-{{ include "common.mariadb.values.auth.existingSecret" (dict "context" $) }}
+{{ include "nio-common.mariadb.values.auth.existingSecret" (dict "context" $) }}
 Params:
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
@@ -60,7 +60,7 @@ Params:
 Auxiliary function to get the right value for enabled mariadb.
 
 Usage:
-{{ include "common.mariadb.values.enabled" (dict "context" $) }}
+{{ include "nio-common.mariadb.values.enabled" (dict "context" $) }}
 */}}
 {{- define "nio-common.mariadb.values.enabled" -}}
   {{- if .subchart -}}
@@ -74,7 +74,7 @@ Usage:
 Auxiliary function to get the right value for architecture
 
 Usage:
-{{ include "common.mariadb.values.architecture" (dict "subchart" "true" "context" $) }}
+{{ include "nio-common.mariadb.values.architecture" (dict "subchart" "true" "context" $) }}
 Params:
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
@@ -90,7 +90,7 @@ Params:
 Auxiliary function to get the right value for the key auth
 
 Usage:
-{{ include "common.mariadb.values.key.auth" (dict "subchart" "true" "context" $) }}
+{{ include "nio-common.mariadb.values.key.auth" (dict "subchart" "true" "context" $) }}
 Params:
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}

@@ -5,7 +5,7 @@ Validate values must not be empty.
 Usage:
 {{- $validateValueConf00 := (dict "valueKey" "path.to.value" "secret" "secretName" "field" "password-00") -}}
 {{- $validateValueConf01 := (dict "valueKey" "path.to.value" "secret" "secretName" "field" "password-01") -}}
-{{ include "common.validations.values.empty" (dict "required" (list $validateValueConf00 $validateValueConf01) "context" $) }}
+{{ include "nio-common.validations.values.empty" (dict "required" (list $validateValueConf00 $validateValueConf01) "context" $) }}
 
 Validate value params:
   - valueKey - String - Required. The path to the validating value in the values.yaml, e.g: "mysql.password"
@@ -14,7 +14,7 @@ Validate value params:
 */}}
 {{- define "nio-common.validations.values.multiple.empty" -}}
   {{- range .required -}}
-    {{- include "common.validations.values.single.empty" (dict "valueKey" .valueKey "secret" .secret "field" .field "context" $.context) -}}
+    {{- include "nio-common.validations.values.single.empty" (dict "valueKey" .valueKey "secret" .secret "field" .field "context" $.context) -}}
   {{- end -}}
 {{- end -}}
 
@@ -22,7 +22,7 @@ Validate value params:
 Validate a value must not be empty.
 
 Usage:
-{{ include "common.validations.value.empty" (dict "valueKey" "mariadb.password" "secret" "secretName" "field" "my-password" "subchart" "subchart" "context" $) }}
+{{ include "nio-common.validations.value.empty" (dict "valueKey" "mariadb.password" "secret" "secretName" "field" "my-password" "subchart" "subchart" "context" $) }}
 
 Validate value params:
   - valueKey - String - Required. The path to the validating value in the values.yaml, e.g: "mysql.password"
@@ -31,15 +31,15 @@ Validate value params:
   - subchart - String - Optional - Name of the subchart that the validated password is part of.
 */}}
 {{- define "nio-common.validations.values.single.empty" -}}
-  {{- $value := include "common.utils.getValueFromKey" (dict "key" .valueKey "context" .context) }}
+  {{- $value := include "nio-common.utils.getValueFromKey" (dict "key" .valueKey "context" .context) }}
   {{- $subchart := ternary "" (printf "%s." .subchart) (empty .subchart) }}
 
   {{- if not $value -}}
     {{- $varname := "my-value" -}}
     {{- $getCurrentValue := "" -}}
     {{- if and .secret .field -}}
-      {{- $varname = include "common.utils.fieldToEnvVar" . -}}
-      {{- $getCurrentValue = printf " To get the current value:\n\n        %s\n" (include "common.utils.secret.getvalue" .) -}}
+      {{- $varname = include "nio-common.utils.fieldToEnvVar" . -}}
+      {{- $getCurrentValue = printf " To get the current value:\n\n        %s\n" (include "nio-common.utils.secret.getvalue" .) -}}
     {{- end -}}
     {{- printf "\n    '%s' must not be empty, please add '--set %s%s=$%s' to the command.%s" .valueKey $subchart .valueKey $varname $getCurrentValue -}}
   {{- end -}}

@@ -3,8 +3,8 @@
 Kubernetes standard labels
 */}}
 {{- define "nio-common.labels.standard" -}}
-app.kubernetes.io/name: {{ include "common.names.name" . }}
-helm.sh/chart: {{ include "common.names.chart" . }}
+app.kubernetes.io/name: {{ include "nio-common.names.name" . }}
+helm.sh/chart: {{ include "nio-common.names.chart" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 # Ndustrial labels
@@ -39,6 +39,6 @@ contxt/service.type: {{ .Values.contxt.serviceType }}
 Labels to use on deploy.spec.selector.matchLabels and svc.spec.selector
 */}}
 {{- define "nio-common.labels.matchLabels" -}}
-app.kubernetes.io/name: {{ include "common.names.name" . }}
+app.kubernetes.io/name: {{ include "nio-common.names.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}

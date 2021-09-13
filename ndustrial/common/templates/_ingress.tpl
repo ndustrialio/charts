@@ -4,7 +4,7 @@
 Generate backend entry that is compatible with all Kubernetes API versions.
 
 Usage:
-{{ include "common.ingress.backend" (dict "serviceName" "backendName" "servicePort" "backendPort" "context" $) }}
+{{ include "nio-common.ingress.backend" (dict "serviceName" "backendName" "servicePort" "backendPort" "context" $) }}
 
 Params:
   - serviceName - String. Name of an existing service backend
@@ -12,7 +12,7 @@ Params:
   - context - Dict - Required. The context for the template evaluation.
 */}}
 {{- define "nio-common.ingress.backend" -}}
-{{- $apiVersion := (include "common.capabilities.ingress.apiVersion" .context) -}}
+{{- $apiVersion := (include "nio-common.capabilities.ingress.apiVersion" .context) -}}
 {{- if or (eq $apiVersion "extensions/v1beta1") (eq $apiVersion "networking.k8s.io/v1beta1") -}}
 serviceName: {{ .serviceName }}
 servicePort: {{ .servicePort }}
@@ -31,10 +31,10 @@ service:
 {{/*
 Print "true" if the API pathType field is supported
 Usage:
-{{ include "common.ingress.supportsPathType" . }}
+{{ include "nio-common.ingress.supportsPathType" . }}
 */}}
 {{- define "nio-common.ingress.supportsPathType" -}}
-{{- if (semverCompare "<1.18-0" (include "common.capabilities.kubeVersion" .)) -}}
+{{- if (semverCompare "<1.18-0" (include "nio-common.capabilities.kubeVersion" .)) -}}
 {{- print "false" -}}
 {{- else -}}
 {{- print "true" -}}

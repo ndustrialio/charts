@@ -2,17 +2,17 @@
 {{/*
 Print instructions to get a secret value.
 Usage:
-{{ include "common.utils.secret.getvalue" (dict "secret" "secret-name" "field" "secret-value-field" "context" $) }}
+{{ include "nio-common.utils.secret.getvalue" (dict "secret" "secret-name" "field" "secret-value-field" "context" $) }}
 */}}
 {{- define "nio-common.utils.secret.getvalue" -}}
-{{- $varname := include "common.utils.fieldToEnvVar" . -}}
+{{- $varname := include "nio-common.utils.fieldToEnvVar" . -}}
 export {{ $varname }}=$(kubectl get secret --namespace {{ .context.Release.Namespace | quote }} {{ .secret }} -o jsonpath="{.data.{{ .field }}}" | base64 --decode)
 {{- end -}}
 
 {{/*
 Build env var name given a field
 Usage:
-{{ include "common.utils.fieldToEnvVar" dict "field" "my-password" }}
+{{ include "nio-common.utils.fieldToEnvVar" dict "field" "my-password" }}
 */}}
 {{- define "nio-common.utils.fieldToEnvVar" -}}
   {{- $fieldNameSplit := splitList "-" .field -}}
@@ -28,7 +28,7 @@ Usage:
 {{/*
 Gets a value from .Values given
 Usage:
-{{ include "common.utils.getValueFromKey" (dict "key" "path.to.key" "context" $) }}
+{{ include "nio-common.utils.getValueFromKey" (dict "key" "path.to.key" "context" $) }}
 */}}
 {{- define "nio-common.utils.getValueFromKey" -}}
 {{- $splitKey := splitList "." .key -}}
@@ -47,13 +47,13 @@ Usage:
 {{/*
 Returns first .Values key with a defined value or first of the list if all non-defined
 Usage:
-{{ include "common.utils.getKeyFromList" (dict "keys" (list "path.to.key1" "path.to.key2") "context" $) }}
+{{ include "nio-common.utils.getKeyFromList" (dict "keys" (list "path.to.key1" "path.to.key2") "context" $) }}
 */}}
 {{- define "nio-common.utils.getKeyFromList" -}}
 {{- $key := first .keys -}}
 {{- $reverseKeys := reverse .keys }}
 {{- range $reverseKeys }}
-  {{- $value := include "common.utils.getValueFromKey" (dict "key" . "context" $.context ) }}
+  {{- $value := include "nio-common.utils.getValueFromKey" (dict "key" . "context" $.context ) }}
   {{- if $value -}}
     {{- $key = . }}
   {{- end -}}

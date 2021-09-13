@@ -21,7 +21,7 @@ $ helm dependency update
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: { { include "common.names.fullname" . } }
+  name: { { include "nio-common.names.fullname" . } }
 data:
   myvalue: "Hello World"
 ```
@@ -57,7 +57,6 @@ This chart provides a common template helpers which can be used to develop new c
 | `contxt.serviceId`            | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
 | `contxt.serviceType`          | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
 
-
 ### Datadog integration parameters
 
 | Name                                 | Description                                                                                                                                                                                                         | Value      |
@@ -68,7 +67,7 @@ This chart provides a common template helpers which can be used to develop new c
 | `datadog.apm.version`                | Set an application’s version in traces and logs e.g. 1.2.3, 6c44da20, 2020.02.13. Generally set along with DD_SERVICE.                                                                                              | `""`       |
 | `datadog.apm.profiling_enabled`      | Enable Datadog profiling when using ddtrace-run. (Default: false)                                                                                                                                                   | `false`    |
 | `datadog.apm.logs_injection`         | Enables Logs Injection https://ddtrace.readthedocs.io/en/stable/advanced_usage.html#logs-injection (Default: true)                                                                                                  | `true`     |
-| `datadog.apm.trace_sample_rate`      | A float, f, 0.0 <= f <= 1.0. f*100% of traces will be sampled. (Default: 1.0)                                                                                                                                       | `1`        |
+| `datadog.apm.trace_sample_rate`      | A float, f, 0.0 <= f <= 1.0. f\*100% of traces will be sampled. (Default: 1.0)                                                                                                                                      | `1`        |
 | `datadog.apm.trace_agent_host`       | The Datadog Agent hostname for sending traces -- has the same functionality as the above agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)       | `""`       |
 | `datadog.openmetrics.enabled`        | Enable OpenMetrics scraping                                                                                                                                                                                         | `false`    |
 | `datadog.openmetrics.schema`         | The schema to use for OpenMetrics. (Default: http)                                                                                                                                                                  | `http`     |
@@ -77,7 +76,6 @@ This chart provides a common template helpers which can be used to develop new c
 | `datadog.openmetrics.endpoint`       | The endpoint to scrape metrics from                                                                                                                                                                                 | `/metrics` |
 | `datadog.openmetrics.metrics`        | List of metrics to collect                                                                                                                                                                                          | `[]`       |
 | `datadog.openmetrics.type_overrides` | Override the collected metrics types                                                                                                                                                                                | `{}`       |
-
 
 The following table lists the helpers available in the library which are scoped in different sections.
 
@@ -290,9 +288,9 @@ When we store sensitive data for a deployment in a secret, some times we want to
 apiVersion: v1
 kind: Secret
 metadata:
-  name: { { include "common.names.fullname" . } }
+  name: { { include "nio-common.names.fullname" . } }
   labels:
-    app: { { include "common.names.fullname" . } }
+    app: { { include "nio-common.names.fullname" . } }
 type: Opaque
 data:
   password: { { .Values.password | b64enc | quote } }
@@ -308,13 +306,13 @@ env:
         name:
           {
             {
-              include "common.secrets.name" (dict "existingSecret" .Values.existingSecret "context" $),
+              include "nio-common.secrets.name" (dict "existingSecret" .Values.existingSecret "context" $),
             },
           }
         key:
           {
             {
-              include "common.secrets.key" (dict "existingSecret" .Values.existingSecret "key" "password"),
+              include "nio-common.secrets.key" (dict "existingSecret" .Values.existingSecret "key" "password"),
             },
           }
 ...
@@ -333,7 +331,7 @@ keyMapping:
 {{- $validateValueConf00 := (dict "valueKey" "path.to.value00" "secret" "secretName" "field" "password-00") -}}
 {{- $validateValueConf01 := (dict "valueKey" "path.to.value01" "secret" "secretName" "field" "password-01") -}}
 
-{{ include "common.validations.values.multiple.empty" (dict "required" (list $validateValueConf00 $validateValueConf01) "context" $) }}
+{{ include "nio-common.validations.values.multiple.empty" (dict "required" (list $validateValueConf00 $validateValueConf01) "context" $) }}
 ```
 
 If we force those values to be empty we will see some alerts

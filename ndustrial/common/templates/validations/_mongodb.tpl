@@ -3,16 +3,16 @@
 Validate MongoDB(R) required passwords are not empty.
 
 Usage:
-{{ include "common.validations.values.mongodb.passwords" (dict "secret" "secretName" "subchart" false "context" $) }}
+{{ include "nio-common.validations.values.mongodb.passwords" (dict "secret" "secretName" "subchart" false "context" $) }}
 Params:
   - secret - String - Required. Name of the secret where MongoDB(R) values are stored, e.g: "mongodb-passwords-secret"
   - subchart - Boolean - Optional. Whether MongoDB(R) is used as subchart or not. Default: false
 */}}
 {{- define "nio-common.validations.values.mongodb.passwords" -}}
-  {{- $existingSecret := include "common.mongodb.values.auth.existingSecret" . -}}
-  {{- $enabled := include "common.mongodb.values.enabled" . -}}
-  {{- $authPrefix := include "common.mongodb.values.key.auth" . -}}
-  {{- $architecture := include "common.mongodb.values.architecture" . -}}
+  {{- $existingSecret := include "nio-common.mongodb.values.auth.existingSecret" . -}}
+  {{- $enabled := include "nio-common.mongodb.values.enabled" . -}}
+  {{- $authPrefix := include "nio-common.mongodb.values.key.auth" . -}}
+  {{- $architecture := include "nio-common.mongodb.values.architecture" . -}}
   {{- $valueKeyRootPassword := printf "%s.rootPassword" $authPrefix -}}
   {{- $valueKeyUsername := printf "%s.username" $authPrefix -}}
   {{- $valueKeyDatabase := printf "%s.database" $authPrefix -}}
@@ -20,7 +20,7 @@ Params:
   {{- $valueKeyReplicaSetKey := printf "%s.replicaSetKey" $authPrefix -}}
   {{- $valueKeyAuthEnabled := printf "%s.enabled" $authPrefix -}}
 
-  {{- $authEnabled := include "common.utils.getValueFromKey" (dict "key" $valueKeyAuthEnabled "context" .context) -}}
+  {{- $authEnabled := include "nio-common.utils.getValueFromKey" (dict "key" $valueKeyAuthEnabled "context" .context) -}}
 
   {{- if and (not $existingSecret) (eq $enabled "true") (eq $authEnabled "true") -}}
     {{- $requiredPasswords := list -}}
@@ -28,8 +28,8 @@ Params:
     {{- $requiredRootPassword := dict "valueKey" $valueKeyRootPassword "secret" .secret "field" "mongodb-root-password" -}}
     {{- $requiredPasswords = append $requiredPasswords $requiredRootPassword -}}
 
-    {{- $valueUsername := include "common.utils.getValueFromKey" (dict "key" $valueKeyUsername "context" .context) }}
-    {{- $valueDatabase := include "common.utils.getValueFromKey" (dict "key" $valueKeyDatabase "context" .context) }}
+    {{- $valueUsername := include "nio-common.utils.getValueFromKey" (dict "key" $valueKeyUsername "context" .context) }}
+    {{- $valueDatabase := include "nio-common.utils.getValueFromKey" (dict "key" $valueKeyDatabase "context" .context) }}
     {{- if and $valueUsername $valueDatabase -}}
         {{- $requiredPassword := dict "valueKey" $valueKeyPassword "secret" .secret "field" "mongodb-password" -}}
         {{- $requiredPasswords = append $requiredPasswords $requiredPassword -}}
@@ -40,7 +40,7 @@ Params:
         {{- $requiredPasswords = append $requiredPasswords $requiredReplicaSetKey -}}
     {{- end -}}
 
-    {{- include "common.validations.values.multiple.empty" (dict "required" $requiredPasswords "context" .context) -}}
+    {{- include "nio-common.validations.values.multiple.empty" (dict "required" $requiredPasswords "context" .context) -}}
 
   {{- end -}}
 {{- end -}}
@@ -49,7 +49,7 @@ Params:
 Auxiliary function to get the right value for existingSecret.
 
 Usage:
-{{ include "common.mongodb.values.auth.existingSecret" (dict "context" $) }}
+{{ include "nio-common.mongodb.values.auth.existingSecret" (dict "context" $) }}
 Params:
   - subchart - Boolean - Optional. Whether MongoDb is used as subchart or not. Default: false
 */}}
@@ -65,7 +65,7 @@ Params:
 Auxiliary function to get the right value for enabled mongodb.
 
 Usage:
-{{ include "common.mongodb.values.enabled" (dict "context" $) }}
+{{ include "nio-common.mongodb.values.enabled" (dict "context" $) }}
 */}}
 {{- define "nio-common.mongodb.values.enabled" -}}
   {{- if .subchart -}}
@@ -79,7 +79,7 @@ Usage:
 Auxiliary function to get the right value for the key auth
 
 Usage:
-{{ include "common.mongodb.values.key.auth" (dict "subchart" "true" "context" $) }}
+{{ include "nio-common.mongodb.values.key.auth" (dict "subchart" "true" "context" $) }}
 Params:
   - subchart - Boolean - Optional. Whether MongoDB(R) is used as subchart or not. Default: false
 */}}
@@ -95,7 +95,7 @@ Params:
 Auxiliary function to get the right value for architecture
 
 Usage:
-{{ include "common.mongodb.values.architecture" (dict "subchart" "true" "context" $) }}
+{{ include "nio-common.mongodb.values.architecture" (dict "subchart" "true" "context" $) }}
 Params:
   - subchart - Boolean - Optional. Whether MariaDB is used as subchart or not. Default: false
 */}}
