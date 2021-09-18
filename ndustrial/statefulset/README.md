@@ -39,10 +39,6 @@
 | Name                                 | Description                                                    | Value           |
 | ------------------------------------ | -------------------------------------------------------------- | --------------- |
 | `replicaCount`                       | Number of Controller replicas                                  | `1`             |
-| `persistentVolume.enabled`                      | Use Persistent Volume                                    | `true`   |
-| `persistentVolume.accessModes`                | ReadWriteOnce, ReadOnlyMany, ReadWriteMany, ReadWriteOncePod   | `ReadWriteOnce` |
-| `persistentVolume.size`                       | Size of the Volume                                             | `400M`          |
-| `persistentVolume.mountPath`                      | Where the Volume is mounted                                    | `/tmp/volume`   |
 | `startupProbe.enabled`               | Enable startupProbe                                            | `false`         |
 | `startupProbe.path`                  | Path for startupProbe                                          | `/`             |
 | `startupProbe.initialDelaySeconds`   | Initial delay seconds for startupProbe                         | `60`            |
@@ -67,10 +63,23 @@
 | `updateStrategy.type`                | StatefulSet deployment update strategy                         | `RollingUpdate` |
 | `updateStrategy.rollingUpdate`       | StatefulSet deployment rolling update configuration parameters | `{}`            |
 
+
+### persistentVolume parameters
+
+| Name                            | Description                          | Value         |
+| ------------------------------- | ------------------------------------ | ------------- |
+| `persistentVolume.enabled`      | Enable persistentVolume              | `true`        |
+| `persistentVolume.accessModes`  | Storage size of the persistentVolume | `[]`          |
+| `persistentVolume.storageClass` | StorageClass of the persistentVolume | `""`          |
+| `persistentVolume.size`         | Storage size of the persistentVolume | `400M`        |
+| `persistentVolume.mountPath`    | Mount path of the persistentVolume   | `/tmp/volume` |
+
+
 ### Service parameters
 
 | Name                               | Description                                           | Value       |
 | ---------------------------------- | ----------------------------------------------------- | ----------- |
+| `service.enabled`                  | StatefulSet service                                   | `true`      |
 | `service.type`                     | StatefulSet service type                              | `ClusterIP` |
 | `service.port`                     | StatefulSet service HTTP port                         | `80`        |
 | `service.httpsPort`                | StatefulSet service HTTPS port                        | `nil`       |
@@ -81,6 +90,7 @@
 | `service.loadBalancerSourceRanges` | StatefulSet service Load Balancer sources             | `[]`        |
 | `service.externalTrafficPolicy`    | StatefulSet service external traffic policy           | `Cluster`   |
 | `service.annotations`              | Additional custom annotations for StatefulSet service | `{}`        |
+| `service.ports`                    | Additional port definitions for the service           | `[]`        |
 
 
 ### Ingress parameters

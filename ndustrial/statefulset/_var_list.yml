@@ -183,6 +183,30 @@
   group: StatefulSet
   default: {}
   type: 
+- variable: persistentVolume.enabled
+  group: persistentVolume
+  default: true
+  type: boolean
+- variable: persistentVolume.accessModes
+  group: persistentVolume
+  default: 
+  type: 
+- variable: persistentVolume.storageClass
+  group: persistentVolume
+  default: ""
+  type: string
+- variable: persistentVolume.size
+  group: persistentVolume
+  default: 400M
+  type: string
+- variable: persistentVolume.mountPath
+  group: persistentVolume
+  default: /tmp/volume
+  type: string
+- variable: service.enabled
+  group: Service
+  default: true
+  type: boolean
 - variable: service.type
   group: Service
   default: ClusterIP
@@ -222,6 +246,10 @@
 - variable: service.annotations
   group: Service
   default: {}
+  type: 
+- variable: service.ports
+  group: Service
+  default: []
   type: 
 - variable: ingress.enabled
   group: Ingress
