@@ -169,6 +169,8 @@ service:
   ## @param service.annotations Additional custom annotations for Deployment service
   ##
   annotations: {}
+  ## @param service.ports Additional port definitions for the service
+  ports: []
 
 ## @section Ingress parameters
 

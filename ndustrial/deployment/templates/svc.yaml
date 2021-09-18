@@ -8,7 +8,10 @@ metadata:
     {{- include "nio-common.tplvalues.render" ( dict "value" .Values.labels "context" $ ) | nindent 4 }}
     {{- end }}
   {{- if or .Values.annotations .Values.service.annotations }}
-  annotations: {{- toYaml .Values.annotations | nindent 4 }}
+  annotations:
+  {{- with .Values.annotations }}
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- include "nio-common.tplvalues.render" ( dict "value" .Values.service.annotations "context" $ ) | nindent 4 }}
   {{- end }}
 spec:
@@ -45,5 +48,8 @@ spec:
       {{- else if eq .Values.service.type "ClusterIP" }}
       nodePort: null
       {{- end }}
+    {{- end }}
+    {{- if .Values.service.ports }}
+    {{- include "nio-common.tplvalues.render" ( dict "value" .Values.service.ports "context" $) | nindent 4 }}
     {{- end }}
   selector: {{- include "nio-common.labels.matchLabels" . | nindent 4 }}

@@ -78,6 +78,7 @@
 | `service.loadBalancerSourceRanges` | Deployment service Load Balancer sources             | `[]`        |
 | `service.externalTrafficPolicy`    | Deployment service external traffic policy           | `Cluster`   |
 | `service.annotations`              | Additional custom annotations for Deployment service | `{}`        |
+| `service.ports`                    | Additional port definitions for the service          | `[]`        |
 
 
 ### Ingress parameters

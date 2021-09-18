@@ -223,6 +223,10 @@
   group: Service
   default: {}
   type: 
+- variable: service.ports
+  group: Service
+  default: []
+  type: 
 - variable: ingress.enabled
   group: Ingress
   default: false

@@ -33,6 +33,7 @@ install_md_gen() {
 
 gen_readme() {
   local chart=$1
+  echo "Generating README.md for ${chart}"
   to_chart_dir ${chart}
   ${README_GEN_BIN} -r ./README.md -v values.yaml
   to_workdir
@@ -51,11 +52,13 @@ if [ -z ${README_GEN_BIN} ]; then
   install_md_gen
 fi
 
+echo "Generating README.md"
 gen_readme "common"
 gen_readme "cronjob"
 gen_readme "deployment"
 gen_readme "statefulset"
 
+echo "Generating questions"
 gen_questions "cronjob"
 gen_questions "deployment"
 gen_questions "statefulset"

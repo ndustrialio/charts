@@ -128,10 +128,16 @@ updateStrategy:
 
 ## @section persistentVolume parameters
 persistentVolume:
+  ## @param persistentVolume.enabled Enable persistentVolume
   enabled: true
+  ## @param persistentVolume.accessModes Storage size of the persistentVolume
   accessModes:
     - ReadWriteOnce
+  ## @param persistentVolume.storageClass StorageClass of the persistentVolume
+  storageClass: ""
+  ## @param persistentVolume.size Storage size of the persistentVolume
   size: 400M
+  ## @param persistentVolume.mountPath Mount path of the persistentVolume
   mountPath: /tmp/volume
 
 ## @section Service parameters
@@ -180,6 +186,8 @@ service:
   ## @param service.annotations Additional custom annotations for StatefulSet service
   ##
   annotations: {}
+  ## @param service.ports Additional port definitions for the service
+  ports: []
 
 ## @section Ingress parameters
 

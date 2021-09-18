@@ -12,7 +12,7 @@ install: ## Install required tools
 lint: ## Lint charts
 	./scripts/lint.sh
 
-gen:
+gen: ## Generate docs
 	./scripts/gen.sh
 
 .PHONY: gen lint install help
