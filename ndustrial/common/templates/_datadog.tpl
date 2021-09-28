@@ -13,8 +13,6 @@ Datadog env variables
     fieldRef:
       fieldPath: status.hostIP
 {{- end }}
-- name: NODE_ENV
-  value: {{ .value.apm.node_env }}
 {{- if .value.apm.agent_host }}
 - name: DD_AGENT_HOST
   value: {{ .value.apm.agent_host }}
