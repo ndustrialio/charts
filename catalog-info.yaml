@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: helm-charts
+  description: Helm Charts
+  links:
+    - url: https://ndustrialio.github.io/charts
+      title: Index
+      icon: code
+  tags:
+    - helm
+  annotations:
+    github.com/project-slug: ndustrialio/charts
+    backstage.io/source-location: url:https://github.com/ndustrialio/charts/tree/main/
+spec:
+  type: library
+  system: infra
+  lifecycle: production
+  owner: devops
