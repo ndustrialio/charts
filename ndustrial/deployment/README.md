@@ -66,19 +66,20 @@
 
 ### Service parameters
 
-| Name                               | Description                                          | Value       |
-| ---------------------------------- | ---------------------------------------------------- | ----------- |
-| `service.type`                     | Deployment service type                              | `ClusterIP` |
-| `service.port`                     | Deployment service HTTP port                         | `80`        |
-| `service.httpsPort`                | Deployment service HTTPS port                        | `nil`       |
-| `service.nodePorts.http`           | Node port for HTTP                                   | `nil`       |
-| `service.nodePorts.https`          | Node port for HTTPS                                  | `nil`       |
-| `service.clusterIP`                | Deployment service Cluster IP                        | `nil`       |
-| `service.loadBalancerIP`           | Deployment service Load Balancer IP                  | `nil`       |
-| `service.loadBalancerSourceRanges` | Deployment service Load Balancer sources             | `[]`        |
-| `service.externalTrafficPolicy`    | Deployment service external traffic policy           | `Cluster`   |
-| `service.annotations`              | Additional custom annotations for Deployment service | `{}`        |
-| `service.ports`                    | Additional port definitions for the service          | `[]`        |
+| Name                               | Description                                                               | Value       |
+| ---------------------------------- | ------------------------------------------------------------------------- | ----------- |
+| `service.enabled`                  | Enable service                                                            | `true`      |
+| `service.type`                     | The type of service to create (LoadBalancer, ClusterIP, NodePort, etc...) | `ClusterIP` |
+| `service.port`                     | Deployment service HTTP port                                              | `80`        |
+| `service.httpsPort`                | Deployment service HTTPS port                                             | `nil`       |
+| `service.nodePorts.http`           | Node port for HTTP                                                        | `nil`       |
+| `service.nodePorts.https`          | Node port for HTTPS                                                       | `nil`       |
+| `service.clusterIP`                | Deployment service Cluster IP                                             | `nil`       |
+| `service.loadBalancerIP`           | Deployment service Load Balancer IP                                       | `nil`       |
+| `service.loadBalancerSourceRanges` | Deployment service Load Balancer sources                                  | `[]`        |
+| `service.externalTrafficPolicy`    | Deployment service external traffic policy                                | `Cluster`   |
+| `service.annotations`              | Additional custom annotations for Deployment service                      | `{}`        |
+| `service.ports`                    | Additional port definitions for the service                               | `[]`        |
 
 
 ### Ingress parameters

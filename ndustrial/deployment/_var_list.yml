@@ -183,6 +183,10 @@
   group: Deployment
   default: {}
   type: 
+- variable: service.enabled
+  group: Service
+  default: true
+  type: boolean
 - variable: service.type
   group: Service
   default: ClusterIP
