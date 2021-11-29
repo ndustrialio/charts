@@ -129,7 +129,10 @@ updateStrategy:
 ## @section Service parameters
 
 service:
-  ## @param service.type Deployment service type
+  ## @param service.enabled Enable service
+  ##
+  enabled: true
+  ## @param service.type The type of service to create (LoadBalancer, ClusterIP, NodePort, etc...)
   ##
   type: ClusterIP
   ## @param service.port Deployment service HTTP port
