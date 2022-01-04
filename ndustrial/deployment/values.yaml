@@ -372,6 +372,13 @@ shareProcessNamespace: false
 ##
 extraEnvVars: []
 
+## @param extraEnvVarsMap Add extra environment variables to the Deployment container
+## E.g:
+## extraEnvVarsMap:
+##   FOO: "bar"
+##
+extraEnvVarsMap: {}
+
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
 extraEnvVarsCM:
