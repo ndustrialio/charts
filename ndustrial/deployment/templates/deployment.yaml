@@ -97,7 +97,7 @@ spec:
             {{- if .Values.extraEnvVarsMap }}
             {{- range $key, $val := .Values.extraEnvVarsMap }}
             - name: {{ $key }}
-              value: {{ include "nio-common.tplvalues.render" (dict "value" $key "context" $) | quote }}
+              value: {{ include "nio-common.tplvalues.render" (dict "value" $val "context" $) | quote }}
             {{- end }}
             {{- end }}
             - name: POD_NAMESPACE
