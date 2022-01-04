@@ -19,9 +19,6 @@ spec:
   {{- end }}
   serviceName: {{ template "nio-common.names.fullname" . }}
   replicas: {{ .Values.replicaCount | default 1 }}
-  selector:
-    matchLabels:
-      {{- include "nio-common.labels.matchLabels" . | nindent 6 }}
   {{- if .Values.persistentVolume.enabled }}
   volumeClaimTemplates:
     - metadata:
