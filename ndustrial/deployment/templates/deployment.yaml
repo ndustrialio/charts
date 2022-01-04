@@ -97,6 +97,12 @@ spec:
             {{- if .Values.extraEnvVars }}
             {{- include "nio-common.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 12 }}
             {{- end }}
+            {{- if .Values.extraEnvVarsMap }}
+            {{- range $key, $val := .Values.extraEnvVarsMap }}
+            - name: {{ $key }}
+              value: {{ include "nio-common.tplvalues.render" (dict "value" $key "context" $) | quote }}
+            {{- end }}
+            {{- end }}
             - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
