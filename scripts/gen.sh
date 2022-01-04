@@ -14,7 +14,7 @@ to_chart_dir() {
 }
 
 install_md_gen() {
-  npm install -g git+https://github.com/bitnami-labs/readme-generator-for-helm #--include=dev
+  npm install -g git+https://github.com/bitnami-labs/readme-generator-for-helm
 }
 
 gen_readme() {
