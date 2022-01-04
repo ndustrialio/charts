@@ -20,9 +20,6 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
-  selector:
-    matchLabels:
-      {{- include "nio-common.labels.matchLabels" . | nindent 6 }}
   template:
     metadata:
       labels: {{- include "nio-common.labels.standard" . | nindent 8 }}
