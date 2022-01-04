@@ -66,13 +66,13 @@
 
 ### persistentVolume parameters
 
-| Name                            | Description                          | Value         |
-| ------------------------------- | ------------------------------------ | ------------- |
-| `persistentVolume.enabled`      | Enable persistentVolume              | `true`        |
-| `persistentVolume.accessModes`  | Storage size of the persistentVolume | `[]`          |
-| `persistentVolume.storageClass` | StorageClass of the persistentVolume | `""`          |
-| `persistentVolume.size`         | Storage size of the persistentVolume | `400M`        |
-| `persistentVolume.mountPath`    | Mount path of the persistentVolume   | `/tmp/volume` |
+| Name                            | Description                          | Value               |
+| ------------------------------- | ------------------------------------ | ------------------- |
+| `persistentVolume.enabled`      | Enable persistentVolume              | `true`              |
+| `persistentVolume.accessModes`  | Storage size of the persistentVolume | `["ReadWriteOnce"]` |
+| `persistentVolume.storageClass` | StorageClass of the persistentVolume | `""`                |
+| `persistentVolume.size`         | Storage size of the persistentVolume | `400M`              |
+| `persistentVolume.mountPath`    | Mount path of the persistentVolume   | `/tmp/volume`       |
 
 
 ### Service parameters
@@ -101,7 +101,7 @@
 | `ingress.pathType`    | Ingress path type                                                                                     | `ImplementationSpecific` |
 | `ingress.apiVersion`  | Force Ingress API version (automatically detected if not set)                                         | `nil`                    |
 | `ingress.hostname`    | Default host for the ingress record                                                                   | `chart-example.local`    |
-| `ingress.path`        | Default path for the ingress record                                                                   | `ImplementationSpecific` |
+| `ingress.path`        | Default path for the ingress record                                                                   | `/`                      |
 | `ingress.annotations` | Additional custom annotations for the ingress record                                                  | `{}`                     |
 | `ingress.tls`         | Enable TLS configuration for the host defined at `ingress.hostname` parameter                         | `false`                  |
 | `ingress.certManager` | Add the corresponding annotations for cert-manager integration                                        | `false`                  |

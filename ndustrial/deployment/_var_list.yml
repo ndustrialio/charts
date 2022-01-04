@@ -363,6 +363,10 @@
   group: Pod
   default: []
   type: 
+- variable: extraEnvVarsMap
+  group: Pod
+  default: {}
+  type: 
 - variable: extraEnvVarsCM
   group: Pod
   default: 
