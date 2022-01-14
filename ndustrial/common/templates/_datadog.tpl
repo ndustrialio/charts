@@ -22,19 +22,27 @@ Datadog env variables
     fieldRef:
       fieldPath: status.hostIP
 {{- end }}
+- name: DD_SERVICE
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.labels['tags.datadoghq.com/service']
 {{- if .value.apm.env }}
 - name: DD_ENV
   value: {{ .value.apm.env }}
 {{- else }}
 - name: DD_ENV
-  value: {{ .context.Values.ndustrial.env | toString | quote }}
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.labels['tags.datadoghq.com/env']
 {{- end }}
 {{- if .value.apm.version }}
 - name: DD_VERSION
   value: {{ .value.apm.version }}
 {{- else }}
 - name: DD_VERSION
-  value: {{ .context.Values.ndustrial.version | toString | quote }}
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.labels['tags.datadoghq.com/version']
 {{- end }}
 - name: DD_PROFILING_ENABLED
   value: {{ .value.apm.profiling_enabled | toString | quote }}

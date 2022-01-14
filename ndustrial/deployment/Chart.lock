@@ -2,5 +2,5 @@ dependencies:
 - name: common
   repository: https://ndustrialio.github.io/charts
   version: 0.2.4
-digest: sha256:328052f8c762990450170dc6dc9f05f2431b73b40f7521d75c6331fd8d54f257
-generated: "2021-09-30T16:32:55.2450708Z"
+digest: sha256:a2371b9823edc626e8291493884cc57022fc348ed0e117a201b33127b6e53592
+generated: "2022-01-14T11:43:53.528437-05:00"
