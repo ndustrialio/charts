@@ -13,7 +13,6 @@ metadata:
 spec:
   selector:
     matchLabels: {{- include "nio-common.labels.matchLabels" . | nindent 6 }}
-      ndustrial.io/component: deployment
   {{- if .Values.updateStrategy }}
   strategy: {{- toYaml .Values.updateStrategy | nindent 4 }}
   {{- end }}
