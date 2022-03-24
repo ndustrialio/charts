@@ -16,6 +16,39 @@ Return the target Kubernetes version
 {{- end -}}
 
 {{/*
+Return the appropriate apiVersion for poddisruptionbudget.
+*/}}
+{{- define "nio-common.capabilities.policy.apiVersion" -}}
+{{- if semverCompare "<1.21-0" (include "nio-common.capabilities.kubeVersion" .) -}}
+{{- print "policy/v1beta1" -}}
+{{- else -}}
+{{- print "policy/v1" -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return the appropriate apiVersion for networkpolicy.
+*/}}
+{{- define "nio-common.capabilities.networkPolicy.apiVersion" -}}
+{{- if semverCompare "<1.7-0" (include "nio-common.capabilities.kubeVersion" .) -}}
+{{- print "extensions/v1beta1" -}}
+{{- else -}}
+{{- print "networking.k8s.io/v1" -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return the appropriate apiVersion for cronjob.
+*/}}
+{{- define "nio-common.capabilities.cronjob.apiVersion" -}}
+{{- if semverCompare "<1.21-0" (include "nio-common.capabilities.kubeVersion" .) -}}
+{{- print "batch/v1beta1" -}}
+{{- else -}}
+{{- print "batch/v1" -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Return the appropriate apiVersion for deployment.
 */}}
 {{- define "nio-common.capabilities.deployment.apiVersion" -}}
@@ -91,16 +124,5 @@ This check is introduced as a regexMatch instead of {{ if .Capabilities.HelmVers
 {{- define "nio-common.capabilities.supportsHelmVersion" -}}
 {{- if regexMatch "{(v[0-9])*[^}]*}}$" (.Capabilities | toString ) }}
   {{- true -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return the appropriate apiVersion for cronjob APIs.
-*/}}
-{{- define "nio-common.capabilities.cronjob.apiVersion" -}}
-{{- if semverCompare "< 1.8-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "batch/v2alpha1" }}
-{{- else if semverCompare ">=1.8-0" .Capabilities.KubeVersion.GitVersion -}}
-{{- print "batch/v1beta1" }}
 {{- end -}}
 {{- end -}}
