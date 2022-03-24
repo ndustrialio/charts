@@ -27,19 +27,19 @@ ndustrial:
   ## @param ndustrial.name The name of the application/service. (Required)
   # Should match gitrepository name (if able)
   name:
-  
+
   ## @param ndustrial.organization The slug of the Organization that owns the application (Required)
   organization:
-  
+
   ## @param ndustrial.owner The person/team that owns this service. (Required)
   owner:
-  
+
   ## @param ndustrial.managed_by The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
   managed_by:
-  
+
   ## @param ndustrial.env The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)
   env:
-  
+
   ## @param ndustrial.version The app version being deployed (Required)
   version:
 
@@ -51,7 +51,7 @@ ndustrial:
 
   ## @param ndustrial.project Unique project id that this repository belongs too (Required)
   project:
- 
+
   ## @param ndustrial.depends[0].project The name of the project that this service depends on
   ## @param ndustrial.depends[0].name The name of the project service
   depends:
