@@ -10,33 +10,44 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 # Ndustrial labels
 */}}
-ndustrial.io/app: {{ .Values.ndustrial.name }}
-backstage.io/kubernetes-id: {{ .Values.ndustrial.name }}
-ndustrial.io/organization.slug: {{ .Values.ndustrial.organization }}
-ndustrial.io/owner: {{ .Values.ndustrial.owner }}
-ndustrial.io/project.slug: {{ .Values.ndustrial.project }}
-ndustrial.io/project.type: {{ .Values.ndustrial.type }}
-ndustrial.io/version: {{ .Values.ndustrial.version }}
-{{- if .Values.ndustrial.managed_by }}
-ndustrial.io/managed-by: {{ .Values.ndustrial.managed_by }}
+{{- if .Values.ndustrial -}}
+{{- with .Values.ndustrial -}}
+ndustrial.io/app: {{ .name }}
+backstage.io/kubernetes-id: {{ .name }}
+ndustrial.io/organization.slug: {{ .organization }}
+ndustrial.io/owner: {{ .owner }}
+ndustrial.io/project.slug: {{ .project }}
+ndustrial.io/project.type: {{ .type }}
+ndustrial.io/version: {{ .version }}
+{{- if .managed_by }}
+ndustrial.io/managed-by: {{ .managed_by }}
 {{- end }}
-{{- if .Values.ndustrial.env }}
-ndustrial.io/env: {{ .Values.ndustrial.env }}
+{{- if .env }}
+ndustrial.io/env: {{ .env }}
 {{- end }}
-{{- if .Values.ndustrial.repo }}
-ndustrial.io/repo: {{ .Values.ndustrial.repo }}
+{{- if .repo }}
+ndustrial.io/repo: {{ .repo }}
 {{- end }}
 {{/*
 # Datadog labels
 */}}
-tags.datadoghq.com/env: {{ .Values.ndustrial.env }}
-tags.datadoghq.com/version: {{ .Values.ndustrial.version }}
-tags.datadoghq.com/service: {{ .Values.ndustrial.name }}
-{{- if .Values.contxt.projectId }}
-contxt/project.id: {{ .Values.contxt.projectId | quote }}
-contxt/service.id: {{ .Values.contxt.serviceId | quote }}
-contxt/service.type: {{ .Values.contxt.serviceType }}
-{{- end }}
+tags.datadoghq.com/env: {{ .env }}
+tags.datadoghq.com/version: {{ .version }}
+tags.datadoghq.com/service: {{ .name }}
+{{- end -}}
+{{- end -}}
+{{- if .Values.contxt -}}
+{{/*
+# Contxt labels
+*/}}
+{{- with .Values.contxt -}}
+{{- if .projectId -}}
+contxt/project.id: {{ .projectId | quote }}
+contxt/service.id: {{ .serviceId | quote }}
+contxt/service.type: {{ .serviceType }}
+{{- end -}}
+{{- end -}}
+{{- end -}}
 {{- end -}}
 
 {{/*
