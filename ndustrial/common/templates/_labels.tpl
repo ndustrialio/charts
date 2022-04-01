@@ -21,13 +21,13 @@ ndustrial.io/project.type: {{ .type }}
 ndustrial.io/version: {{ .version }}
 {{- if .managed_by }}
 ndustrial.io/managed-by: {{ .managed_by }}
-{{- end }}
+{{- end -}}
 {{- if .env }}
 ndustrial.io/env: {{ .env }}
-{{- end }}
+{{- end -}}
 {{- if .repo }}
 ndustrial.io/repo: {{ .repo }}
-{{- end }}
+{{- end -}}
 {{/*
 # Datadog labels
 */}}
@@ -36,12 +36,12 @@ tags.datadoghq.com/version: {{ .version }}
 tags.datadoghq.com/service: {{ .name }}
 {{- end -}}
 {{- end -}}
-{{- if .Values.contxt -}}
 {{/*
 # Contxt labels
 */}}
+{{- if .Values.contxt -}}
 {{- with .Values.contxt -}}
-{{- if .projectId -}}
+{{- if .projectId }}
 contxt/project.id: {{ .projectId | quote }}
 contxt/service.id: {{ .serviceId | quote }}
 contxt/service.type: {{ .serviceType }}
