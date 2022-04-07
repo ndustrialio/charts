@@ -575,3 +575,19 @@
   group: Datadog integration
   default: {}
   type: 
+- variable: externalSecrets
+  group: External secrets
+  default: &2 []
+  type: 
+- variable: externalSecrets.0.path
+  group: External secrets
+  default: *2
+  type: 
+- variable: externalSecrets.0.secret
+  group: External secrets
+  default: *2
+  type: 
+- variable: externalSecrets.0.provider
+  group: External secrets
+  default: *2
+  type: 
