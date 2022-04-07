@@ -576,18 +576,18 @@
   default: {}
   type: 
 - variable: externalSecrets
-  group: Datadog integration
+  group: External secrets
   default: &2 []
   type: 
 - variable: externalSecrets.0.path
-  group: Datadog integration
+  group: External secrets
   default: *2
   type: 
 - variable: externalSecrets.0.secret
-  group: Datadog integration
+  group: External secrets
   default: *2
   type: 
 - variable: externalSecrets.0.provider
-  group: Datadog integration
+  group: External secrets
   default: *2
   type: 

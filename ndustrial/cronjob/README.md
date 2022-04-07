@@ -105,18 +105,24 @@
 
 ### Pod Affinity parameters
 
-| Name                         | Description                                                                               | Value  |
-| ---------------------------- | ----------------------------------------------------------------------------------------- | ------ |
-| `podAffinityPreset`          | Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`       | `""`   |
-| `podAntiAffinityPreset`      | Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`  | `soft` |
-| `nodeAffinityPreset.type`    | Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard` | `""`   |
-| `nodeAffinityPreset.key`     | Node label key to match. Ignored if `affinity` is set                                     | `""`   |
-| `nodeAffinityPreset.values`  | Node label values to match. Ignored if `affinity` is set                                  | `[]`   |
-| `affinity`                   | Affinity for Cert Manager CronJob                                                         | `{}`   |
-| `nodeSelector`               | Node labels for pod assignment                                                            | `{}`   |
-| `externalSecrets`            | Secrets resolved from an external source                                                  | `[]`   |
-| `externalSecrets.0.path`     | Path of the external secret                                                               | `""`   |
-| `externalSecrets.0.secret`   | Optionally specify the name of the generated secret. Default value derived from path      | `""`   |
-| `externalSecrets.0.provider` | Optionally specify the name of the secret store provider. Defaults to "vault-backend"     | `""`   |
+| Name                        | Description                                                                               | Value  |
+| --------------------------- | ----------------------------------------------------------------------------------------- | ------ |
+| `podAffinityPreset`         | Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`       | `""`   |
+| `podAntiAffinityPreset`     | Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`  | `soft` |
+| `nodeAffinityPreset.type`   | Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard` | `""`   |
+| `nodeAffinityPreset.key`    | Node label key to match. Ignored if `affinity` is set                                     | `""`   |
+| `nodeAffinityPreset.values` | Node label values to match. Ignored if `affinity` is set                                  | `[]`   |
+| `affinity`                  | Affinity for Cert Manager CronJob                                                         | `{}`   |
+| `nodeSelector`              | Node labels for pod assignment                                                            | `{}`   |
+
+
+### External secrets
+
+| Name                         | Description                                                                           | Value |
+| ---------------------------- | ------------------------------------------------------------------------------------- | ----- |
+| `externalSecrets`            | Secrets resolved from an external source                                              | `[]`  |
+| `externalSecrets.0.path`     | Path of the external secret                                                           | `""`  |
+| `externalSecrets.0.secret`   | Optionally specify the name of the generated secret. Default value derived from path  | `""`  |
+| `externalSecrets.0.provider` | Optionally specify the name of the secret store provider. Defaults to "vault-backend" | `""`  |
 
 

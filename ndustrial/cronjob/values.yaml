@@ -310,6 +310,8 @@ affinity: {}
 ##
 nodeSelector: {}
 
+## @section External secrets
+
 ## @param externalSecrets [array] Secrets resolved from an external source
 ## @param externalSecrets.0.path [string] Path of the external secret
 ## @param externalSecrets.0.secret [string] Optionally specify the name of the generated secret. Default value derived from path
