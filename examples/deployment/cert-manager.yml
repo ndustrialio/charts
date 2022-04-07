@@ -33,3 +33,9 @@ image:
 datadog:
   openmetrics:
     enabled: false
+
+externalSecrets:
+  - path: staging/files-api
+    secret: my-custom-secret-name
+    provider: fake-backend
+  - path: staging/iot-api

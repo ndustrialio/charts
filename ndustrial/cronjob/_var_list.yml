@@ -295,3 +295,19 @@
   group: Pod Affinity
   default: {}
   type: 
+- variable: externalSecrets
+  group: Pod Affinity
+  default: &2 []
+  type: 
+- variable: externalSecrets.0.path
+  group: Pod Affinity
+  default: *2
+  type: 
+- variable: externalSecrets.0.secret
+  group: Pod Affinity
+  default: *2
+  type: 
+- variable: externalSecrets.0.provider
+  group: Pod Affinity
+  default: *2
+  type: 

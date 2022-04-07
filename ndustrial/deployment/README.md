@@ -212,5 +212,9 @@
 | `datadog.openmetrics.endpoint`       | The endpoint to scrape metrics from                                                                                                                                                                                 | `/metrics` |
 | `datadog.openmetrics.metrics`        | List of metrics to collect                                                                                                                                                                                          | `[]`       |
 | `datadog.openmetrics.type_overrides` | Override the collected metrics types                                                                                                                                                                                | `{}`       |
+| `externalSecrets`                    | Secrets resolved from an external source                                                                                                                                                                            | `[]`       |
+| `externalSecrets.0.path`             | Path of the external secret                                                                                                                                                                                         | `""`       |
+| `externalSecrets.0.secret`           | Optionally specify the name of the generated secret. Default value derived from path                                                                                                                                | `""`       |
+| `externalSecrets.0.provider`         | Optionally specify the name of the secret store provider. Defaults to "vault-backend"                                                                                                                               | `""`       |
 
 
