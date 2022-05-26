@@ -316,4 +316,5 @@ nodeSelector: {}
 ## @param externalSecrets.0.path [string] Path of the external secret
 ## @param externalSecrets.0.secret [string] Optionally specify the name of the generated secret. Default value derived from path
 ## @param externalSecrets.0.provider [string] Optionally specify the name of the secret store provider. Defaults to "vault-backend"
+## @param externalSecrets.0.storeKind [string] Optionally specify the kind of secret store. Defaults to "ClusterSecretStore"
 externalSecrets: []
