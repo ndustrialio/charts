@@ -38,4 +38,5 @@ externalSecrets:
   - path: staging/files-api
     secret: my-custom-secret-name
     provider: fake-backend
+    storeKind: SecretStore
   - path: staging/iot-api
