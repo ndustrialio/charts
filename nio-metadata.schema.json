@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/NdustrialMetadata",
+  "definitions": {
+    "NdustrialMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "apiVersion": {
+          "type": "string",
+          "validate": "^v1$"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "NdustrialMetadata"
+          ]
+        },
+        "ndustrial": {
+          "$ref": "#/definitions/Ndustrial"
+        },
+        "contxt": {
+          "$ref": "#/definitions/Contxt"
+        }
+      },
+      "required": [
+        "apiVersion",
+        "kind",
+        "ndustrial"
+      ],
+      "title": "NdustrialMetadata"
+    },
+    "Contxt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "format": "integer"
+        },
+        "serviceId": {
+          "type": "string",
+          "format": "integer"
+        },
+        "serviceType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "projectId",
+        "serviceId",
+        "serviceType"
+      ],
+      "title": "Contxt"
+    },
+    "Ndustrial": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "managed_by": {
+          "type": "string"
+        },
+        "depends": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Depend"
+          }
+        }
+      },
+      "required": [
+        "depends",
+        "managed_by",
+        "name",
+        "organization",
+        "owner",
+        "project",
+        "type"
+      ],
+      "title": "Ndustrial"
+    },
+    "Depend": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/InternalDepend"
+        },
+        {
+          "$ref": "#/definitions/ExternalDepend"
+        }
+      ]
+    },
+    "InternalDepend": {
+      "title": "Internal Dependency",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "project"
+      ],
+      "examples": [
+        {
+          "project": "ndustrial-devops",
+          "name": "keycloak"
+        },
+        {
+          "project": "ndustrial-devops",
+          "name": "vault"
+        },
+        {
+          "project": "ndustrial-devops",
+          "name": "rancher"
+        },
+        {
+          "project": "ndustrial-devops",
+          "name": "istio"
+        },
+        {
+          "project": "ndustrial-devops",
+          "name": "datadog"
+        }
+      ]
+    },
+    "ExternalDepend": {
+      "title": "External Dependency",
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "external": {
+          "type": "string",
+          "description": "The external dependency",
+          "examples": [
+            "aws",
+            "gcp",
+            "timescale"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The identifier of the dependency in the external system"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the dependency",
+          "examples": [
+            "api",
+            "rds",
+            "s3"
+          ]
+        },
+      },
+      "required": [
+        "external",
+        "type"
+      ],
+      "examples": [
+        {
+          "external": "aws",
+          "type": "s3",
+          "name": "<bucket name>"
+        },
+        {
+          "external": "aws",
+          "type": "rds",
+          "name": "<database name>"
+        },
+        {
+          "external": "timescale",
+          "type": "database",
+          "name": "<database name>"
+        },
+        {
+          "external": "weather.com",
+          "type": "api"
+        }
+      ]
+    }
+  }
+}
