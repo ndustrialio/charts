@@ -1,3 +1,4 @@
 .ci
 **/charts/*.tgz
 tmp
+Chart.lock
