@@ -44,7 +44,9 @@ tags.datadoghq.com/service: {{ .name }}
 {{- if .projectId }}
 contxt/project.id: {{ .projectId | quote }}
 contxt/service.id: {{ .serviceId | quote }}
+{{- if .serviceType -}}
 contxt/service.type: {{ .serviceType }}
+{{- end -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
