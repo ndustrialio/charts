@@ -651,6 +651,27 @@ entries:
     version: 0.1.0
   cronjob:
   - apiVersion: v2
+    appVersion: 0.1.19
+    created: "2022-08-10T16:05:23.065106764Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.13
+    description: A Helm chart for deploying k8s cronjobs
+    digest: a4271409cf0991e2b21c31d2b676f3398131ad14e7f64eed285af9b9334a3998
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: cronjob
+    sources:
+    - https://github.com/ndustrialio/charts/tree/main/ndustrial/cronjob
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/cronjob-0.1.19/cronjob-0.1.19.tgz
+    version: 0.1.19
+  - apiVersion: v2
     appVersion: 0.1.18
     created: "2022-05-26T16:07:14.201562545Z"
     dependencies:
@@ -1633,6 +1654,25 @@ entries:
     version: 0.1.0
   statefulset:
   - apiVersion: v2
+    appVersion: 0.1.29
+    created: "2022-08-10T16:05:23.329871838Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.13
+    description: A Helm chart for deploying sateful sets
+    digest: 0d3e4284edc08bdacb48d448002f9ad8b6e173bc7cad266ec30f27182aac23d7
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: statefulset
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.29/statefulset-0.1.29.tgz
+    version: 0.1.29
+  - apiVersion: v2
     appVersion: 0.1.28
     created: "2022-05-26T16:07:14.585688131Z"
     dependencies:
@@ -2145,4 +2185,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2022-08-10T15:54:12.180243996Z"
+generated: "2022-08-10T16:05:23.330505947Z"
