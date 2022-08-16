@@ -10,7 +10,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 # Ndustrial labels
 */}}
-{{- if .Values.ndustrial -}}
+{{- if hasKey .Values "ndustrial" -}}
 {{- with .Values.ndustrial -}}
 ndustrial.io/app: {{ .name }}
 backstage.io/kubernetes-id: {{ .name }}
@@ -19,13 +19,13 @@ ndustrial.io/owner: {{ .owner }}
 ndustrial.io/project.slug: {{ .project }}
 ndustrial.io/project.type: {{ .type }}
 ndustrial.io/version: {{ .version }}
-{{- if .managed_by }}
+{{- if hasKey . "managed_by" }}
 ndustrial.io/managed-by: {{ .managed_by }}
 {{- end -}}
-{{- if .env }}
+{{- if hasKey . "env" }}
 ndustrial.io/env: {{ .env }}
 {{- end -}}
-{{- if .repo }}
+{{- if hasKey . "repo" }}
 ndustrial.io/repo: {{ .repo }}
 {{- end -}}
 {{/*
@@ -39,12 +39,12 @@ tags.datadoghq.com/service: {{ .name }}
 {{/*
 # Contxt labels
 */}}
-{{- if .Values.contxt -}}
+{{- if hasKey .Values "contxt" -}}
 {{- with .Values.contxt -}}
-{{- if .projectId }}
+{{- if hasKey . "projectId" }}
 contxt/project.id: {{ .projectId | quote }}
 contxt/service.id: {{ .serviceId | quote }}
-{{- if .serviceType -}}
+{{- if hasKey . "serviceType" -}}
 contxt/service.type: {{ .serviceType }}
 {{- end -}}
 {{- end -}}
