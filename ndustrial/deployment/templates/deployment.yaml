@@ -23,8 +23,8 @@ spec:
     metadata:
       labels: {{- include "nio-common.labels.standard" . | nindent 8 }}
         ndustrial.io/component: deployment
-        {{- if .Values.commonLabels }}
-        {{- include "nio-common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 8 }}
+        {{- if .Values.labels }}
+        {{- include "nio-common.tplvalues.render" ( dict "value" .Values.labels "context" $ ) | nindent 8 }}
         {{- end }}
         {{- if .Values.podLabels }}
         {{- include "nio-common.tplvalues.render" (dict "value" .Values.podLabels "context" $) | nindent 8 }}
