@@ -10,10 +10,12 @@ metadata:
     {{- end }}
   {{- if or .Values.annotations .Values.service.annotations }}
   annotations:
-  {{- with .Values.annotations }}
-  {{- toYaml . | nindent 4 }}
+  {{- if .Values.annotations }}
+  {{- include "nio-common.tplvalues.render" ( dict "value" .Values.annotations "context" $ ) | nindent 4 }}
   {{- end }}
+  {{- if .Values.service.annotations }}
   {{- include "nio-common.tplvalues.render" ( dict "value" .Values.service.annotations "context" $ ) | nindent 4 }}
+  {{- end }}
   {{- end }}
 spec:
   type: {{ .Values.service.type }}
