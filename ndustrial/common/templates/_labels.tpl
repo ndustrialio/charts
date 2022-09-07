@@ -18,16 +18,14 @@ ndustrial.io/organization.slug: {{ .organization }}
 ndustrial.io/owner: {{ .owner }}
 ndustrial.io/project.slug: {{ .project }}
 ndustrial.io/project.type: {{ .type }}
-ndustrial.io/version: {{ .version }}
+ndustrial.io/version: {{ default .version $.Values.image.tag }}
 {{- if hasKey . "managed_by" }}
 ndustrial.io/managed-by: {{ .managed_by }}
 {{- end }}
 {{- if hasKey . "env" }}
 ndustrial.io/env: {{ .env }}
 {{- end }}
-{{- if hasKey . "repo" }}
-ndustrial.io/repo: {{ .repo }}
-{{- end }}
+ndustrial.io/repo: {{ default .repo .name }}
 {{/*
 # Datadog labels
 */}}
