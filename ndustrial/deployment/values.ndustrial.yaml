@@ -14,6 +14,7 @@ ingress:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443, "HTTP":80}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:963168760551:certificate/c802686e-de84-4c00-bb14-7dc3d2769e06
 
 image:
   registry: quay.io
