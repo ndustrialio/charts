@@ -4,6 +4,33 @@ entries:
   - annotations:
       category: Infrastructure
     apiVersion: v2
+    appVersion: 0.2.17
+    created: "2022-09-08T15:23:19.002728142Z"
+    description: A Library Helm Chart for grouping common logic between ndustrial
+      charts. This chart is not deployable by itself.
+    digest: b1c80cc081aa59d3c576cf0e78590dd90feb29a6d6e30d540115f8f4f5273c93
+    home: https://github.com/ndustrialio/charts/tree/stateful/ndustrial/common
+    icon: https://bitnami.com/downloads/logos/bitnami-mark.png
+    keywords:
+    - common
+    - helper
+    - template
+    - function
+    - ndustrial
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: common
+    sources:
+    - https://github.com/ndustrialio/charts
+    - https://ndustrial.io/
+    type: library
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/common-0.2.17/common-0.2.17.tgz
+    version: 0.2.17
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
     appVersion: 0.2.16
     created: "2022-09-08T14:03:27.573497372Z"
     description: A Library Helm Chart for grouping common logic between ndustrial
@@ -1174,6 +1201,25 @@ entries:
     version: 0.1.0
   deployment:
   - apiVersion: v2
+    appVersion: 0.1.37
+    created: "2022-09-08T15:23:19.1859647Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.15
+    description: A Helm chart for deploying k8s deployment
+    digest: 011a74121648b1212941f7447c49438594cf735d37e859398acb5e3b807e4d9c
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: deployment
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/deployment-0.1.37/deployment-0.1.37.tgz
+    version: 0.1.37
+  - apiVersion: v2
     appVersion: 0.1.36
     created: "2022-09-08T14:56:39.85070193Z"
     dependencies:
@@ -1838,6 +1884,26 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/deployment-0.1.0/deployment-0.1.0.tgz
     version: 0.1.0
+  nio-api:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-09-08T15:23:19.366647946Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.15
+    description: A Helm chart for deploying k8s deployment
+    digest: 1b39d0cb94021c48646aa0b6b122edae78f745c6a053e412f2f0b1da588afbc1
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: nio-api
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/nio-api-1.0.0/nio-api-1.0.0.tgz
+    version: 1.0.0
   node-api:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -2420,4 +2486,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2022-09-08T14:56:39.851594641Z"
+generated: "2022-09-08T15:23:19.367384049Z"
