@@ -4,6 +4,7 @@
 exampleValue: common-chart
 
 ## @section Ndustrial metadata fields (Optional)
+## @param ndustrial
 ## @param ndustrial.project Unique project id that this repository belongs too (Required) aka. Project slug
 ## @param ndustrial.name The name of the application/service. (Required)
 # Should match git repository name (if able)
@@ -17,6 +18,8 @@ exampleValue: common-chart
 ## @param ndustrial.depends [array] List of projects/services this serivce depends on
 ## @param ndustrial.depends.0.project [string] The name of the project that this service depends on
 ## @param ndustrial.depends.0.name [string] The name of the project service
+
+## @param contxt
 ## @param contxt.projectId The ID of the Contxt Stack that this object belongs to (if applicable)
 ## @param contxt.serviceId The ID of the Contxt Service that this object belongs to (if applicable)
 ## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)
