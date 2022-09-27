@@ -37,25 +37,27 @@ This chart provides a common template helpers which can be used to develop new c
 
 ## Parameters
 
-### Ndustrial metadata fields
+### Ndustrial metadata fields (Optional)
 
 | Name                          | Description                                                                                                   | Value |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------- | ----- |
-| `ndustrial.project`           | Unique project id that this repository belongs too (Required) aka. Project slug                               | `nil` |
-| `ndustrial.name`              | The name of the application/service. (Required)                                                               | `nil` |
-| `ndustrial.type`              | The service type of this deployment (api, database, backend, frontend, etl, etc...) (Required)                | `nil` |
-| `ndustrial.organization`      | The slug of the Organization that owns the application (Required)                                             | `nil` |
-| `ndustrial.owner`             | The person/team that owns this service. (Required)                                                            | `nil` |
-| `ndustrial.managed_by`        | The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required) | `nil` |
-| `ndustrial.env`               | The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)       | `nil` |
-| `ndustrial.version`           | The app version being deployed (Required)                                                                     | `nil` |
-| `ndustrial.repo`              | The github repository where the code exists (populated by CI/CD)                                              | `nil` |
+| `ndustrial`                   |                                                                                                               | `{}`  |
+| `ndustrial.project`           | Unique project id that this repository belongs too (Required) aka. Project slug                               | `""`  |
+| `ndustrial.name`              | The name of the application/service. (Required)                                                               | `""`  |
+| `ndustrial.type`              | The service type of this deployment (api, database, backend, frontend, etl, etc...) (Required)                | `""`  |
+| `ndustrial.organization`      | The slug of the Organization that owns the application (Required)                                             | `""`  |
+| `ndustrial.owner`             | The person/team that owns this service. (Required)                                                            | `""`  |
+| `ndustrial.managed_by`        | The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required) | `""`  |
+| `ndustrial.env`               | The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)       | `""`  |
+| `ndustrial.version`           | The app version being deployed (Required)                                                                     | `""`  |
+| `ndustrial.repo`              | The github repository where the code exists (populated by CI/CD)                                              | `""`  |
 | `ndustrial.depends`           | List of projects/services this serivce depends on                                                             | `[]`  |
 | `ndustrial.depends.0.project` | The name of the project that this service depends on                                                          | `""`  |
 | `ndustrial.depends.0.name`    | The name of the project service                                                                               | `""`  |
-| `contxt.projectId`            | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `nil` |
-| `contxt.serviceId`            | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `nil` |
-| `contxt.serviceType`          | The type of the Contxt Service that this object belongs to (if applicable)                                    | `nil` |
+| `contxt`                      |                                                                                                               | `{}`  |
+| `contxt.projectId`            | The ID of the Contxt Stack that this object belongs to (if applicable)                                        | `""`  |
+| `contxt.serviceId`            | The ID of the Contxt Service that this object belongs to (if applicable)                                      | `""`  |
+| `contxt.serviceType`          | The type of the Contxt Service that this object belongs to (if applicable)                                    | `""`  |
 
 
 ### Datadog integration parameters
