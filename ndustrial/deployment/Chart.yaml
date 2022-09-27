@@ -6,12 +6,12 @@ dependencies:
   - name: common
     # repository: file://../common
     repository: https://ndustrialio.github.io/charts
-    version: ~0.2.15
+    version: ~0.2.18
     tags:
       - ndustrial-common
 maintainers:
   - email: devops@ndustrial.io
     name: DevOps
 # Please make sure that version and appVersion are always the same.
-version: 0.1.37
-appVersion: 0.1.37
+version: 0.1.38
+appVersion: 0.1.38

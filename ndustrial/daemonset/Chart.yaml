@@ -6,7 +6,7 @@ dependencies:
   - name: common
     # repository: file://../common
     repository: https://ndustrialio.github.io/charts
-    version: ~0.2.15
+    version: ~0.2.18
     tags:
       - ndustrial-common
 maintainers:
