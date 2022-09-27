@@ -10,7 +10,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 # Ndustrial labels
 */}}
-{{- if and (hasKey .Values "ndustrial") (not empty .Values.ndustrial) -}}
+{{- if and (hasKey .Values "ndustrial") (not (empty .Values.ndustrial)) -}}
 {{- with .Values.ndustrial -}}
 {{- if hasKey . "name" }}
 ndustrial.io/app: {{ .name }}
@@ -51,7 +51,7 @@ tags.datadoghq.com/service: {{ .name }}
 {{- end -}}
 {{- end -}}
 
-{{- if and (hasKey .Values "contxt") (not empty .Values.contxt) -}}
+{{- if and (hasKey .Values "contxt") (not (empty .Values.contxt)) -}}
 {{- with .Values.contxt -}}
 {{- if and (hasKey . "projectId") (hasKey . "serviceId") }}
 contxt/project.id: {{ .projectId | quote }}
