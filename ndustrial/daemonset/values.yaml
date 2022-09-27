@@ -54,9 +54,6 @@ annotations: {}
 
 ## @section Deployment parameters
 
-## @param replicaCount Number of Controller replicas
-replicaCount: 1
-
 ## @param startupProbe.enabled Enable startupProbe
 ## @param startupProbe.path Path for startupProbe
 ## @param startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
@@ -106,12 +103,6 @@ readinessProbe:
   timeoutSeconds: 1
   successThreshold: 1
   failureThreshold: 3
-
-updateStrategy:
-  ## @param updateStrategy.type Deployment deployment update strategy
-  type: RollingUpdate
-  ## @param updateStrategy.rollingUpdate Deployment deployment rolling update configuration parameters
-  rollingUpdate: {}
 
 ## @section Service parameters
 
@@ -247,20 +238,6 @@ ingress:
   ##       -----END CERTIFICATE-----
   ##
   secrets: []
-
-## @section Autoscaling parameters
-
-autoscaling:
-  ## @param autoscaling.enabled
-  enabled: false
-  ## @param autoscaling.minReplicas
-  minReplicas: 1
-  ## @param autoscaling.maxReplicas
-  maxReplicas: 10
-  ## @param autoscaling.targetCPUUtilizationPercentage
-  targetCPUUtilizationPercentage: 80
-  ## @param autoscaling.targetMemoryUtilizationPercentage
-  targetMemoryUtilizationPercentage: 80
 
 ## @section Pod Image parameters
 

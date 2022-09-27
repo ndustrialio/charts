@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 WORKDIR=$(pwd)
 README_GEN_BIN=$(which readme-generator || true)
@@ -29,8 +29,8 @@ gen_questions() {
   local chart=$1
 
   echo "Generating questions for ${chart}"
-  docker run --rm -v "$(pwd)":/app crystallang/crystal:1.0.0 \
-    crystal /app/scripts/question_gen.cr -f /app/ndustrial/"${chart}"/values.yaml
+  docker run --rm -v "$(pwd)":/app crystallang/crystal:1.5.1 \
+    crystal /app/scripts/question_gen.cr -f /app/ndustrial/${chart}/values.yaml
 }
 
 if [ -z "${README_GEN_BIN}" ]; then
