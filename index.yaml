@@ -1917,6 +1917,25 @@ entries:
     version: 0.1.0
   statefulset:
   - apiVersion: v2
+    appVersion: 0.1.32
+    created: "2022-09-27T15:10:02.261302305Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.15
+    description: A Helm chart for deploying sateful sets
+    digest: 2886fc2badf97380ddca097308a83bba7be81cacc59f4b4e11a5b6fc02137416
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: statefulset
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.32/statefulset-0.1.32.tgz
+    version: 0.1.32
+  - apiVersion: v2
     appVersion: 0.1.31
     created: "2022-08-22T19:20:11.768134012Z"
     dependencies:
@@ -2486,4 +2505,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2022-09-08T15:23:19.367384049Z"
+generated: "2022-09-27T15:10:02.26195293Z"
