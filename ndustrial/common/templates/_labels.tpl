@@ -10,14 +10,24 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 # Ndustrial labels
 */}}
-{{- if hasKey .Values "ndustrial" -}}
+{{- if and (hasKey .Values "ndustrial") (not empty .Values.ndustrial) -}}
 {{- with .Values.ndustrial -}}
+{{- if hasKey . "name" }}
 ndustrial.io/app: {{ .name }}
 backstage.io/kubernetes-id: {{ .name }}
+{{- end }}
+{{- if hasKey . "organization" }}
 ndustrial.io/organization.slug: {{ .organization }}
+{{- end }}
+{{- if hasKey . "owner" }}
 ndustrial.io/owner: {{ .owner }}
+{{- end }}
+{{- if hasKey . "project" }}
 ndustrial.io/project.slug: {{ .project }}
+{{- end }}
+{{- if hasKey . "type" }}
 ndustrial.io/project.type: {{ .type }}
+{{- end }}
 ndustrial.io/version: {{ default .version $.Values.image.tag }}
 {{- if hasKey . "managed_by" }}
 ndustrial.io/managed-by: {{ .managed_by }}
@@ -29,13 +39,19 @@ ndustrial.io/repo: {{ default .repo .name }}
 {{/*
 # Datadog labels
 */}}
+{{- if hasKey . "env" }}
 tags.datadoghq.com/env: {{ .env }}
+{{- end }}
+{{- if hasKey . "version" }}
 tags.datadoghq.com/version: {{ .version }}
+{{- end }}
+{{- if hasKey . "name" }}
 tags.datadoghq.com/service: {{ .name }}
+{{- end }}
 {{- end -}}
 {{- end -}}
 
-{{- if hasKey .Values "contxt" -}}
+{{- if and (hasKey .Values "contxt") (not empty .Values.contxt) -}}
 {{- with .Values.contxt -}}
 {{- if and (hasKey . "projectId") (hasKey . "serviceId") }}
 contxt/project.id: {{ .projectId | quote }}
