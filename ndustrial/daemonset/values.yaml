@@ -1,0 +1,557 @@
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry and imagePullSecrets
+## @section Global parameters
+## @param global.imageRegistry Global Docker image registry
+## @param global.imagePullSecrets Global Docker registry secret names as an array
+## @param global.storageClass Global StorageClass for Persistent Volume(s)
+##
+global:
+  imageRegistry:
+  imagePullSecrets: []
+  storageClass:
+
+## @section Ndustrial metadata fields (Optional)
+## @param ndustrial.project Unique project id that this repository belongs too (Required) aka. Project slug
+## @param ndustrial.name The name of the application/service. (Required)
+# Should match git repository name (if able)
+## @param ndustrial.type The service type of this deployment (api, database, backend, frontend, etl, etc...) (Required)
+## @param ndustrial.organization The slug of the Organization that owns the application (Required)
+## @param ndustrial.owner The person/team that owns this service. (Required)
+## @param ndustrial.managed_by The service which manages the kubernetes object Should most likely be one of: helm, contxt, fleet. (Required)
+## @param ndustrial.env The environment being deployed into Should most likely be one of: dev, staging, prod, or qa. (Required)
+## @param ndustrial.version The app version being deployed (Required)
+## @param ndustrial.repo The github repository where the code exists (populated by CI/CD)
+## @param ndustrial.depends [array] List of projects/services this serivce depends on
+## @param ndustrial.depends.0.project [string] The name of the project that this service depends on
+## @param ndustrial.depends.0.name [string] The name of the project service
+## @param contxt.projectId The ID of the Contxt Stack that this object belongs to (if applicable)
+## @param contxt.serviceId The ID of the Contxt Service that this object belongs to (if applicable)
+## @param contxt.serviceType The type of the Contxt Service that this object belongs to (if applicable)
+
+## @section Common parameters
+
+## @param nameOverride String to partially override common.names.fullname
+##
+nameOverride:
+
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride:
+
+## @param labels  Labels to add to all deployed objects
+##
+labels: {}
+
+## @param annotations  Annotations to add to all deployed objects
+##
+annotations: {}
+
+## @section Deployment parameters
+
+## @param startupProbe.enabled Enable startupProbe
+## @param startupProbe.path Path for startupProbe
+## @param startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
+## @param startupProbe.periodSeconds Period seconds for startupProbe
+## @param startupProbe.timeoutSeconds Timeout seconds for startupProbe
+## @param startupProbe.failureThreshold Failure threshold for startupProbe
+## @param startupProbe.successThreshold Success threshold for startupProbe
+##
+startupProbe:
+  enabled: false
+  path: /
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+
+## @param livenessProbe.enabled Enable livenessProbe
+## @param livenessProbe.path Path for livenessProbe
+## @param livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
+## @param livenessProbe.periodSeconds Period seconds for livenessProbe
+## @param livenessProbe.timeoutSeconds Timeout seconds for livenessProbe
+## @param livenessProbe.failureThreshold Failure threshold for livenessProbe
+## @param livenessProbe.successThreshold Success threshold for livenessProbe
+##
+livenessProbe:
+  enabled: true
+  path: /
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+## @param readinessProbe.enabled Enable readinessProbe
+## @param readinessProbe.path Path for readinessProbe
+## @param readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
+## @param readinessProbe.periodSeconds Period seconds for readinessProbe
+## @param readinessProbe.timeoutSeconds Timeout seconds for readinessProbe
+## @param readinessProbe.failureThreshold Failure threshold for readinessProbe
+## @param readinessProbe.successThreshold Success threshold for readinessProbe
+##
+readinessProbe:
+  enabled: true
+  path: /
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+
+## @section Service parameters
+
+service:
+  ## @param service.enabled Enable service
+  ##
+  enabled: true
+  ## @param service.type The type of service to create (LoadBalancer, ClusterIP, NodePort, etc...)
+  ##
+  type: ClusterIP
+  ## @param service.port Deployment service HTTP port
+  ##
+  port: 80
+  ## @param service.httpsPort Deployment service HTTPS port
+  ##
+  httpsPort:
+  ## Node ports to expose
+  ## @param service.nodePorts.http Node port for HTTP
+  ## @param service.nodePorts.https Node port for HTTPS
+  ## NOTE: choose port between <30000-32767>
+  ##
+  nodePorts:
+    http:
+    https:
+  ## @param service.clusterIP Deployment service Cluster IP
+  ## e.g.:
+  ## clusterIP: None
+  ##
+  clusterIP:
+  ## @param service.loadBalancerIP Deployment service Load Balancer IP
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
+  ##
+  loadBalancerIP:
+  ## @param service.loadBalancerSourceRanges Deployment service Load Balancer sources
+  ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+  ## e.g:
+  ## loadBalancerSourceRanges:
+  ##   - 10.10.10.0/24
+  ##
+  loadBalancerSourceRanges: []
+  ## @param service.externalTrafficPolicy Deployment service external traffic policy
+  ## ref http://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+  ##
+  externalTrafficPolicy: Cluster
+  ## @param service.annotations Additional custom annotations for Deployment service
+  ##
+  annotations: {}
+  ## @param service.ports Additional port definitions for the service
+  ports: []
+
+## @section Ingress parameters
+
+## Configure the ingress resource that allows you to access the Deployment installation
+## ref: http://kubernetes.io/docs/user-guide/ingress/
+##
+ingress:
+  ## @param ingress.enabled Enable ingress record generation for Deployment
+  ##
+  enabled: false
+  ## @param ingress.pathType Ingress path type
+  ##
+  pathType: ImplementationSpecific
+  ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
+  ##
+  apiVersion:
+  ## @param ingress.hostname Default host for the ingress record
+  ##
+  hostname: chart-example.local
+  ## @param ingress.path Default path for the ingress record
+  ## NOTE: You may need to set this to '/*' in order to use this with ALB ingress controllers
+  ##
+  path: /
+  ## @param ingress.annotations Additional custom annotations for the ingress record
+  ## NOTE: If `ingress.certManager=true`, annotation `kubernetes.io/tls-acme: "true"` will automatically be added
+  ##
+  annotations: {}
+  ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
+  ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
+  ## You can:
+  ##   - Use the `ingress.secrets` parameter to create this TLS secret
+  ##   - Relay on cert-manager to create it by setting `ingress.certManager=true`
+  ##   - Relay on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
+  ##
+  tls: false
+  ## @param ingress.certManager Add the corresponding annotations for cert-manager integration
+  ##
+  certManager: false
+  ## @param ingress.selfSigned Create a TLS secret for this ingress record using self-signed certificates generated by Helm
+  ##
+  selfSigned: false
+  ## @param ingress.extraHosts An array with additional hostname(s) to be covered with the ingress record
+  ## e.g:
+  ## extraHosts:
+  ##   - name: chart-example.local
+  ##     path: /
+  ##
+  extraHosts: []
+  ## @param ingress.extraPaths An array with additional arbitrary paths that may need to be added to the ingress under the main host
+  ## e.g:
+  ## extraPaths:
+  ## - path: /*
+  ##   backend:
+  ##     serviceName: ssl-redirect
+  ##     servicePort: use-annotation
+  ##
+  extraPaths: []
+  ## @param ingress.extraTls TLS configuration for additional hostname(s) to be covered with this ingress record
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+  ## e.g:
+  ## extraTls:
+  ## - hosts:
+  ##     - chart-example.local
+  ##   secretName: chart-example.local-tls
+  ##
+  extraTls: []
+  ## @param ingress.secrets Custom TLS certificates as secrets
+  ## NOTE: 'key' and 'certificate' are expected in PEM format
+  ## NOTE: 'name' should line up with a 'secretName' set further up
+  ## If it is not set and you're using cert-manager, this is unneeded, as it will create a secret for you with valid certificates
+  ## If it is not set and you're NOT using cert-manager either, self-signed certificates will be created valid for 365 days
+  ## It is also possible to create and manage the certificates outside of this helm chart
+  ## Please see README.md for more information
+  ## e.g:
+  ## secrets:
+  ##   - name: Deployment.local-tls
+  ##     key: |-
+  ##       -----BEGIN RSA PRIVATE KEY-----
+  ##       ...
+  ##       -----END RSA PRIVATE KEY-----
+  ##     certificate: |-
+  ##       -----BEGIN CERTIFICATE-----
+  ##       ...
+  ##       -----END CERTIFICATE-----
+  ##
+  secrets: []
+
+## @section Pod Image parameters
+
+image:
+  ## @skip image.debug
+  debug: false
+  ## @param image.registry Deployment image registry
+  ## @question image.registry string
+  ## @required image.registry true
+  registry: docker.io
+  ## @param image.repository Deployment image repository
+  ## @question image.repository string
+  ## @required image.repository true
+  repository: busybox
+  ## @param image.tag Deployment image tag (immutabe tags are recommended)
+  ## @question image.tag string
+  ## @required image.tag true
+  tag: latest
+  ## Specify a imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  ## @param image.pullPolicy Deployment image pull policy
+  ## @question image.pullPolicy enum
+  ## @options image.pullPolicy Always, IfNotPresent, Never
+  ## @required image.pullPolicy true
+  pullPolicy: IfNotPresent
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ## E.g:
+  ## pullSecrets:
+  ##  - myRegistryKeySecretName
+  ## @param image.pullSecrets Deployment image pull secrets
+  ##
+  pullSecrets: []
+
+## @section Pod parameters
+
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#containerport-v1-core
+## @param ports[0].containerPort Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.
+## @param ports[0].name If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.
+## @param ports[0].hostIp What host IP to bind the external port to.
+## @param ports[0].hostPort Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.
+## @param ports[0].protocol Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".
+ports:
+  - containerPort: 80
+    name: http
+    hostIp:
+    hostPort:
+    protocol: TCP
+
+## @param command Override Deployment default command
+##
+command: []
+## @param args Override Deployment default args
+##
+args: []
+
+## @param priorityClassName Deployment pod priority class name
+##
+priorityClassName:
+
+## @param hostAliases Custom host aliases for Deployment pods
+## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+##
+hostAliases: []
+
+## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+## @param tolerations  Tolerations for pod assignment
+##
+tolerations: []
+
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+## @param podLabels  Extra labels for Deployment pods
+##
+podLabels: {}
+
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+## @param podAnnotations  Annotations for Deployment pods
+##
+podAnnotations: {}
+
+## @param lifecycleHooks Add lifecycle hooks to the Deployment deployment
+##
+lifecycleHooks: {}
+
+## @param shareProcessNamespace Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.
+shareProcessNamespace: false
+
+## @param extraEnvVars Add extra environment variables to the Deployment container
+## E.g:
+## extraEnvVars:
+##   - name: FOO
+##     value: "bar"
+##
+extraEnvVars: []
+
+## @param extraEnvVarsMap Add extra environment variables to the Deployment container
+## E.g:
+## extraEnvVarsMap:
+##   FOO: "bar"
+##
+extraEnvVarsMap: {}
+
+## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
+##
+extraEnvVarsCM:
+
+## @param extraEnvVarsCMs Optionally specify extra list of additional existing ConfigMaps containing extra env vars
+extraEnvVarsCMs: []
+
+## @param extraEnvVarsSecret Name of existing Secret containing extra env vars
+##
+extraEnvVarsSecret:
+
+## @param extraEnvVarsSecrets Optionally specify extra list of additional existing Secrets containing extra env vars
+extraEnvVarsSecrets: []
+
+## @param extraVolumes  Optionally specify extra list of additional volumes for Deployment pods
+##
+extraVolumes: []
+
+## @param extraVolumeMounts  Optionally specify extra list of additional volumeMounts for Deployment container(s)
+##
+extraVolumeMounts: []
+
+## @param initContainers  Add additional init containers to the Deployment pods
+## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+## E.g:
+## initContainers:
+##   - name: your-image-name
+##     image: your-image
+##     imagePullPolicy: Always
+##     ports:
+##       - name: portname
+##         containerPort: 1234
+##
+initContainers: {}
+
+## @param sidecars  Add additional sidecar containers to the Deployment pod
+## E.g:
+## sidecars:
+##   - name: your-image-name
+##     image: your-image
+##     imagePullPolicy: Always
+##     ports:
+##       - name: portname
+##         containerPort: 1234
+##
+sidecars: {}
+
+## ServiceAccount configuration
+##
+serviceAccount:
+  ## @param serviceAccount.create Specifies whether a ServiceAccount should be created
+  ##
+  create: true
+  ## @param serviceAccount.name The name of the ServiceAccount to use.
+  ## If not set and create is true, a name is generated using the common.names.fullname template
+  ##
+  name: ""
+  ## @param serviceAccount.annotations Additional custom annotations for the ServiceAccount
+  ##
+  annotations: {}
+
+## Deployment containers' resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+  ## @param resources.limits  The resources limits for the Deployment container
+  ##
+  limits: {}
+  ## @param resources.requests  The requested resources for the Deployment container
+  ##
+  requests: {}
+
+## controller pods' Security Context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+## @param podSecurityContext.enabled Enabled Deployment pods' Security Context
+## @param podSecurityContext.fsGroup Set Deployment pod's Security Context fsGroup
+##
+podSecurityContext:
+  enabled: false
+  fsGroup: 1000
+
+## controller containers' Security Context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+## @param containerSecurityContext.enabled Enabled Deployment containers' Security Context
+## @param containerSecurityContext.runAsUser Set Deployment container's Security Context runAsUser
+## @param containerSecurityContext.runAsNonRoot Set Deployment container's Security Context runAsNonRoot
+##
+containerSecurityContext:
+  enabled: false
+  runAsUser: 1001
+  runAsNonRoot: true
+
+## @section Pod Affinity parameters
+
+## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+## @param podAffinityPreset Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+##
+podAffinityPreset: ""
+
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+## @param podAntiAffinityPreset Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+##
+podAntiAffinityPreset: soft
+
+## Node affinity preset
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+##
+nodeAffinityPreset:
+  ## @param nodeAffinityPreset.type Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+  ##
+  type: ""
+  ## @param nodeAffinityPreset.key Node label key to match. Ignored if `affinity` is set
+  ##
+  key: ""
+  ## @param nodeAffinityPreset.values Node label values to match. Ignored if `affinity` is set
+  ## E.g.
+  ## values:
+  ##   - e2e-az1
+  ##   - e2e-az2
+  ##
+  values: []
+
+## @param affinity Affinity for Cert Manager Deployment
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+## NOTE: `podAffinityPreset`, `podAntiAffinityPreset`, and `nodeAffinityPreset` will be ignored when it's set
+##
+affinity: {}
+
+## ref: https://kubernetes.io/docs/user-guide/node-selection/
+## @param nodeSelector  Node labels for pod assignment
+##
+nodeSelector: {}
+
+podDisruptionBudget:
+  ## @param podDisruptionBudget.enabled Enable a pod disruption budget
+  enabled: false
+  ## @param podDisruptionBudget.minAvailable An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod. So for example you can prevent all voluntary evictions by specifying "100%".
+  minAvailable:
+  ## @param podDisruptionBudget.maxUnavailable An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable".
+  maxUnavailable:
+
+## @section Metrics paramaters
+
+metrics:
+  ## @param metrics.enabled Start a sidecar prometheus exporter to expose Deployment metrics
+  enabled: false
+  ## Prometheus Service Monitor
+  ## ref: https://github.com/coreos/prometheus-operator
+  ##      https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+  ##
+  serviceMonitor:
+    ## @param metrics.serviceMonitor.enabled Create ServiceMonitor resource(s) for scraping metrics using PrometheusOperator
+    ##
+    enabled: false
+    ## @param metrics.serviceMonitor.namespace The namespace in which the ServiceMonitor will be created
+    ##
+    namespace:
+    ## @param metrics.serviceMonitor.interval The interval at which metrics should be scraped
+    ##
+    interval: 30s
+    ## @param metrics.serviceMonitor.scrapeTimeout The timeout after which the scrape is ended
+    ##
+    scrapeTimeout:
+    ## @param metrics.serviceMonitor.relabellings Metrics relabellings to add to the scrape endpoint
+    ##
+    relabellings: []
+    ## @param metrics.serviceMonitor.honorLabels Specify honorLabels parameter to add the scrape endpoint
+    ##
+    honorLabels: false
+    ## @param metrics.serviceMonitor.additionalLabels Additional labels that can be used so ServiceMonitor resource(s) can be discovered by Prometheus
+    ##
+    additionalLabels: {}
+
+## @section Datadog integration parameters
+
+datadog:
+  apm:
+    ## @param datadog.apm.enabled Enable Datadog APM
+    enabled: false
+    ## @param datadog.apm.agent_host [string] The Datadog Agent hostname for sending traces -- has the same functionality as the below trace_agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)
+    agent_host:
+    ## @param datadog.apm.env [string] Set an application’s environment e.g. prod, pre-prod, staging.
+    env:
+    ## @param datadog.apm.version [string] Set an application’s version in traces and logs e.g. 1.2.3, 6c44da20, 2020.02.13. Generally set along with DD_SERVICE.
+    version:
+    ## @param datadog.apm.profiling_enabled Enable Datadog profiling when using ddtrace-run. (Default: false)
+    profiling_enabled: false
+    ## @param datadog.apm.logs_injection Enables Logs Injection https://ddtrace.readthedocs.io/en/stable/advanced_usage.html#logs-injection (Default: true)
+    logs_injection: true
+    ## @param datadog.apm.trace_sample_rate A float, f, 0.0 <= f <= 1.0. f*100% of traces will be sampled. (Default: 1.0)
+    trace_sample_rate: 1.0
+    ## @param datadog.apm.trace_agent_host [string] The Datadog Agent hostname for sending traces -- has the same functionality as the above agent_host but is used by different language's implementations of the Datadog trace library (Default: status.hostIP)
+    trace_agent_host:
+  openmetrics:
+    ## @param datadog.openmetrics.enabled Enable OpenMetrics scraping
+    enabled: false
+    ## @param datadog.openmetrics.schema The schema to use for OpenMetrics. (Default: http)
+    schema: http
+    ## @param datadog.openmetrics.host The hostname or ip to scape metrics from. (Default: Pod ip)
+    host: "%%host%%"
+    ## @param datadog.openmetrics.port The port to scrap metrics from (Default: 8080)
+    port: 8080
+    ## @param datadog.openmetrics.endpoint The endpoint to scrape metrics from
+    endpoint: /metrics
+    ## @param datadog.openmetrics.metrics [array] List of metrics to collect
+    metrics: []
+    ## @param datadog.openmetrics.type_overrides [object] Override the collected metrics types
+    type_overrides: {}
+
+## @section External secrets
+
+## @param externalSecrets [array] Secrets resolved from an external source
+## @param externalSecrets.0.path [string] Path of the external secret
+## @param externalSecrets.0.secret [string] Optionally specify the name of the generated secret. Default value derived from path
+## @param externalSecrets.0.provider [string] Optionally specify the name of the secret store provider. Defaults to "vault-backend"
+## @param externalSecrets.0.storeKind [string] Optionally specify the kind of secret store. Defaults to "ClusterSecretStore"
+externalSecrets: []
