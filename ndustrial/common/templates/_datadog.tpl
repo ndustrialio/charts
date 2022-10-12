@@ -46,11 +46,11 @@ Datadog env variables
       fieldPath: metadata.labels['tags.datadoghq.com/version']
 {{- end }}
 - name: DD_PROFILING_ENABLED
-  value: {{ default("false" .value.apm.profiling_enabled) | toString | quote }}
+  value: {{ (default "false" .value.apm.profiling_enabled) | toString | quote }}
 - name: DD_LOGS_INJECTION
-  value: {{ default("true" .value.apm.logs_injection) | toString | quote }}
+  value: {{ (default "true" .value.apm.logs_injection) | toString | quote }}
 - name: DD_TRACE_SAMPLE_RATE
-  value: {{ default("1.0" .value.apm.trace_sample_rate) | toString | quote }}
+  value: {{ (default "1.0" .value.apm.trace_sample_rate) | toString | quote }}
 {{- end }}
 {{- end }}
 {{- end -}}
@@ -62,7 +62,7 @@ Datadog annotations
 {{- define "nio-common.datadog.annotations" -}}
 {{- if .value.openmetrics }}
 {{- if .value.openmetrics.enabled }}
-{{- $prometheus_url := printf "%s://%s:%d%s" default("http" .value.openmetrics.schema) default("%%host%%" .value.openmetrics.host) (default(8080 .value.openmetrics.port) | int) default("/metrics" .value.openmetrics.endpoint) -}}
+{{- $prometheus_url := printf "%s://%s:%d%s" (default "http" .value.openmetrics.schema) (default "%%host%%" .value.openmetrics.host) ((default 8080 .value.openmetrics.port) | int) (default "/metrics" .value.openmetrics.endpoint) -}}
 {{- $instance := dict "prometheus_url" $prometheus_url "namespace" .context.Release.Namespace "metrics" .value.openmetrics.metrics "type_overrides" .value.openmetrics.type_overrides -}}
 ad.datadoghq.com/{{ include "nio-common.names.fullname" .context }}.check_names: '["openmetrics"]'
 ad.datadoghq.com/{{ include "nio-common.names.fullname" .context }}.init_configs: "[{}]"
@@ -70,4 +70,3 @@ ad.datadoghq.com/{{ include "nio-common.names.fullname" .context }}.instances: {
 {{- end }}
 {{- end }}
 {{- end -}}
-
