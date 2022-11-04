@@ -840,6 +840,27 @@ entries:
     version: 0.1.0
   cronjob:
   - apiVersion: v2
+    appVersion: 0.1.23
+    created: "2022-11-04T13:18:12.32756275Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.20
+    description: A Helm chart for deploying k8s cronjobs
+    digest: 03cdc4920f8826788d136b9d5af4b5ac42b3bc6f1d5c1a2769d22323072156cd
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: cronjob
+    sources:
+    - https://github.com/ndustrialio/charts/tree/main/ndustrial/cronjob
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/cronjob-0.1.23/cronjob-0.1.23.tgz
+    version: 0.1.23
+  - apiVersion: v2
     appVersion: 0.1.22
     created: "2022-10-12T14:54:13.618439261Z"
     dependencies:
@@ -2781,4 +2802,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2022-10-12T14:54:14.21028211Z"
+generated: "2022-11-04T13:18:12.333320285Z"
