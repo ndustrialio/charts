@@ -23,10 +23,6 @@ Datadog env variables
     fieldRef:
       fieldPath: status.hostIP
 {{- end }}
-- name: DD_SERVICE
-  valueFrom:
-    fieldRef:
-      fieldPath: metadata.labels['tags.datadoghq.com/service']
 {{- if .value.apm.env }}
 - name: DD_ENV
   value: {{ .value.apm.env }}
@@ -35,6 +31,15 @@ Datadog env variables
   valueFrom:
     fieldRef:
       fieldPath: metadata.labels['tags.datadoghq.com/env']
+{{- end }}
+{{- if .value.apm.service }}
+- name: DD_SERVICE
+  value: {{ .value.apm.service }}
+{{- else }}
+- name: DD_SERVICE
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.labels['tags.datadoghq.com/service']
 {{- end }}
 {{- if .value.apm.version }}
 - name: DD_VERSION

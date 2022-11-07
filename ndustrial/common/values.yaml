@@ -35,6 +35,8 @@ datadog:
     agent_host:
     ## @param datadog.apm.env [string] Set an application’s environment e.g. prod, pre-prod, staging.
     env:
+    ## @param datadog.apm.service [string] Set an application’s service name.
+    service:
     ## @param datadog.apm.version [string] Set an application’s version in traces and logs e.g. 1.2.3, 6c44da20, 2020.02.13. Generally set along with DD_SERVICE.
     version:
     ## @param datadog.apm.profiling_enabled Enable Datadog profiling when using ddtrace-run. (Default: false)
