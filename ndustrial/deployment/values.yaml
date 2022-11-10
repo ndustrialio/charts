@@ -578,8 +578,13 @@ datadog:
 ## @section External secrets
 
 ## @param externalSecrets [array] Secrets resolved from an external source
-## @param externalSecrets.0.path [string] Path of the external secret
+## @param externalSecrets.0.path [string] Path of the external secret if pulling all values
 ## @param externalSecrets.0.secret [string] Optionally specify the name of the generated secret. Default value derived from path
 ## @param externalSecrets.0.provider [string] Optionally specify the name of the secret store provider. Defaults to "vault-backend"
 ## @param externalSecrets.0.storeKind [string] Optionally specify the kind of secret store. Defaults to "ClusterSecretStore"
+## @param externalSecrets.0.template [string] Optionally specify the template to use.
+## @param externalSecrets.0.properties [object] If not using "path" above, specify specific properties to pull.
+## @param externalSecrets.0.properties.0.name [string] The name of the property that will be embeded into the secret.
+## @param externalSecrets.0.properties.0.sourceKey [string] The source path to the secret.
+## @param externalSecrets.0.properties.0.sourceProp [string] The source property of the secret to load.
 externalSecrets: []
