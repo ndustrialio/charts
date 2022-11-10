@@ -40,3 +40,21 @@ externalSecrets:
     provider: fake-backend
     storeKind: SecretStore
   - path: staging/iot-api
+  - secret: my-custom-plucked
+    properties:
+      - name: my_key
+        sourceKey: staging/files-api
+        sourceProp: vault_key
+  - secret: my-custom-plucked-template
+    template: |
+      MY_KEY: {{ "{{ .my_key }}" | quote }} 
+      ANOTHER_KEY: {{ printf "{{ .another_key }}/%s" .Values.tenant | quote }} 
+    properties:
+      - name: my_key
+        sourceKey: staging/files-api
+        sourceProp: vault_key
+      - name: another_key
+        sourceKey: staging/iot-api
+        sourceProp: another_vault_key
+        
+tenant: test-tenant
