@@ -867,6 +867,27 @@ entries:
     version: 0.1.0
   cronjob:
   - apiVersion: v2
+    appVersion: 0.1.27
+    created: "2022-11-17T19:28:58.092145232Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.21
+    description: A Helm chart for deploying k8s cronjobs
+    digest: ff0e3d9d8d31a5ba962e3bb7afce7341f917aaa08260c44bfbda4ee53e831a58
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: cronjob
+    sources:
+    - https://github.com/ndustrialio/charts/tree/main/ndustrial/cronjob
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/cronjob-0.1.27/cronjob-0.1.27.tgz
+    version: 0.1.27
+  - apiVersion: v2
     appVersion: 0.1.26
     created: "2022-11-17T16:23:45.658461951Z"
     dependencies:
@@ -1435,6 +1456,25 @@ entries:
     version: 0.1.0
   daemonset:
   - apiVersion: v2
+    appVersion: 0.1.5
+    created: "2022-11-17T19:28:58.209678765Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.21
+    description: A Helm chart for deploying k8s daemonset
+    digest: eb5e8248507c9bae38fdf8b5f9253aa67d98055b73004e3cc7002f0871149e46
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: daemonset
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/daemonset-0.1.5/daemonset-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
     appVersion: 0.1.4
     created: "2022-11-17T16:23:45.828117929Z"
     dependencies:
@@ -1530,6 +1570,25 @@ entries:
     - https://github.com/ndustrialio/charts/releases/download/daemonset-0.1.0/daemonset-0.1.0.tgz
     version: 0.1.0
   deployment:
+  - apiVersion: v2
+    appVersion: 0.1.43
+    created: "2022-11-17T19:28:58.359100042Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.21
+    description: A Helm chart for deploying k8s deployment
+    digest: f8965eabeb7d3ceede021b1ebd605c2e941a70c71919cc91fc950eb2f0843403
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: deployment
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/deployment-0.1.43/deployment-0.1.43.tgz
+    version: 0.1.43
   - apiVersion: v2
     appVersion: 0.1.42
     created: "2022-11-17T16:23:46.042267426Z"
@@ -2311,6 +2370,25 @@ entries:
     version: 0.1.0
   nio-api:
   - apiVersion: v2
+    appVersion: 1.0.6
+    created: "2022-11-17T19:28:58.496650953Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.21
+    description: A Helm chart for deploying k8s deployment
+    digest: 8553970515f370d8ba70c6ff0716e8c1c6402224db2010b5a318ea71bdca4ba5
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: nio-api
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/nio-api-1.0.6/nio-api-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v2
     appVersion: 1.0.5
     created: "2022-11-17T16:23:46.256896924Z"
     dependencies:
@@ -2436,6 +2514,25 @@ entries:
     - https://github.com/ndustrialio/charts/releases/download/node-api-0.1.0/node-api-0.1.0.tgz
     version: 0.1.0
   statefulset:
+  - apiVersion: v2
+    appVersion: 0.1.38
+    created: "2022-11-17T19:28:58.629938405Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.21
+    description: A Helm chart for deploying sateful sets
+    digest: 78b96eb9d74527643d20579ba709d7df2e7a5d640e89f99d100cb285c36e2eec
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: statefulset
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.38/statefulset-0.1.38.tgz
+    version: 0.1.38
   - apiVersion: v2
     appVersion: 0.1.37
     created: "2022-11-17T16:23:46.586226475Z"
@@ -3120,4 +3217,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-17T16:23:46.587128775Z"
+generated: "2022-11-17T19:28:58.630868818Z"
