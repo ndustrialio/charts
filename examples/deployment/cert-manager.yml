@@ -48,8 +48,8 @@ externalSecrets:
         sourceProp: vault_key
   - secret: my-custom-plucked-template
     template: |
-      MY_KEY: {{ "{{ .my_key }}" | quote }} 
-      ANOTHER_KEY: {{ printf "{{ .another_key }}/%s" .Values.tenant | quote }} 
+      MY_KEY: {{ "{{ .my_key }}" | quote }}
+      ANOTHER_KEY: {{ printf "{{ .another_key }}/%s" .Values.tenant | quote }}
     properties:
       - name: my_key
         sourceKey: staging/files-api
@@ -59,10 +59,12 @@ externalSecrets:
         sourceProp: another_vault_key
   - secret: my-templated-secret-{{ .Values.templateName }}
     template: |
-      MY_KEY: {{ "{{ .my_key }}" | quote }} 
+      MY_KEY: {{ "{{ .my_key }}" | quote }}
     properties:
       - name: my_key
         sourceKey: staging/files-api
         sourceProp: vault_key
-        
+
 tenant: test-tenant
+updateStrategy:
+  type: Recreate
