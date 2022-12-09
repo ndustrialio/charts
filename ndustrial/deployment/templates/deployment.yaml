@@ -14,7 +14,12 @@ spec:
   selector:
     matchLabels: {{- include "nio-common.labels.matchLabels" . | nindent 6 }}
   {{- if .Values.updateStrategy }}
+  {{- if ne .Values.updateStrategy.type "RollingUpdate" }}
+  strategy:
+    type: {{- .Values.updateStrategy.type }}
+  {{- else }}
   strategy: {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
   {{- end }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
