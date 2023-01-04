@@ -66,7 +66,7 @@ Datadog annotations
 */}}
 {{- define "nio-common.datadog.annotations" -}}
 {{- if .value.openmetrics }}
-{{- if .value.openmetrics.enabled }}
+{{- if and (hasKey .value.openmetrics "enabled") (.value.openmetrics.enabled) -}}
 {{- $prometheus_url := printf "%s://%s:%d%s" (default "http" .value.openmetrics.schema) (default "%%host%%" .value.openmetrics.host) ((default 8080 .value.openmetrics.port) | int) (default "/metrics" .value.openmetrics.endpoint) -}}
 {{- $instance := dict "prometheus_url" $prometheus_url "namespace" .context.Release.Namespace "metrics" .value.openmetrics.metrics "type_overrides" .value.openmetrics.type_overrides -}}
 ad.datadoghq.com/{{ include "nio-common.names.fullname" .context }}.check_names: '["openmetrics"]'
