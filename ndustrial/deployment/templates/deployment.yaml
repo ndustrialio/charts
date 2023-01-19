@@ -164,6 +164,7 @@ spec:
               path: {{ .Values.readinessProbe.path }}
               port: http
             {{ omit .Values.readinessProbe "enabled" "httpget" "path" | toYaml | nindent 12 }}
+            {{- end }}
           {{- end }}
           {{- end }}
           {{- if .Values.resources }}
