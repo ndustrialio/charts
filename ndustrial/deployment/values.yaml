@@ -58,7 +58,7 @@ annotations: {}
 replicaCount: 1
 
 ## @param startupProbe.enabled Enable startupProbe
-## @param startupProbe.httpget Enable http probe
+## @param startupProbe.httpGet Enable http probe
 ## @param startupProbe.path Path for startupProbe
 ## @param startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
 ## @param startupProbe.periodSeconds Period seconds for startupProbe
@@ -68,7 +68,7 @@ replicaCount: 1
 ##
 startupProbe:
   enabled: false
-  httpget: true
+  httpGet: true
   path: /
   initialDelaySeconds: 60
   periodSeconds: 10
@@ -77,7 +77,7 @@ startupProbe:
   failureThreshold: 3
 
 ## @param livenessProbe.enabled Enable livenessProbe
-## @param livenessProbe.httpget Enable http probe
+## @param livenessProbe.httpGet Enable http probe
 ## @param livenessProbe.path Path for livenessProbe
 ## @param livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
 ## @param livenessProbe.periodSeconds Period seconds for livenessProbe
@@ -87,7 +87,7 @@ startupProbe:
 ##
 livenessProbe:
   enabled: true
-  httpget: true
+  httpGet: true
   path: /
   initialDelaySeconds: 60
   periodSeconds: 10
@@ -95,7 +95,7 @@ livenessProbe:
   successThreshold: 1
   failureThreshold: 3
 ## @param readinessProbe.enabled Enable readinessProbe
-## @param readinessProbe.httpget Enable http probe
+## @param readinessProbe.httpGet Enable http probe
 ## @param readinessProbe.path Path for readinessProbe
 ## @param readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
 ## @param readinessProbe.periodSeconds Period seconds for readinessProbe
@@ -105,7 +105,7 @@ livenessProbe:
 ##
 readinessProbe:
   enabled: true
-  httpget: true
+  httpGet: true
   path: /
   initialDelaySeconds: 5
   periodSeconds: 5
