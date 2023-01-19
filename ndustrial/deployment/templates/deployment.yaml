@@ -142,24 +142,28 @@ spec:
           {{- if not .Values.image.debug }}
           {{- if .Values.startupProbe.enabled }}
           startupProbe:
+            {{- if .Values.startupProbe.httpGet}}
             httpGet:
               path: {{ .Values.startupProbe.path }}
               port: http
-            {{ omit .Values.startupProbe "enabled" "path" | toYaml | nindent 12 }}
+            {{- end }}
+            {{ omit .Values.startupProbe "enabled" "httpget" "path" | toYaml | nindent 12 }}
           {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
+            {{- if .Values.livenessProbe.httpGet}}
             httpGet:
               path: {{ .Values.livenessProbe.path }}
               port: http
-            {{ omit .Values.livenessProbe "enabled" "path" | toYaml | nindent 12 }}
+            {{ omit .Values.livenessProbe "enabled" "httpget" "path" | toYaml | nindent 12 }}
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
+            {{- if .Values.readinessProbe.httpGet}}
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: http
-            {{ omit .Values.readinessProbe "enabled" "path" | toYaml | nindent 12 }}
+            {{ omit .Values.readinessProbe "enabled" "httpget" "path" | toYaml | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.resources }}
