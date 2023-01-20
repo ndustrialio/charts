@@ -142,7 +142,7 @@ spec:
           {{- if not .Values.image.debug }}
           {{- if .Values.startupProbe.enabled }}
           startupProbe:
-            {{- if .Values.startupProbe.httpGet}}
+            {{- if .Values.startupProbe.httpGet }}
             httpGet:
               path: {{ .Values.startupProbe.path }}
               port: http
@@ -151,7 +151,7 @@ spec:
           {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
-            {{- if .Values.livenessProbe.httpGet}}
+            {{- if .Values.livenessProbe.httpGet }}
             httpGet:
               path: {{ .Values.livenessProbe.path }}
               port: http
@@ -160,12 +160,12 @@ spec:
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
-            {{- if .Values.readinessProbe.httpGet}}
+            {{- if .Values.readinessProbe.httpGet }}
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: http
-            {{ omit .Values.readinessProbe "enabled" "httpGet" "path" | toYaml | nindent 12 }}
             {{- end }}
+            {{ omit .Values.readinessProbe "enabled" "httpGet" "path" | toYaml | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.resources }}
