@@ -43,7 +43,7 @@ Datadog env variables
 {{- end }}
 {{- if .value.apm.version }}
 - name: DD_VERSION
-  value: {{ .value.apm.version }}
+  value: {{ .value.apm.version | toString | quote }}
 {{- else }}
 - name: DD_VERSION
   valueFrom:
