@@ -147,7 +147,7 @@ spec:
               path: {{ .Values.startupProbe.path }}
               port: http
             {{- end }}
-            {{ omit .Values.startupProbe "enabled" "httpget" "path" | toYaml | nindent 12 }}
+            {{ omit .Values.startupProbe "enabled" "httpGet" "path" | toYaml | nindent 12 }}
           {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
@@ -156,7 +156,7 @@ spec:
               path: {{ .Values.livenessProbe.path }}
               port: http
             {{- end }}
-            {{ omit .Values.livenessProbe "enabled" "httpget" "path" | toYaml | nindent 12 }}
+            {{ omit .Values.livenessProbe "enabled" "httpGet" "path" | toYaml | nindent 12 }}
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
@@ -164,7 +164,7 @@ spec:
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: http
-            {{ omit .Values.readinessProbe "enabled" "httpget" "path" | toYaml | nindent 12 }}
+            {{ omit .Values.readinessProbe "enabled" "httpGet" "path" | toYaml | nindent 12 }}
             {{- end }}
           {{- end }}
           {{- end }}
