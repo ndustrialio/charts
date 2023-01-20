@@ -4,6 +4,33 @@ entries:
   - annotations:
       category: Infrastructure
     apiVersion: v2
+    appVersion: 0.2.23
+    created: "2023-01-20T16:35:13.073780482Z"
+    description: A Library Helm Chart for grouping common logic between ndustrial
+      charts. This chart is not deployable by itself.
+    digest: 8e628dae5daeaa0b6deb78e0a236b4ab1cdccac1cb701e2409b0b55eae6a515f
+    home: https://github.com/ndustrialio/charts/tree/stateful/ndustrial/common
+    icon: https://bitnami.com/downloads/logos/bitnami-mark.png
+    keywords:
+    - common
+    - helper
+    - template
+    - function
+    - ndustrial
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: common
+    sources:
+    - https://github.com/ndustrialio/charts
+    - https://ndustrial.io/
+    type: library
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/common-0.2.23/common-0.2.23.tgz
+    version: 0.2.23
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
     appVersion: 0.2.22
     created: "2023-01-04T20:38:43.764269481Z"
     description: A Library Helm Chart for grouping common logic between ndustrial
@@ -1677,6 +1704,25 @@ entries:
     - https://github.com/ndustrialio/charts/releases/download/daemonset-0.1.0/daemonset-0.1.0.tgz
     version: 0.1.0
   deployment:
+  - apiVersion: v2
+    appVersion: 0.1.55
+    created: "2023-01-20T16:35:13.254996599Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.22
+    description: A Helm chart for deploying k8s deployment
+    digest: 6f59468f7a032a84756114321f2e59095e1aa47e615756dea20d30c9d69360c3
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: deployment
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/deployment-0.1.55/deployment-0.1.55.tgz
+    version: 0.1.55
   - apiVersion: v2
     appVersion: 0.1.53
     created: "2023-01-20T14:54:00.430569547Z"
@@ -3571,4 +3617,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2023-01-20T14:54:00.431152052Z"
+generated: "2023-01-20T16:35:13.255788306Z"
