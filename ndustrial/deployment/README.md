@@ -70,6 +70,7 @@
 | `readinessProbe.successThreshold`    | Success threshold for readinessProbe                          | `1`             |
 | `updateStrategy.type`                | Deployment deployment update strategy                         | `RollingUpdate` |
 | `updateStrategy.rollingUpdate`       | Deployment deployment rolling update configuration parameters | `{}`            |
+| `terminationGracePeriodSeconds`      | Deployment deployment termination Grace Period Seconds        | `30`            |
 
 
 ### Service parameters

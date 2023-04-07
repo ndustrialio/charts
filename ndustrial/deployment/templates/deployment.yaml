@@ -74,6 +74,9 @@ spec:
         {{- include "nio-common.tplvalues.render" (dict "value" .Values.initContainers "context" $) | nindent 8 }}
         {{- end }}
       serviceAccountName: {{ template "deployment.serviceAccountName" . }}
+      {{- if .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds:  {{- include "nio-common.tplvalues.render" (dict "value" .Values.terminationGracePeriodSeconds "context" $) | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ include "nio-common.names.name" . }}
           image: {{ template "deployment.image" . }}
