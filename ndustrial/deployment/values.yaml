@@ -264,9 +264,19 @@ autoscaling:
   ## @param autoscaling.maxReplicas
   maxReplicas: 10
   ## @param autoscaling.targetCPUUtilizationPercentage
-  targetCPUUtilizationPercentage: 80
+  targetCPUUtilizationPercentage:
   ## @param autoscaling.targetMemoryUtilizationPercentage
-  targetMemoryUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage:
+  ## @param autoscaling.externalMetric
+  externalMetric:
+    metricName: ""
+    metricValue: 
+
+## @section DatadogMetric parameters
+
+datadogmetric:
+  enabled: false
+  query: ""
 
 ## @section Pod Image parameters
 

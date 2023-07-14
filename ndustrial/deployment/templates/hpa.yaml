@@ -31,4 +31,13 @@ spec:
         name: memory
         targetAverageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
     {{- end }}
+    {{- if .Values.autoscaling.externalMetric.metricName }}
+    - type: External
+      external:
+        metric:
+          name: "{{ $.Values.autoscaling.externalMetric.metricName }}"
+        target:
+          type: Value
+          value: {{ $.Values.autoscaling.externalMetric.metricTarget }}
+    {{- end }}
 {{- end }}

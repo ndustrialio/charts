@@ -1,0 +1,15 @@
+{{- if .Values.datadogmetric.enabled }}
+apiVersion: datadoghq.com/v1alpha1
+kind: DatadogMetric
+metadata:
+  name: {{ include "nio-common.names.fullname" $ }}-{{ required "A deployment must have a name" .name }}-metric
+  annotations: {{- toYaml .Values.annotations | nindent 4 }}
+  labels: {{- include "nio-common.labels.standard" . | nindent 4 }}
+    ndustrial.io/component: deployment
+    {{- if .Values.labels }}
+    {{- include "nio-common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 4 }}
+    {{- end }}
+spec:
+  query: "{{ $.Values.datadogmetric.query }}"
+---
+{{- end }}
