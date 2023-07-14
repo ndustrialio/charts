@@ -2,7 +2,7 @@
 apiVersion: datadoghq.com/v1alpha1
 kind: DatadogMetric
 metadata:
-  name: {{ include "nio-common.names.fullname" $ }}-{{ required "A deployment must have a name" .name }}-metric
+  name: "{{ $.Values.datadogmetric.name }}"
   annotations: {{- toYaml .Values.annotations | nindent 4 }}
   labels: {{- include "nio-common.labels.standard" . | nindent 4 }}
     ndustrial.io/component: deployment

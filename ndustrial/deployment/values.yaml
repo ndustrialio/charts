@@ -275,7 +275,11 @@ autoscaling:
 ## @section DatadogMetric parameters
 
 datadogmetric:
+  ## @param datadogmetric.enabled
   enabled: false
+  ## @param datadogmetric.name
+  name: ""
+  ## @param datadogmetric.query
   query: ""
 
 ## @section Pod Image parameters
