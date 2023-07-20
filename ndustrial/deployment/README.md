@@ -119,7 +119,7 @@
 | `autoscaling.maxReplicas`                       |             | `10`    |
 | `autoscaling.targetCPUUtilizationPercentage`    |             | `80`    |
 | `autoscaling.targetMemoryUtilizationPercentage` |             | `80`    |
-| `autoscaling.behavior`                          |             |  {}     |
+| `autoscaling.behavior`                          |             | `{}`    |
 
 
 ### Pod Image parameters
