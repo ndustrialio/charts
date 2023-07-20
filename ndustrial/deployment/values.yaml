@@ -271,6 +271,8 @@ autoscaling:
   externalMetric:
     metricName: ""
     metricTarget: 
+  ## @param autoscaling.behavior
+  behavior:
 
 ## @section DatadogMetric parameters
 
