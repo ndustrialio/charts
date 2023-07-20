@@ -270,7 +270,9 @@ autoscaling:
   ## @param autoscaling.externalMetric
   externalMetric:
     metricName: ""
-    metricTarget: 
+    metricTarget:
+  ## @param autoscaling.behavior
+  behavior:
 
 ## @section DatadogMetric parameters
 
