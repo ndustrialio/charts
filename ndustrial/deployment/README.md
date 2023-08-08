@@ -1,3 +1,7 @@
+## Bumping chart
+
+When this chart is bumped, the `nio-api` chart should also be bumped to pull in any changes.
+
 ## Parameters
 
 ### Global parameters
