@@ -62,6 +62,7 @@ replicaCount: 2
 ##
 startupProbe:
   enabled: false
+  httpGet: true
   path: /
   initialDelaySeconds: 60
   periodSeconds: 10
@@ -78,6 +79,7 @@ startupProbe:
 ##
 livenessProbe:
   enabled: true
+  httpGet: true
   path: /healthz
   initialDelaySeconds: 60
   periodSeconds: 10
@@ -94,6 +96,7 @@ livenessProbe:
 ##
 readinessProbe:
   enabled: true
+  httpGet: true
   path: /healthz
   initialDelaySeconds: 5
   periodSeconds: 5
@@ -256,6 +259,10 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   ## @param autoscaling.targetMemoryUtilizationPercentage
   targetMemoryUtilizationPercentage: 80
+  externalMetric:
+    metricName: ""
+    metricTarget:
+  behavior:
 ## @section DatadogMetric parameters
 datadogmetric:
   ## @param datadogmetric.enabled
@@ -342,6 +349,9 @@ podAnnotations: {}
 ## @param lifecycleHooks Add lifecycle hooks to the Deployment deployment
 ##
 lifecycleHooks: {}
+## @param  terminationGracePeriodSeconds Add termination Grace Period Seconds to the Deployment deployment
+##
+terminationGracePeriodSeconds: 30
 ## @param shareProcessNamespace Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.
 shareProcessNamespace: false
 ## @param extraEnvVars Add extra environment variables to the Deployment container
