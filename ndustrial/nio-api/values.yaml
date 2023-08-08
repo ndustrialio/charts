@@ -256,6 +256,14 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   ## @param autoscaling.targetMemoryUtilizationPercentage
   targetMemoryUtilizationPercentage: 80
+## @section DatadogMetric parameters
+datadogmetric:
+  ## @param datadogmetric.enabled
+  enabled: false
+  ## @param datadogmetric.name
+  name: ""
+  ## @param datadogmetric.query
+  query: ""
 ## @section Pod Image parameters
 image:
   ## @skip image.debug
