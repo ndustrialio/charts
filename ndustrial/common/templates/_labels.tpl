@@ -22,6 +22,9 @@ ndustrial.io/organization.slug: {{ .organization }}
 {{- if hasKey . "owner" }}
 ndustrial.io/owner: {{ .owner }}
 {{- end }}
+{{- if hasKey . "alerts" }}
+ndustrial.io/alerts: {{ .alerts }}
+{{- end }}
 {{- if hasKey . "project" }}
 ndustrial.io/project.slug: {{ .project }}
 {{- end }}
