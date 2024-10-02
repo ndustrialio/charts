@@ -365,6 +365,11 @@ extraEnvVars: []
 ## E.g:
 ## extraEnvVarsMap:
 ##   FOO: "bar"
+##   FOO_SECRET:
+##     valueFrom:
+##       secretKeyRef:
+##         name: secret
+##         key: test
 ##
 extraEnvVarsMap: {}
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
