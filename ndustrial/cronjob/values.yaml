@@ -162,10 +162,15 @@ shareProcessNamespace: false
 ##
 extraEnvVars: []
 
-## @param extraEnvVarsMap Add extra environment variables to the Deployment container
+## @param extraEnvVarsMap Add extra environment variables to the Deployment container. Can be a single string or a valid environment mapping
 ## E.g:
 ## extraEnvVarsMap:
 ##   FOO: "bar"
+##   FOO_SECRET:
+##     valueFrom:
+##       secretKeyRef:
+##         name: secret
+##         key: test
 ##
 extraEnvVarsMap: {}
 

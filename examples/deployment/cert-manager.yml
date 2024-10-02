@@ -68,3 +68,11 @@ externalSecrets:
 tenant: test-tenant
 updateStrategy:
   type: Recreate
+
+extraEnvVarsMap:
+  TEST: value
+  TEST_SECRET:
+    valueFrom:
+      secretKeyRef:
+        name: my-custom-secret-name
+        key: test
