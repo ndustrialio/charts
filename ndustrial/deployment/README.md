@@ -76,7 +76,6 @@ When this chart is bumped, the `nio-api` chart should also be bumped to pull in 
 | `updateStrategy.rollingUpdate`       | Deployment deployment rolling update configuration parameters | `{}`            |
 | `terminationGracePeriodSeconds`      | Deployment deployment termination Grace Period Seconds        | `30`            |
 
-
 ### Service parameters
 
 | Name                               | Description                                                               | Value       |
@@ -175,6 +174,8 @@ When this chart is bumped, the `nio-api` chart should also be bumped to pull in 
 | `containerSecurityContext.enabled`      | Enabled Deployment containers' Security Context                                                                                                                                                                                                                                                                                             | `false` |
 | `containerSecurityContext.runAsUser`    | Set Deployment container's Security Context runAsUser                                                                                                                                                                                                                                                                                       | `1001`  |
 | `containerSecurityContext.runAsNonRoot` | Set Deployment container's Security Context runAsNonRoot                                                                                                                                                                                                                                                                                    | `true`  |
+| `topologySpreadConstraints`             | Set pod topology spread constraints                                                                                                                                                                                                                                                                                    | `true`  |
+
 
 
 ### Pod Affinity parameters
@@ -193,7 +194,7 @@ When this chart is bumped, the `nio-api` chart should also be bumped to pull in 
 | `podDisruptionBudget.maxUnavailable` | An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable". | `nil`   |
 
 
-### Metrics paramaters
+### Metrics parameters
 
 | Name                                      | Description                                                                                      | Value   |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------ | ------- |
