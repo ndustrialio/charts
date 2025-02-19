@@ -539,7 +539,7 @@ podDisruptionBudget:
   maxUnavailable:
 
 ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/
-## @param topologySpreadConstraints Constraints to control how Pods are spread across your cluster among failure-domains 
+## @param topologySpreadConstraints Constraints to control how Pods are spread across your cluster among failure-domains
 
 topologySpreadConstraints: {}
 
