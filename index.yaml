@@ -1600,6 +1600,25 @@ entries:
     version: 0.1.0
   daemonset:
   - apiVersion: v2
+    appVersion: 0.1.9
+    created: "2025-03-20T16:43:41.815001166Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.22
+    description: A Helm chart for deploying k8s daemonset
+    digest: 129db9d0c15bcd5daae8a2f4e08beb52c19fc367f60c52bac9857b24bb839527
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: daemonset
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/daemonset-0.1.9/daemonset-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v2
     appVersion: 0.1.8
     created: "2024-10-02T18:27:31.477274349Z"
     dependencies:
@@ -1771,6 +1790,25 @@ entries:
     - https://github.com/ndustrialio/charts/releases/download/daemonset-0.1.0/daemonset-0.1.0.tgz
     version: 0.1.0
   deployment:
+  - apiVersion: v2
+    appVersion: 0.1.66
+    created: "2025-03-20T16:43:42.09189012Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.24
+    description: A Helm chart for deploying k8s deployment
+    digest: 537e6ddb42b608e714215e7a6c72eec3046c11a789a203adab98d73ee3b2e6f0
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: deployment
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/deployment-0.1.66/deployment-0.1.66.tgz
+    version: 0.1.66
   - apiVersion: v2
     appVersion: 0.1.65
     created: "2025-02-20T13:26:46.463754657Z"
@@ -2970,6 +3008,25 @@ entries:
     version: 0.1.0
   nio-api:
   - apiVersion: v2
+    appVersion: 1.0.13
+    created: "2025-03-20T16:43:42.288634585Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.22
+    description: A Helm chart for deploying k8s deployment
+    digest: 8eba24e8ee8fc999463da312d1547f7bde25f00c5e17169cbae34d5fdc7e866f
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: nio-api
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/nio-api-1.0.13/nio-api-1.0.13.tgz
+    version: 1.0.13
+  - apiVersion: v2
     appVersion: 1.0.12
     created: "2024-10-02T18:27:31.880884636Z"
     dependencies:
@@ -3228,6 +3285,25 @@ entries:
     - https://github.com/ndustrialio/charts/releases/download/node-api-0.1.0/node-api-0.1.0.tgz
     version: 0.1.0
   statefulset:
+  - apiVersion: v2
+    appVersion: 0.1.41
+    created: "2025-03-20T16:43:42.497916157Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.22
+    description: A Helm chart for deploying sateful sets
+    digest: b2f4ec82ec2841de35e1d32f380922f7f0122bb190ec3a8498cb0444353d60b9
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: statefulset
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.41/statefulset-0.1.41.tgz
+    version: 0.1.41
   - apiVersion: v2
     appVersion: 0.1.40
     created: "2024-10-02T18:27:32.100528076Z"
@@ -3969,4 +4045,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-20T13:26:46.464136412Z"
+generated: "2025-03-20T16:43:42.498534449Z"
