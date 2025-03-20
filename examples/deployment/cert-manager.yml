@@ -25,7 +25,10 @@ ingress:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "X-Robots-Tag: noindex";
   tls: true
-  hostname: cert-manager-example.staging.pizzandustrial.com
+  hostname: "{{ .Values.ndustrial.name }}.staging.pizzandustrial.com"
+  extraHosts:
+    - name: "test.staging.pizzandustrial.com"
+    - name: "{{ .Values.ndustrial.name }}-test.staging.pizzandustrial.com"
 image:
   registry: docker.ops.ndustrial.io
   repository: library/nginx
