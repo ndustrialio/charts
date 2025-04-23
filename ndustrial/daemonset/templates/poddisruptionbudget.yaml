@@ -1,6 +1,6 @@
 {{- if .Values.podDisruptionBudget.enabled }}
 kind: PodDisruptionBudget
-apiVersion: policy/v1beta1
+apiVersion: policy/v1
 metadata:
   name: {{ include "nio-common.names.fullname" . }}-deployment
   labels: {{- include "nio-common.labels.standard" . | nindent 4 }}
