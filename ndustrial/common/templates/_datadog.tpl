@@ -74,4 +74,17 @@ ad.datadoghq.com/{{ include "nio-common.names.fullname" .context }}.init_configs
 ad.datadoghq.com/{{ include "nio-common.names.fullname" .context }}.instances: {{ list $instance | toJson | quote}}
 {{- end }}
 {{- end }}
+{{- if and .value.nonprodlogging (eq .value.environment "staging")}}
+ad.datadoghq.com/{{ include "nio-common.names.name" . }}.logs: |
+  [{
+{{- if .value.datadogLogSource }}
+    "source": "{{ .Values.datadogLogSource }}"
+{{- end }}
+  }]
+{{- else }}
+ad.datadoghq.com/{{ include "nio-common.names.name" . }}.logs:
+{{- if .value.datadogLogSource }}
+    "source": "{{ .Values.datadogLogSource }}"
+{{- end }}
+{{- end }}
 {{- end -}}
