@@ -78,13 +78,13 @@ ad.datadoghq.com/{{ include "nio-common.names.fullname" .context }}.instances: {
 ad.datadoghq.com/{{ include "nio-common.names.name" . }}.logs: |
   [{
 {{- if .value.datadogLogSource }}
-    "source": "{{ .Values.datadogLogSource }}"
+    "source": "{{ .value.datadoglogsource }}"
 {{- end }}
   }]
 {{- else }}
 ad.datadoghq.com/{{ include "nio-common.names.name" . }}.logs:
-{{- if .value.datadogLogSource }}
-    "source": "{{ .Values.datadogLogSource }}"
+{{- if .value.datadoglogsource }}
+    "source": "{{ .value.datadoglogsource }}"
 {{- end }}
 {{- end }}
 {{- end -}}
