@@ -1,14 +1,9 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: cursor-storage-postgres
-  namespace: "nio-cursor-storage"
+  name: {{ include "nio-common.names.fullname" . }}
   labels:
-    app.kubernetes.io/instance: cursor-storage
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: postgres
-    app.kubernetes.io/version: 16.4.0
-    helm.sh/chart: postgres-15.5.37
+    {{ include "postgres.labels.standard" }}
     app.kubernetes.io/component: primary
 spec:
   replicas: 1
@@ -18,18 +13,14 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/instance: cursor-storage
-      app.kubernetes.io/name: postgres
-      app.kubernetes.io/component: primary
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
+    app.kubernetes.io/component: primary
   template:
     metadata:
       name: cursor-storage-postgres
       labels:
-        app.kubernetes.io/instance: cursor-storage
-        app.kubernetes.io/managed-by: Helm
-        app.kubernetes.io/name: postgres
-        app.kubernetes.io/version: 16.4.0
-        helm.sh/chart: postgres-15.5.37
+        {{ include "postgres.labels.standard" }}
         app.kubernetes.io/component: primary
     spec:
       serviceAccountName: cursor-storage-postgres
@@ -44,8 +35,8 @@ spec:
             - podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app.kubernetes.io/instance: cursor-storage
-                    app.kubernetes.io/name: postgres
+                    app.kubernetes.io/instance: {{ .Release.Name }}
+                    app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
                     app.kubernetes.io/component: primary
                 topologyKey: kubernetes.io/hostname
               weight: 1

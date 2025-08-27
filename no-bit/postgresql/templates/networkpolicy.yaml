@@ -1,28 +1,15 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ include "nio-common.names.fullname" . }}-postgres
-  labels: {{- include "nio-common.labels.standard" . | nindent 4 }}
-    ndustrial.io/component: postgres
-    {{- if .Values.labels }}
-    {{- include "nio-common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 4 }}
-    {{- end }}
-  {{- if .Values.annotations }}
-  annotations: {{- toYaml .Values.annotations | nindent 4 }}
-  {{- end }}
-metadata:
   name: {{ include "nio-common.names.fullname" . }}
-  labels:
-    app.kubernetes.io/instance: {{ include "nio-common.names.fullname" . }}
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: postgres
-    app.kubernetes.io/version: 16.4.0
+  labels: 
+    {{ include "postgres.labels.standard" }}
     app.kubernetes.io/component: primary
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/instance: {{ include "nio-common.names.fullname" . }}
-      app.kubernetes.io/name: postgres
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
       app.kubernetes.io/component: primary
   policyTypes:
     - Ingress
