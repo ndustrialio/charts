@@ -1,0 +1,19 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: cursor-storage-postgres
+  namespace: "nio-cursor-storage"
+  labels:
+    app.kubernetes.io/instance: cursor-storage
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/version: 16.4.0
+    helm.sh/chart: postgres-15.5.37
+    app.kubernetes.io/component: primary
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: cursor-storage
+      app.kubernetes.io/name: postgres
+      app.kubernetes.io/component: primary

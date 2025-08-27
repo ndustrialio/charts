@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cursor-storage-postgres-hl
+  namespace: "nio-cursor-storage"
+  labels:
+    app.kubernetes.io/instance: cursor-storage
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/version: 16.4.0
+    helm.sh/chart: postgres-15.5.37
+    app.kubernetes.io/component: primary
+  annotations:
+spec:
+  type: ClusterIP
+  clusterIP: None
+  # We want all pods in the StatefulSet to have their addresses published for
+  # the sake of the other Postgresql pods even before they're ready, since they
+  # have to be able to talk to each other in order to become ready.
+  publishNotReadyAddresses: true
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+  selector:
+    app.kubernetes.io/instance: cursor-storage
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: primary
