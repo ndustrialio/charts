@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 metadata:
   name: {{ include "nio-common.names.fullname" . }}
   labels: 
-    {{ include "postgres.labels.standard" }}
+    {{ include "postgres.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: primary
 spec:
   podSelector:

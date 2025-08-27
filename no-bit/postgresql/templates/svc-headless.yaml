@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "nio-common.names.fullname" . }}
   labels:
-    {{ include "postgres.labels.standard" }}
+    {{ include "postgres.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: primary
   annotations:
 spec:

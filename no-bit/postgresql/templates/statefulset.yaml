@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: {{ include "nio-common.names.fullname" . }}
   labels:
-    {{ include "postgres.labels.standard" }}
+    {{ include "postgres.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: primary
 spec:
   replicas: 1
@@ -18,18 +18,17 @@ spec:
     app.kubernetes.io/component: primary
   template:
     metadata:
-      name: cursor-storage-postgres
+      name: {{ include "nio-common.names.fullname" . }}
       labels:
-        {{ include "postgres.labels.standard" }}
+        {{ include "postgres.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: primary
     spec:
-      serviceAccountName: cursor-storage-postgres
+      serviceAccountName: {{ include "nio-common.names.fullname" . }}
       imagePullSecrets:
         - name: nio-quay-pull-secret
       automountServiceAccountToken: false
       affinity:
         podAffinity:
-
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - podAffinityTerm:
@@ -51,7 +50,7 @@ spec:
       hostIPC: false
       containers:
         - name: postgresql
-          image: docker.io/bitnami/postgresql:16.4.0-debian-12-r13
+          image: postgres:16.10
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
