@@ -52,19 +52,6 @@ spec:
         - name: postgresql
           image: postgres:16.10
           imagePullPolicy: "IfNotPresent"
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
-            privileged: false
-            readOnlyRootFilesystem: true
-            runAsGroup: 1001
-            runAsNonRoot: true
-            runAsUser: 1001
-            seLinuxOptions: {}
-            seccompProfile:
-              type: RuntimeDefault
           env:
             - name: POSTGRES_USER
               value: {{ .Values.username }}
