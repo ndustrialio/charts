@@ -13,9 +13,9 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
-    app.kubernetes.io/component: primary
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
+      app.kubernetes.io/component: primary
   template:
     metadata:
       name: {{ include "nio-common.names.fullname" . }}
@@ -66,47 +66,17 @@ spec:
             seccompProfile:
               type: RuntimeDefault
           env:
-            - name: POSTGRESQL_PORT_NUMBER
-              value: "5432"
-            - name: POSTGRESQL_VOLUME_DIR
-              value: "/bitnami/postgresql"
-            - name: PGDATA
-              value: "/bitnami/postgresql/data"
-            # Authentication
             - name: POSTGRES_USER
-              value: "nio-pipelines"
+              value: {{ .Values.username }}
+            - name: POSTGRES_DB
+              value: {{ .Values.database }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: cursor-storage-postgres
+                  name: {{ include "nio-common.names.fullname" . }}
                   key: password
-            - name: POSTGRES_POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: cursor-storage-postgres
-                  key: postgres-password
-            - name: POSTGRES_DATABASE
-              value: "cursor-storage"
-            # LDAP
-            - name: POSTGRESQL_ENABLE_LDAP
-              value: "no"
-            # TLS
             - name: POSTGRESQL_ENABLE_TLS
               value: "no"
-            # Audit
-            - name: POSTGRESQL_LOG_HOSTNAME
-              value: "false"
-            - name: POSTGRESQL_LOG_CONNECTIONS
-              value: "false"
-            - name: POSTGRESQL_LOG_DISCONNECTIONS
-              value: "false"
-            - name: POSTGRESQL_PGAUDIT_LOG_CATALOG
-              value: "off"
-            # Others
-            - name: POSTGRESQL_CLIENT_MIN_MESSAGES
-              value: "error"
-            - name: POSTGRESQL_SHARED_PRELOAD_LIBRARIES
-              value: "pgaudit"
           ports:
             - name: tcp-postgresql
               containerPort: 5432
@@ -120,7 +90,7 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - exec pg_isready -U "nio-pipelines" -d "dbname=cursor-storage" -h 127.0.0.1 -p 5432
+                - exec pg_isready -U "$(PGOSTGRES_USER)" -d "dbname=$(POSTGRES_PASSWORD)" -h 127.0.0.1 -p 5432
           readinessProbe:
             failureThreshold: 6
             initialDelaySeconds: 5
@@ -132,9 +102,7 @@ spec:
                 - /bin/sh
                 - -c
                 - -e
-                - |
-                  exec pg_isready -U "nio-pipelines" -d "dbname=cursor-storage" -h 127.0.0.1 -p 5432
-                  [ -f /opt/bitnami/postgresql/tmp/.initialized ] || [ -f /bitnami/postgresql/.initialized ]
+                - exec pg_isready -U "$(PGOSTGRES_USER)" -d "dbname=$(POSTGRES_PASSWORD)" -h 127.0.0.1 -p 5432
           resources:
             limits:
               cpu: "1.5"
@@ -149,15 +117,15 @@ spec:
               mountPath: /tmp
               subPath: tmp-dir
             - name: empty-dir
-              mountPath: /opt/bitnami/postgresql/conf
+              mountPath: /var/lib/postgresql/conf
               subPath: app-conf-dir
             - name: empty-dir
-              mountPath: /opt/bitnami/postgresql/tmp
+              mountPath: /var/lib/postgresql/tmp
               subPath: app-tmp-dir
             - name: dshm
               mountPath: /dev/shm
             - name: data
-              mountPath: /bitnami/postgresql
+              mountPath: /var/lib/postgresql
       volumes:
         - name: empty-dir
           emptyDir: {}

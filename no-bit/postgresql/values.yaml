@@ -1,3 +1,5 @@
 auth:
-  password: ""
+  password: "Code123456"
 version: "1.0"
+username: "nio-pipelines"
+database: "cursor-storage"
