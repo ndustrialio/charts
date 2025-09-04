@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "nio-common.names.fullname" . }}
+  name: {{ include "postgres.names.release" . }}
   labels:
     {{ include "postgres.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: primary
@@ -13,19 +13,18 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
+      app.kubernetes.io/instance: {{ include "postgres.names.release" . }}
+      app.kubernetes.io/name: {{ include "postgres.names.release" . }}
       app.kubernetes.io/component: primary
   template:
     metadata:
-      name: {{ include "nio-common.names.fullname" . }}
+      name: {{ include "postgres.names.release" . }}
       labels:
         {{ include "postgres.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: primary
     spec:
-      serviceAccountName: {{ include "nio-common.names.fullname" . }}
-      imagePullSecrets:
-        - name: nio-quay-pull-secret
+      serviceAccountName: {{ include "postgres.names.release" . }}
+      {{ include "nio-common.images.pullSecrets" (dict "images" (list .Values.image) "global" .Values.global) }}
       automountServiceAccountToken: false
       affinity:
         podAffinity:
@@ -34,8 +33,8 @@ spec:
             - podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app.kubernetes.io/instance: {{ .Release.Name }}
-                    app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
+                    app.kubernetes.io/instance: {{ include "postgres.names.release" . }}
+                    app.kubernetes.io/name: {{ include "postgres.names.release" . }}
                     app.kubernetes.io/component: primary
                 topologyKey: kubernetes.io/hostname
               weight: 1
@@ -50,7 +49,7 @@ spec:
       hostIPC: false
       containers:
         - name: postgresql
-          image: postgres:16.10
+          image: postgres:{{ .Values.version }}
           imagePullPolicy: "IfNotPresent"
           env:
             - name: POSTGRES_USER
@@ -60,7 +59,7 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "nio-common.names.fullname" . }}
+                  name: {{ include "postgres.names.release" . }}-postgres
                   key: password
             - name: POSTGRESQL_ENABLE_TLS
               value: "no"

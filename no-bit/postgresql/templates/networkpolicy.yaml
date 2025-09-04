@@ -1,15 +1,15 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ include "nio-common.names.fullname" . }}
+  name: {{ include "postgres.names.release" . }}
   labels: 
     {{ include "postgres.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: primary
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
+      app.kubernetes.io/instance: {{ include "postgres.names.release" . }}
+      app.kubernetes.io/name: {{ include "postgres.names.release" . }}
       app.kubernetes.io/component: primary
   policyTypes:
     - Ingress
