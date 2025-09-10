@@ -2,8 +2,7 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "postgres.names.release" . }}
-  labels: 
-    {{ include "postgres.labels.standard" . | nindent 4 }}
+  labels: {{ include "postgres.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: primary
 spec:
   maxUnavailable: 1

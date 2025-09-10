@@ -1,5 +1,5 @@
 apiVersion: v2
-name: deployment
+name: postgresql
 description: A Helm chart for deploying k8s deployment of postgresql
 type: application
 dependencies:

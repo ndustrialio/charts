@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ include "postgres.names.release" . }}
-  labels:
-    {{ include "postgres.labels.standard" . | nindent 4 }}
+  labels: {{ include "postgres.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: primary
 spec:
   replicas: 1
@@ -13,18 +12,16 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/instance: {{ include "postgres.names.release" . }}
-      app.kubernetes.io/name: {{ include "postgres.names.release" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
       app.kubernetes.io/component: primary
   template:
     metadata:
       name: {{ include "postgres.names.release" . }}
-      labels:
-        {{ include "postgres.labels.standard" . | nindent 8 }}
+      labels: {{ include "postgres.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: primary
     spec:
       serviceAccountName: {{ include "postgres.names.release" . }}
-      {{ include "nio-common.images.pullSecrets" (dict "images" (list .Values.image) "global" .Values.global) }}
       automountServiceAccountToken: false
       affinity:
         podAffinity:
@@ -33,8 +30,8 @@ spec:
             - podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app.kubernetes.io/instance: {{ include "postgres.names.release" . }}
-                    app.kubernetes.io/name: {{ include "postgres.names.release" . }}
+                    app.kubernetes.io/instance: {{ .Release.Name }}
+                    app.kubernetes.io/name: {{ include "nio-common.names.fullname" . }}
                     app.kubernetes.io/component: primary
                 topologyKey: kubernetes.io/hostname
               weight: 1
@@ -59,10 +56,13 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "postgres.names.release" . }}-postgres
+                  name: {{ include "postgres.names.release" . }}
                   key: password
             - name: POSTGRESQL_ENABLE_TLS
               value: "no"
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+
           ports:
             - name: tcp-postgresql
               containerPort: 5432
@@ -76,7 +76,7 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - exec pg_isready -U "$(PGOSTGRES_USER)" -d "dbname=$(POSTGRES_PASSWORD)" -h 127.0.0.1 -p 5432
+                - exec pg_isready -U "$(POSTGRES_USER)" -d "dbname=cursor-storage" -h 127.0.0.1 -p 5432
           readinessProbe:
             failureThreshold: 6
             initialDelaySeconds: 5
@@ -88,7 +88,7 @@ spec:
                 - /bin/sh
                 - -c
                 - -e
-                - exec pg_isready -U "$(PGOSTGRES_USER)" -d "dbname=$(POSTGRES_PASSWORD)" -h 127.0.0.1 -p 5432
+                - exec pg_isready -U "$(POSTGRES_USER)" -d "dbname=cursor-storage" -h 127.0.0.1 -p 5432
           resources:
             limits:
               cpu: "1.5"
@@ -99,30 +99,13 @@ spec:
               ephemeral-storage: 50Mi
               memory: 2048Mi
           volumeMounts:
-            - name: empty-dir
-              mountPath: /tmp
-              subPath: tmp-dir
-            - name: empty-dir
-              mountPath: /var/lib/postgresql/conf
-              subPath: app-conf-dir
-            - name: empty-dir
-              mountPath: /var/lib/postgresql/tmp
-              subPath: app-tmp-dir
-            - name: dshm
-              mountPath: /dev/shm
-            - name: data
-              mountPath: /var/lib/postgresql
-      volumes:
-        - name: empty-dir
-          emptyDir: {}
-        - name: dshm
-          emptyDir:
-            medium: Memory
+            - name: pg-data
+              mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim
       metadata:
-        name: data
+        name: pg-data
       spec:
         accessModes:
           - "ReadWriteOnce"

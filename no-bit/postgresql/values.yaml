@@ -1,3 +1,5 @@
+auth:
+  password:
 version: "16.10"
-username: "nio-pipelines"
-database: "cursor-storage"
+username:
+database:
