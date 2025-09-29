@@ -1,0 +1,6 @@
+auth:
+  password: ""
+  postgresPassword: ""
+version: "16.10"
+username:
+database:
