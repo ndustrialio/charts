@@ -3381,6 +3381,26 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/node-api-0.1.0/node-api-0.1.0.tgz
     version: 0.1.0
+  postgresql:
+  - apiVersion: v2
+    appVersion: 0.1.67
+    created: "2025-09-29T13:24:32.373318355Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.24
+    description: A Helm chart for deploying k8s deployment of postgresql
+    digest: f31019830389e28648406668af25d1737567b2ac62b71324ddf12ea7b4b8f06e
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: postgresql
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/postgresql-0.1.67/postgresql-0.1.67.tgz
+    version: 0.1.67
   statefulset:
   - apiVersion: v2
     appVersion: 0.1.42
@@ -4161,4 +4181,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-04T18:38:49.421800309Z"
+generated: "2025-09-29T13:24:32.373804724Z"
