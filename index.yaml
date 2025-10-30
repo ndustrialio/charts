@@ -3105,6 +3105,25 @@ entries:
     version: 0.1.0
   nio-api:
   - apiVersion: v2
+    appVersion: 1.0.14
+    created: "2025-10-30T17:12:36.535885556Z"
+    dependencies:
+    - name: common
+      repository: https://ndustrialio.github.io/charts
+      tags:
+      - ndustrial-common
+      version: ~0.2.22
+    description: A Helm chart for deploying k8s deployment
+    digest: 9bd165ef85de7c85ac200db617dab48ae82bb6f7f88c39e156a4e7b1b72bcd93
+    maintainers:
+    - email: devops@ndustrial.io
+      name: DevOps
+    name: nio-api
+    type: application
+    urls:
+    - https://github.com/ndustrialio/charts/releases/download/nio-api-1.0.14/nio-api-1.0.14.tgz
+    version: 1.0.14
+  - apiVersion: v2
     appVersion: 1.0.13
     created: "2025-03-20T16:43:42.288634585Z"
     dependencies:
@@ -4181,4 +4200,4 @@ entries:
     urls:
     - https://github.com/ndustrialio/charts/releases/download/statefulset-0.1.0/statefulset-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-29T13:24:32.373804724Z"
+generated: "2025-10-30T17:12:36.536231772Z"
