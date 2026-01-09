@@ -318,9 +318,6 @@ ports:
   - containerPort: 3000
     name: http
     protocol: TCP
-  - containerPort: 3000
-    name: https
-    protocol: TCP
 ## @param command Override Deployment default command
 ##
 command: []
