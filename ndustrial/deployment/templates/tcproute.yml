@@ -28,7 +28,7 @@ spec:
     {{- range .Values.routes.tcp.rules }}
     - backendRefs:
         {{- range .backendRefs }}
-        - name: {{ .name | default (template "nio-common.names.fullname" $) }}
+        - name: {{ .name | default (include "nio-common.names.fullname" $) }}
           {{- if .namespace }}
           namespace: {{ .namespace | quote }}
           {{- end }}
