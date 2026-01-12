@@ -2,7 +2,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: {{ default (template "nio-common.names.fullname" .) .Values.gateway.nameOverride }}
+  name: {{ default (include "nio-common.names.fullname" .) .Values.gateway.nameOverride }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "nio-common.labels.standard" . | nindent 4 }}
