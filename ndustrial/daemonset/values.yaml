@@ -239,6 +239,79 @@ ingress:
   ##
   secrets: []
 
+## @section Gateway parameters
+
+## Configure Gateway routes that allow you to access the Deployment installation
+## ref: https://gateway-api.sigs.k8s.io/
+##
+routes:
+  http:
+    ## @param routes.http.enabled Enable HTTPRoute creation (default off)
+    ##
+    enabled: false
+    ## @param routes.http.annotations Optional annotations on HTTPRoute object
+    ##
+    annotations: {}
+    ## @param routes.http.parentRefs If gateway.enabled is false, users must provide parentRefs
+    ##
+    parentRefs: []
+    ## @param routes.http.hostnames Hostnames to attach (optional)
+    ##
+    hostnames: []
+    ## @param routes.http.rules HTTPRoute rules
+    ##
+    rules: []
+    ## @param routes.http.filters Optional filters section for Gateway API HTTPRoute filters
+    ##
+    filters: []
+
+  tcp:
+    ## @param routes.tcp.enabled Enable TCPRoute creation (default off)
+    ##
+    enabled: false
+    ## @param routes.tcp.annotations Optional annotations on TCPRoute object
+    ##
+    annotations: {}
+    ## @param routes.tcp.parentRefs If gateway.enabled is false, users must provide parentRefs
+    ##
+    parentRefs: []
+    ## @param routes.tcp.port Used for safe default if no rules defined
+    ##
+    port: null
+    ## @param routes.tcp.rules TCPRoute rules
+    ##
+    rules: []
+    ## @param routes.tcp.filters Optional filters (if supported by controller)
+    ##
+    filters: []
+
+gateway:
+  ## @param gateway.enabled Enable namespace scoped Gateway creation
+  ##
+  enabled: false
+  ## @param gateway.nameOverride Optional custom name for local Gateway
+  ##
+  nameOverride: ""
+  ## @param gateway.className GatewayClass to use (required if enabled)
+  ##
+  className: ""
+  ## @param gateway.annotations Optional annotations on Gateway object
+  ##
+  annotations: {}
+  ## @param gateway.annotations Listener definitions (simple defaults; controller must support them)
+  ##
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+    - name: https
+      port: 443
+      protocol: HTTPS
+      # Optional TLS section — only if you want chart to configure listener TLS
+      tls:
+        mode: Terminate
+        certificateRefs: []
+
 ## @section Pod Image parameters
 
 image:
