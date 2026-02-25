@@ -1,0 +1,49 @@
+{{- if .Values.routes.tcp.enabled }}
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: {{ template "nio-common.names.fullname" . }}-tcp
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "nio-common.labels.standard" . | nindent 4 }}
+    {{- if .Values.labels }}
+    {{- include "nio-common.tplvalues.render" (dict "value" .Values.labels "context" $) | nindent 4 }}
+    {{- end }}
+  {{- if or .Values.routes.tcp.annotations .Values.annotations }}
+  annotations:
+    {{- if .Values.routes.tcp.annotations }}
+    {{- include "nio-common.tplvalues.render" (dict "value" .Values.routes.tcp.annotations "context" $) | nindent 4 }}
+    {{- end }}
+    {{- if .Values.annotations }}
+    {{- include "nio-common.tplvalues.render" (dict "value" .Values.annotations "context" $) | nindent 4 }}
+    {{- end }}
+  {{- end }}
+
+spec:
+  parentRefs:
+{{- include "nio-common.tplvalues.render" (dict "value" .Values.routes.tcp.parentRefs "context" $) | nindent 4 }}
+
+  rules:
+    {{- if .Values.routes.tcp.rules }}
+    {{- range .Values.routes.tcp.rules }}
+    - backendRefs:
+        {{- range .backendRefs }}
+        - name: {{ .name | default (include "nio-common.names.fullname" $) }}
+          {{- if .namespace }}
+          namespace: {{ .namespace | quote }}
+          {{- end }}
+          port: {{ .port }}
+          {{- if .weight }}
+          weight: {{ .weight }}
+          {{- end }}
+        {{- end }}
+    {{- end }}
+    {{- else }}
+
+    # Default
+    - backendRefs:
+        - name: {{ template "nio-common.names.fullname" . }}
+          port: {{ .Values.routes.tcp.port }}
+          weight: 100
+    {{- end }}
+{{- end }}
