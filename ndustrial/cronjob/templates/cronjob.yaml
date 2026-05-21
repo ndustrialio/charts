@@ -12,6 +12,9 @@ metadata:
   {{- end }}
 spec:
   schedule: {{ .Values.schedule | quote }}
+  {{- with .Values.suspend }}
+  suspend: {{ . }}
+  {{- end }}
   {{- with .Values.concurrencyPolicy }}
   concurrencyPolicy: {{ . }}
   {{- end }}
