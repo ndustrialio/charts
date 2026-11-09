@@ -77,8 +77,16 @@ This chart provides a common template helpers which can be used to develop new c
 | `datadog.openmetrics.host`           | The hostname or ip to scape metrics from. (Default: Pod ip)                                                                                                                                                         | `%%host%%` |
 | `datadog.openmetrics.port`           | The port to scrap metrics from (Default: 8080)                                                                                                                                                                      | `8080`     |
 | `datadog.openmetrics.endpoint`       | The endpoint to scrape metrics from                                                                                                                                                                                 | `/metrics` |
-| `datadog.openmetrics.metrics`        | List of metrics to collect                                                                                                                                                                                          | `[]`       |
+| `datadog.openmetrics.metrics` | Metrics Datadog collects (exposed names, `*` wildcards allowed). Required when enabled. Every collected series is a billed custom metric; anything not listed stays on the endpoint for debugging | `[]` |
+| `datadog.openmetrics.extra_metrics` | Additional metrics appended to `metrics` (e.g. per-service additions to a chart-wide list) | `[]` |
+| `datadog.openmetrics.namespace` | Datadog metric namespace (prefix). (Default: the release namespace) | `nil` |
+| `datadog.openmetrics.container` | Container the annotations apply to; must match the container name, or the agent ignores them. (Default: `nio-common.names.name`, which is the container name in the deployment, statefulset, daemonset and nio-api charts) | `nil` |
+| `datadog.openmetrics.tags` | Extra tags on every collected metric, e.g. `env:{{ .Values.ndustrial.env }}` (templated) | `[]` |
+| `datadog.openmetrics.send_histograms_buckets` | Send each histogram bucket as its own series (~15x series per histogram). Only needed for percentile or heatmap queries | `false` |
+| `datadog.openmetrics.ignore_metrics` | Metrics never collected, even if they match `metrics`. Set to `[]` to disable | `["*_created"]` |
+| `datadog.openmetrics.exclude_labels` | Prometheus labels dropped before submission, to cut cardinality | `[]` |
 | `datadog.openmetrics.type_overrides` | Override the collected metrics types                                                                                                                                                                                | `{}`       |
+| `datadog.openmetrics.options` | Any other openmetrics instance options, merged over the defaults above | `{}` |
 
 
 The following table lists the helpers available in the library which are scoped in different sections.
