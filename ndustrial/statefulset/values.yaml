@@ -640,10 +640,27 @@ datadog:
     port: 8080
     ## @param datadog.openmetrics.endpoint The endpoint to scrape metrics from
     endpoint: /metrics
-    ## @param datadog.openmetrics.metrics [array] List of metrics to collect
+    ## @param datadog.openmetrics.metrics [array] Metrics Datadog collects (exposed names, `*` wildcards allowed). Required when enabled. Every collected series is a billed custom metric; anything not listed stays on the endpoint for debugging
     metrics: []
+    ## @param datadog.openmetrics.extra_metrics [array] Additional metrics appended to `metrics` (e.g. per-service additions to a chart-wide list)
+    extra_metrics: []
+    ## @param datadog.openmetrics.namespace [string] Datadog metric namespace (prefix). (Default: the release namespace)
+    namespace:
+    ## @param datadog.openmetrics.container [string] Container the annotations apply to; must match the container name, or the agent ignores them. (Default: `nio-common.names.name`, which is the container name in the deployment, statefulset, daemonset and nio-api charts)
+    container:
+    ## @param datadog.openmetrics.tags [array] Extra tags on every collected metric, e.g. `env:{{ .Values.ndustrial.env }}` (templated)
+    tags: []
+    ## @param datadog.openmetrics.send_histograms_buckets Send each histogram bucket as its own series (~15x series per histogram). Only needed for percentile or heatmap queries
+    send_histograms_buckets: false
+    ## @param datadog.openmetrics.ignore_metrics [array] Metrics never collected, even if they match `metrics`. Set to `[]` to disable
+    ignore_metrics:
+      - "*_created"
+    ## @param datadog.openmetrics.exclude_labels [array] Prometheus labels dropped before submission, to cut cardinality
+    exclude_labels: []
     ## @param datadog.openmetrics.type_overrides [object] Override the collected metrics types
     type_overrides: {}
+    ## @param datadog.openmetrics.options [object] Any other openmetrics instance options, merged over the defaults above
+    options: {}
 
 ## @section External secrets
 

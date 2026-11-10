@@ -247,6 +247,81 @@ ingress:
   ##
   secrets: []
   ingressClassName: alb
+
+## @section Gateway parameters
+
+## Configure Gateway routes that allow you to access the Deployment installation
+## ref: https://gateway-api.sigs.k8s.io/
+##
+routes:
+  http:
+    ## @param routes.http.enabled Enable HTTPRoute creation (default off)
+    ##
+    enabled: false
+    ## @param routes.http.annotations Optional annotations on HTTPRoute object
+    ##
+    annotations: {}
+    ## @param routes.http.parentRefs If gateway.enabled is false, users must provide parentRefs
+    ##
+    parentRefs: []
+    ## @param routes.http.hostnames Hostnames to attach (optional)
+    ##
+    hostnames: []
+    ## @param routes.http.rules HTTPRoute rules
+    ##
+    rules: []
+    ## @param routes.http.filters Optional filters section for Gateway API HTTPRoute filters
+    ##
+    filters: []
+
+  tcp:
+    ## @param routes.tcp.enabled Enable TCPRoute creation (default off)
+    ##
+    enabled: false
+    ## @param routes.tcp.annotations Optional annotations on TCPRoute object
+    ##
+    annotations: {}
+    ## @param routes.tcp.parentRefs If gateway.enabled is false, users must provide parentRefs
+    ##
+    parentRefs: []
+    ## @param routes.tcp.port Used for safe default if no rules defined
+    ##
+    port: null
+    ## @param routes.tcp.rules TCPRoute rules
+    ##
+    rules: []
+    ## @param routes.tcp.filters Optional filters (if supported by controller)
+    ##
+    filters: []
+
+gateway:
+  ## @param gateway.enabled Enable namespace scoped Gateway creation
+  ##
+  enabled: false
+  ## @param gateway.nameOverride Optional custom name for local Gateway
+  ##
+  nameOverride: ""
+  ## @param gateway.className GatewayClass to use (required if enabled)
+  ##
+  className: ""
+  ## @param gateway.annotations Optional annotations on Gateway object
+  ##
+  annotations: {}
+  ## @param gateway.annotations Listener definitions (simple defaults; controller must support them)
+  ##
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+    - name: https
+      port: 443
+      protocol: HTTPS
+      # Optional TLS section — only if you want chart to configure listener TLS
+      tls:
+        mode: Terminate
+        certificateRefs: []
+
+
 ## @section Autoscaling parameters
 autoscaling:
   ## @param autoscaling.enabled
@@ -556,10 +631,27 @@ datadog:
     port: 8080
     ## @param datadog.openmetrics.endpoint The endpoint to scrape metrics from
     endpoint: /metrics
-    ## @param datadog.openmetrics.metrics [array] List of metrics to collect
+    ## @param datadog.openmetrics.metrics [array] Metrics Datadog collects (exposed names, `*` wildcards allowed). Required when enabled. Every collected series is a billed custom metric; anything not listed stays on the endpoint for debugging
     metrics: []
+    ## @param datadog.openmetrics.extra_metrics [array] Additional metrics appended to `metrics` (e.g. per-service additions to a chart-wide list)
+    extra_metrics: []
+    ## @param datadog.openmetrics.namespace [string] Datadog metric namespace (prefix). (Default: the release namespace)
+    namespace:
+    ## @param datadog.openmetrics.container [string] Container the annotations apply to; must match the container name, or the agent ignores them. (Default: `nio-common.names.name`, which is the container name in the deployment, statefulset, daemonset and nio-api charts)
+    container:
+    ## @param datadog.openmetrics.tags [array] Extra tags on every collected metric, e.g. `env:{{ .Values.ndustrial.env }}` (templated)
+    tags: []
+    ## @param datadog.openmetrics.send_histograms_buckets Send each histogram bucket as its own series (~15x series per histogram). Only needed for percentile or heatmap queries
+    send_histograms_buckets: false
+    ## @param datadog.openmetrics.ignore_metrics [array] Metrics never collected, even if they match `metrics`. Set to `[]` to disable
+    ignore_metrics:
+      - "*_created"
+    ## @param datadog.openmetrics.exclude_labels [array] Prometheus labels dropped before submission, to cut cardinality
+    exclude_labels: []
     ## @param datadog.openmetrics.type_overrides [object] Override the collected metrics types
     type_overrides: {}
+    ## @param datadog.openmetrics.options [object] Any other openmetrics instance options, merged over the defaults above
+    options: {}
 ## @section External secrets
 
 ## @param externalSecrets [array] Secrets resolved from an external source
